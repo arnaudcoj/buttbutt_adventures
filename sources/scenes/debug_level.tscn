@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 993, 111 )
+
+[node name="TileMap" type="Node2D"]
+
+_sections_unfolded = [ "Cell", "Collision" ]
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+collision_use_kinematic = true
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+tile_data = PoolIntArray( 262144, 0, 327680, 0, 327681, 0, 393216, 0, 393217, 0, 393218, 0, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 983040, 0, 983042, 0, 983044, 0, 983046, 0, 983048, 0, 983049, 0, 983050, 0, 983052, 0, 983054, 0, 983056, 0, 983058, 0, 983059, 0, 983060, 0, 983061, 0, 983062, 0, 983063, 0, 1048601, 0, 1048602, 0, 1048603, 0, 1048604, 0, 1048605, 0 )
+_sections_unfolded = [ "Cell", "Collision", "Occluder" ]
+
+[node name="buttbutt" parent="." instance=ExtResource( 2 )]
+
+position = Vector2( 342, 473 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+
+position = Vector2( 913, 1013 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+
+position = Vector2( 185, 733 )
+rotation = 0.856105
+shape = SubResource( 1 )
+
+

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/buttbutt_skeleton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/buttbutt_animation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/character_controler.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 53.3135
+height = 71.1249
+
+[node name="buttbutt" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+_sections_unfolded = [ "Transform", "collision" ]
+
+[node name="buttbutt_skeleton" parent="." instance=ExtResource( 1 )]
+
+scale = Vector2( 0.2, 0.2 )
+
+[node name="buttbutt_animation" parent="." instance=ExtResource( 2 )]
+
+autoplay = "debug"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+position = Vector2( 1.7605, -12.3235 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="character_controler" type="Node" parent="."]
+
+script = ExtResource( 3 )
+target = NodePath("..")
+speed = 500
+
+
