@@ -1,0 +1,26 @@
+Couldn't open C:\Users\Non0w\Downloads\Godot-Windows-x86_64-2017-10-11.aecbc15/godot.windows.opt.tools.64.pck
+Couldn't open godot.windows.opt.tools.64.pck
+OpenGL ES 3.0 Renderer: GeForce GT 425M/PCIe/SSE2
+GLES3: max ubo light: 409
+GLES3: max ubo reflections: 455, ubo size: 144
+Registered interface Native mobile
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0
+**ERROR**: Can't use get_node() with absolute paths from outside the active scene tree.
+   At: scene\main\node.cpp:1454:Node::_get_node() - Method/Function Failed, returning: 0

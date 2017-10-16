@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/fsm_state.gd" type="Script" id=1]
+
+[node name="fsm_state" type="Node"]
+
+script = ExtResource( 1 )
+fsm_path = null
+walk_state_path = null
+
+
