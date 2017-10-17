@@ -19,6 +19,3 @@ func change_state(new_state):
 		current_state.on_leave()
 		current_state = new_state
 		current_state.on_enter()
-	
-func on_ground():
-	return body.test_move(body.transform, Vector2(0,1))

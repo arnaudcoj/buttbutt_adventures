@@ -12,13 +12,14 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if fsm.on_ground():
+	if fsm.body.on_ground():
 		fsm.change_state(get_node(idle_state_path))
 	elif not Input.is_action_pressed("ui_up"):
 		fsm.change_state(get_node(falling_state_path))
 
 func on_enter():
-	print("enter jumping")
+	#print("enter jumping")
+	pass
 
 func update(delta):
 	var direction = Vector2(0,0)
@@ -34,4 +35,5 @@ func update(delta):
 	fsm.body.move_and_slide(direction.normalized() * speed)
 
 func on_leave():
-	print("leave jumping")
+	#print("leave jumping")
+	pass

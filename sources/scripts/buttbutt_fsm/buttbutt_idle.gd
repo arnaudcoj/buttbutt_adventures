@@ -11,7 +11,7 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if not fsm.on_ground():
+	if not fsm.body.on_ground():
 		fsm.change_state(get_node(falling_state_path))
 	elif Input.is_action_pressed("ui_up") :
 		fsm.change_state(get_node(jumping_state_path))
@@ -19,11 +19,13 @@ func change_state():
 		fsm.change_state(get_node(walk_state_path))
 
 func on_enter():
-	print("enter idle")
+	#print("enter idle")
+	pass
 
 func update(delta):
 	pass
 
 func on_leave():
-	print("leave idle")
+	#print("leave idle")
+	pass
 

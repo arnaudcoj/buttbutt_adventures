@@ -11,11 +11,12 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if fsm.on_ground():
+	if fsm.body.on_ground():
 		fsm.change_state(get_node(idle_state_path))
 
 func on_enter():
-	print("enter falling")
+	#print("enter falling")
+	pass
 
 func update(delta):
 	var direction = Vector2(0,0)
@@ -30,4 +31,5 @@ func update(delta):
 	fsm.body.move_and_slide(direction.normalized() * speed)
 
 func on_leave():
-	print("leave falling")
+	#print("leave falling")
+	pass

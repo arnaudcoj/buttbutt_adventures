@@ -1,12 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 324, 108 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 993, 111 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 225, 96 )
 
 [node name="TileMap" type="Node2D"]
 
@@ -37,6 +47,7 @@ position = Vector2( 342, 473 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
+position = Vector2( -366, 1790 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -44,16 +55,29 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 
-position = Vector2( 913, 1013 )
-shape = SubResource( 1 )
+position = Vector2( 818, 1007 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 
-position = Vector2( 185, 733 )
+position = Vector2( -240.069, 222.013 )
 rotation = 0.856105
 shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+
+position = Vector2( 1379.11, 843.092 )
+rotation = -0.632668
+shape = SubResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+position = Vector2( 366, -1790 )
+build_mode = 0
+polygon = PoolVector2Array( -1, 1015, 184, 907, 391, 1032, 645, 909, 830, 1015, 1064, 815, 1219, 679, 1320, 722, 1439, 175, 1568, 241, 1369, 1188, -109, 1130, -105, 218, 22, 218 )
 
 
