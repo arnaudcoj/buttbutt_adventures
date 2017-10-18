@@ -12,8 +12,8 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 53.3135
-height = 71.1249
+radius = 44.0
+height = 88.0
 
 [node name="buttbutt" type="KinematicBody2D"]
 
@@ -34,13 +34,12 @@ autoplay = "debug"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-position = Vector2( 1.7605, -12.3235 )
+position = Vector2( 1, -12 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="character_controler" type="Node" parent="."]
 
-editor/display_folded = true
 script = ExtResource( 4 )
 target = NodePath("..")
 init_state_path = NodePath("idle")
@@ -60,13 +59,14 @@ fsm_path = NodePath("..")
 idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
 jumping_state_path = NodePath("../jumping")
-speed = 500
+max_speed = 500
 
 [node name="falling" type="Node" parent="character_controler"]
 
 script = ExtResource( 7 )
 fsm_path = NodePath("..")
 idle_state_path = NodePath("../idle")
+jumping_state_path = NodePath("../jumping")
 speed = 500
 
 [node name="jumping" type="Node" parent="character_controler"]
@@ -79,11 +79,12 @@ speed = 500
 
 [node name="raycast" type="RayCast2D" parent="."]
 
-position = Vector2( 0, 77 )
+position = Vector2( 0, 75 )
 enabled = true
 exclude_parent = true
-cast_to = Vector2( 0, 50 )
+cast_to = Vector2( 0, 40 )
 collision_layer = 1
 type_mask = 15
+_sections_unfolded = [ "Transform" ]
 
 

@@ -3,12 +3,12 @@
 [ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 324, 108 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 993, 111 )
@@ -20,7 +20,7 @@ extents = Vector2( 225, 96 )
 
 [node name="TileMap" type="Node2D"]
 
-_sections_unfolded = [ "Cell", "Collision" ]
+_sections_unfolded = [ "Cell", "Collision", "Transform" ]
 
 [node name="TileMap" type="TileMap" parent="."]
 
@@ -38,12 +38,12 @@ collision_bounce = 0.0
 collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
-tile_data = PoolIntArray( 262144, 0, 327680, 0, 327681, 0, 393216, 0, 393217, 0, 393218, 0, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 983040, 0, 983042, 0, 983044, 0, 983046, 0, 983048, 0, 983049, 0, 983050, 0, 983052, 0, 983054, 0, 983056, 0, 983058, 0, 983059, 0, 983060, 0, 983061, 0, 983062, 0, 983063, 0, 1048601, 0, 1048602, 0, 1048603, 0, 1048604, 0, 1048605, 0 )
+tile_data = PoolIntArray( 262144, 0, 327680, 0, 327681, 0, 393216, 0, 393217, 0, 393218, 0, 393221, 0, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 983040, 0, 983042, 0, 983044, 0, 983046, 0, 983048, 0, 983049, 0, 983050, 0, 983052, 0, 983054, 0, 983056, 0, 983058, 0, 983059, 0, 983060, 0, 983061, 0, 983062, 0, 983063, 0, 1048601, 0, 1048602, 0, 1048603, 0, 1048604, 0, 1048605, 0 )
 _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
 [node name="buttbutt" parent="." instance=ExtResource( 2 )]
 
-position = Vector2( 342, 473 )
+position = Vector2( 456, 334 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -60,13 +60,13 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 
 position = Vector2( 818, 1007 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 
 position = Vector2( -240.069, 222.013 )
 rotation = 0.856105
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 
@@ -78,6 +78,6 @@ shape = SubResource( 3 )
 
 position = Vector2( 366, -1790 )
 build_mode = 0
-polygon = PoolVector2Array( -1, 1015, 184, 907, 391, 1032, 645, 909, 830, 1015, 1064, 815, 1219, 679, 1320, 722, 1439, 175, 1568, 241, 1369, 1188, -109, 1130, -105, 218, 22, 218 )
+polygon = PoolVector2Array( 0, 510, 130, 510, 260, 640, 380, 770, 380, 890, 510, 890, 640, 770, 770, 770, 900, 890, 1410, 890, 1410, 1140, 0, 1090 )
 
 

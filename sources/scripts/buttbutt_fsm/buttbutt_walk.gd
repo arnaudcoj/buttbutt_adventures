@@ -8,36 +8,37 @@ export (NodePath) var idle_state_path
 export (NodePath) var falling_state_path
 export (NodePath) var jumping_state_path
 
-export var speed = 500
-var current_direction = Vector2()
+export var max_speed = 500
+var current_direction = Vector2(-1,0)
+var current_speed = 100
 
 func _ready():
 	fsm = get_node(fsm_path)
 
 func update(delta):
-
-	if (fsm.body.get_slide_count() > 0):
-		print(fsm.body.get_collision_normal())
-		if fsm.body.get_collision_normal() == null or fsm.body.get_collision_normal().dot(Vector2(1,0)) == 0:
-			current_direction.x = -1
-			current_direction.y = 0
-		else:
-			current_direction.x = fsm.body.get_collision_normal().y
-			current_direction.y = fsm.body.get_collision_normal().x
+	#print(fsm.body.get_collision_normal())
+	#print(fsm.body.get_slide_collision(0).normal, " ", fsm.body.get_slide_collision(0).normal.dot(Vector2(1,0)))
+	if fsm.body.get_collision_normal() != null:
+		current_direction.x = fsm.body.get_collision_normal().y
+		current_direction.y = fsm.body.get_collision_normal().x
 	
+
 	var direction = current_direction
 	if Input.is_action_pressed("ui_right"):
 		direction.x *= -1
 		direction.y *= 1
+		current_speed = min((current_speed * 1.1), max_speed)
 	elif Input.is_action_pressed("ui_left"):
 		direction.x *= 1
 		direction.y *= -1
-	else:
-		direction.x *= 0
-		direction.y *= 0
-
-	fsm.body.move_and_slide(direction.normalized() * speed)
-#	fsm.body.move_and_slide(direction.normalized() * speed)
+		current_speed = min((current_speed * 1.1), max_speed)
+		
+	print(direction.normalized())
+	fsm.body.move_and_slide(direction.normalized() * current_speed)
+	
+	if not fsm.body.test_move(fsm.body.transform, Vector2(direction.x,0)) and fsm.body.get_collision_normal() != null:
+		fsm.body.move_and_collide(Vector2(0,10))
+		#print("fruf")
 
 func change_state():
 	if not fsm.body.on_ground():
@@ -52,5 +53,7 @@ func on_enter():
 	pass
 	
 func on_leave():
+	current_speed = 100
+	current_direction = Vector2(-1,0)
 	#print("leave walk")
 	pass
