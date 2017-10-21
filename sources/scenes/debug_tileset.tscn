@@ -62,7 +62,7 @@ vframes = 4
 hframes = 4
 frame = 5
 region_rect = Rect2( 0, 0, 128, 128 )
-_sections_unfolded = [ "Animation", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="downward"]
 
@@ -87,7 +87,7 @@ vframes = 4
 hframes = 4
 frame = 8
 region_rect = Rect2( 0, 0, 128, 128 )
-_sections_unfolded = [ "Animation", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="plateforme"]
 

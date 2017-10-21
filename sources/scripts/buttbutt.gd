@@ -13,6 +13,12 @@ func flip(to_the_right):
 
 func on_ground():
 	return test_move(transform, Vector2(0,10))
+	
+func can_climb():
+	for area in $interaction_area.get_overlapping_areas():
+		if area.has_method("can_climb") && area.can_climb():
+			return true
+	return false
 
 func get_raycast_point():
 	if $raycast.is_colliding():

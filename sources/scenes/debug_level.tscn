@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/controls_changer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=4]
 
 [node name="TileMap" type="Node2D"]
 
@@ -29,7 +30,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
 [node name="buttbutt" parent="." instance=ExtResource( 2 )]
 
-position = Vector2( 456, 334 )
+position = Vector2( 448, 640 )
 
 [node name="Camera2D" type="Camera2D" parent="buttbutt"]
 
@@ -57,12 +58,20 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="controls_changer" parent="." instance=ExtResource( 3 )]
 
-position = Vector2( 246.66, 721.007 )
+position = Vector2( 192, 832 )
 
 [node name="controls_changer2" parent="." instance=ExtResource( 3 )]
 
-position = Vector2( 1574.83, 698.239 )
+position = Vector2( 1600, 704 )
 left_control = 0
 right_control = 2
+
+[node name="ladder" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 1472, 832 )
+
+[node name="ladder2" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 960, 832 )
 
 

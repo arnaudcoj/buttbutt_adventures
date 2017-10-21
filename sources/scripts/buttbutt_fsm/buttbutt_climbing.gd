@@ -4,7 +4,7 @@ export (NodePath) var fsm_path
 var fsm
 
 export (NodePath) var idle_state_path
-export (NodePath) var climbing_state_path
+export (NodePath) var falling_state_path
 
 export var speed = 500
 
@@ -12,13 +12,13 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if fsm.body.test_move(fsm.body.transform, Vector2(0,1)):
+	if not fsm.is_control_pressed(fsm.Control.Up) or not fsm.body.can_climb(): #TODO control jump
+		fsm.change_state(get_node(falling_state_path))
+	elif fsm.body.on_ground():
 		fsm.change_state(get_node(idle_state_path))
-	elif fsm.is_control_pressed(fsm.Control.Up) and fsm.body.can_climb(): #TODO control jump
-		fsm.change_state(get_node(climbing_state_path))
 
 func on_enter():
-	fsm.body.current_direction = Vector2(-1,0)
+	#print("enter jumping")
 	pass
 
 func update(delta):
@@ -31,11 +31,11 @@ func update(delta):
 		
 	fsm.body.move_and_slide(direction.normalized() * speed)
 	
-	direction.x = 0
-	direction.y = 1
-		
-	fsm.body.move_and_slide(direction.normalized() * speed)
+	if fsm.is_control_pressed(fsm.Control.Up):
+		direction.x = 0
+		direction.y = -1.5
+		fsm.body.move_and_slide(direction.normalized() * speed)
 
 func on_leave():
-	#print("leave falling")
+	#print("leave jumping")
 	pass

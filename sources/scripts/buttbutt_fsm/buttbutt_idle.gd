@@ -5,7 +5,7 @@ var fsm
 
 export (NodePath) var walk_state_path
 export (NodePath) var falling_state_path
-export (NodePath) var jumping_state_path
+export (NodePath) var climbing_state_path
 
 func _ready():
 	fsm = get_node(fsm_path)
@@ -13,8 +13,8 @@ func _ready():
 func change_state():
 	if not fsm.body.on_ground():
 		fsm.change_state(get_node(falling_state_path))
-	elif fsm.is_control_pressed(fsm.Control.Up) :
-		fsm.change_state(get_node(jumping_state_path))
+	elif fsm.is_control_pressed(fsm.Control.Up) and fsm.body.can_climb():
+		fsm.change_state(get_node(climbing_state_path))
 	elif fsm.is_control_pressed(fsm.Control.Left) or fsm.is_control_pressed(fsm.Control.Right) :
 		fsm.change_state(get_node(walk_state_path))
 
