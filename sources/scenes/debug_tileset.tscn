@@ -79,4 +79,31 @@ bounce = 0.0
 build_mode = 0
 polygon = PoolVector2Array( -64, -64, -64, 64, 64, 64 )
 
+[node name="plateforme" type="Sprite" parent="."]
+
+position = Vector2( 550.891, 66.3789 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 8
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="plateforme"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plateforme/StaticBody2D"]
+
+build_mode = 0
+polygon = PoolVector2Array( 63.5647, -63.8305, 63.5647, -0.194321, -64.7566, -0.194305, -64.407, -64.0053 )
+_sections_unfolded = [ "Transform" ]
+
 
