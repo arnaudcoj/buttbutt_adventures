@@ -9,11 +9,10 @@
 [ext_resource path="res://scripts/buttbutt_fsm/buttbutt_falling.gd" type="Script" id=7]
 [ext_resource path="res://scripts/buttbutt_fsm/buttbutt_jumping.gd" type="Script" id=8]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 37.0
-height = 86.0
+extents = Vector2( 35, 77 )
 
 [node name="buttbutt" type="KinematicBody2D"]
 
@@ -82,7 +81,7 @@ speed = 500
 position = Vector2( 0, 65 )
 enabled = true
 exclude_parent = true
-cast_to = Vector2( 0, 40 )
+cast_to = Vector2( 0, 50 )
 collision_layer = 1
 type_mask = 15
 _sections_unfolded = [ "Transform" ]

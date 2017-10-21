@@ -18,7 +18,7 @@ func change_state():
 		fsm.change_state(get_node(jumping_state_path))
 
 func on_enter():
-	print("enter falling")
+	fsm.body.current_direction = Vector2(-1,0)
 	pass
 
 func update(delta):

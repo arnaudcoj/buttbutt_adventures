@@ -2,29 +2,26 @@ extends Node
 
 export (NodePath) var fsm_path
 var fsm
-var body
 
 export (NodePath) var idle_state_path
 export (NodePath) var falling_state_path
 export (NodePath) var jumping_state_path
 
 export var max_speed = 500
-var current_direction = Vector2(-1,0)
 var current_speed = 100
 
 func _ready():
 	fsm = get_node(fsm_path)
 
 func update(delta):
-	#print(fsm.body.get_collision_normal())
-	#print(fsm.body.get_slide_collision(0).normal, " ", fsm.body.get_slide_collision(0).normal.dot(Vector2(1,0)))
-	if fsm.body.get_collision_normal() != null:
-		current_direction.x = fsm.body.get_collision_normal().y
-		current_direction.y = fsm.body.get_collision_normal().x
+	fsm.body.current_direction.y = max(0, fsm.body.current_direction.y)
 	
-	print(current_direction)
-
-	var direction = current_direction
+	if fsm.body.get_collision_normal() != null:
+		fsm.body.current_direction.x = fsm.body.get_collision_normal().y
+		fsm.body.current_direction.y = fsm.body.get_collision_normal().x
+	
+	var direction = fsm.body.current_direction
+	
 	if Input.is_action_pressed("ui_right"):
 		fsm.body.flip(true)
 		direction.x *= -1
@@ -35,13 +32,11 @@ func update(delta):
 		direction.x *= 1
 		direction.y *= -1
 		current_speed = min((current_speed * 1.1), max_speed)
-		
-	#print(direction.normalized())
-	fsm.body.move_and_slide(direction.normalized() * current_speed)
 	
-	if not fsm.body.test_move(fsm.body.transform, Vector2(direction.x,0)) and fsm.body.get_collision_normal() != null:
-		fsm.body.move_and_collide(Vector2(0,10))
-		#print("fruf")
+	fsm.body.move_and_slide(direction.normalized() * current_speed, Vector2(0,-1))
+	
+	if fsm.body.get_raycast_point() != null:
+		fsm.body.move_and_collide(Vector2(0,fsm.body.get_raycast_point().y - fsm.body.position.y))
 
 func change_state():
 	if not fsm.body.on_ground():
@@ -52,12 +47,8 @@ func change_state():
 		fsm.change_state(get_node(idle_state_path))
 
 func on_enter():
-	#print("enter walk")
+	current_speed = 100
 	pass
 	
 func on_leave():
-	print("leave")
-	current_speed = 100
-	current_direction = Vector2(-1,0)
-	#print("leave walk")
 	pass

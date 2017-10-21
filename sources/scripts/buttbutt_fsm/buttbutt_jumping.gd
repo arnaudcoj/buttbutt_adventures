@@ -12,10 +12,10 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if fsm.body.on_ground():
-		fsm.change_state(get_node(idle_state_path))
-	elif not Input.is_action_pressed("ui_up"):
+	if not Input.is_action_pressed("ui_up"):
 		fsm.change_state(get_node(falling_state_path))
+	elif fsm.body.on_ground():
+		fsm.change_state(get_node(idle_state_path))
 
 func on_enter():
 	#print("enter jumping")
