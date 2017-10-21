@@ -25,15 +25,17 @@ func update(delta):
 
 	var direction = current_direction
 	if Input.is_action_pressed("ui_right"):
+		fsm.body.flip(true)
 		direction.x *= -1
 		direction.y *= 1
 		current_speed = min((current_speed * 1.1), max_speed)
 	elif Input.is_action_pressed("ui_left"):
+		fsm.body.flip(false)
 		direction.x *= 1
 		direction.y *= -1
 		current_speed = min((current_speed * 1.1), max_speed)
 		
-	print(direction.normalized())
+	#print(direction.normalized())
 	fsm.body.move_and_slide(direction.normalized() * current_speed)
 	
 	if not fsm.body.test_move(fsm.body.transform, Vector2(direction.x,0)) and fsm.body.get_collision_normal() != null:
