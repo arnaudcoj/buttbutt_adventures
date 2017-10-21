@@ -78,6 +78,7 @@ speed = 500
 
 [node name="raycast" type="RayCast2D" parent="."]
 
+visible = false
 position = Vector2( 0, 65 )
 enabled = true
 exclude_parent = true

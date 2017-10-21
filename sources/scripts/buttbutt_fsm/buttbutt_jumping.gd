@@ -12,7 +12,7 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if not Input.is_action_pressed("ui_up"):
+	if not fsm.is_control_pressed(fsm.Control.Up): #TODO control jump
 		fsm.change_state(get_node(falling_state_path))
 	elif fsm.body.on_ground():
 		fsm.change_state(get_node(idle_state_path))
@@ -24,15 +24,17 @@ func on_enter():
 func update(delta):
 	var direction = Vector2(0,0)
 	
-	if Input.is_action_pressed("ui_left"):
+	if fsm.is_control_pressed(fsm.Control.Left):
 		direction.x -= 1
-	if Input.is_action_pressed("ui_right"):
+	if fsm.is_control_pressed(fsm.Control.Right):
 		direction.x += 1
 		
-	if Input.is_action_pressed("ui_up"):
-		direction.y = -1.5
-		
 	fsm.body.move_and_slide(direction.normalized() * speed)
+	
+	if fsm.is_control_pressed(fsm.Control.Up):
+		direction.x = 0
+		direction.y = -1.5
+		fsm.body.move_and_slide(direction.normalized() * speed)
 
 func on_leave():
 	#print("leave jumping")

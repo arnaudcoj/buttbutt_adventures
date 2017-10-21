@@ -3,6 +3,10 @@ extends Node
 export (NodePath) var target
 var body
 
+enum Control {Left, Right, Up, Down}
+var left_control = Control.Left
+var right_control = Control.Right
+
 export (NodePath) var init_state_path
 var current_state
 
@@ -14,8 +18,11 @@ func _ready():
 func _process(delta):
 	current_state.change_state()
 	current_state.update(delta)
-	
+
 func change_state(new_state):
 		current_state.on_leave()
 		current_state = new_state
 		current_state.on_enter()
+		
+func is_control_pressed(control):
+	return left_control == control and Input.is_action_pressed("left_action") or right_control == control and Input.is_action_pressed("right_action")

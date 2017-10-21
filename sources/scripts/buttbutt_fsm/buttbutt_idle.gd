@@ -13,9 +13,9 @@ func _ready():
 func change_state():
 	if not fsm.body.on_ground():
 		fsm.change_state(get_node(falling_state_path))
-	elif Input.is_action_pressed("ui_up") :
+	elif fsm.is_control_pressed(fsm.Control.Up) :
 		fsm.change_state(get_node(jumping_state_path))
-	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") :
+	elif fsm.is_control_pressed(fsm.Control.Left) or fsm.is_control_pressed(fsm.Control.Right) :
 		fsm.change_state(get_node(walk_state_path))
 
 func on_enter():

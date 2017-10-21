@@ -22,16 +22,18 @@ func update(delta):
 	
 	var direction = fsm.body.current_direction
 	
-	if Input.is_action_pressed("ui_right"):
+	if fsm.is_control_pressed(fsm.Control.Right):
 		fsm.body.flip(true)
 		direction.x *= -1
 		direction.y *= 1
 		current_speed = min((current_speed * 1.1), max_speed)
-	elif Input.is_action_pressed("ui_left"):
+	elif fsm.is_control_pressed(fsm.Control.Left):
 		fsm.body.flip(false)
 		direction.x *= 1
 		direction.y *= -1
 		current_speed = min((current_speed * 1.1), max_speed)
+	else:
+		return
 	
 	fsm.body.move_and_slide(direction.normalized() * current_speed, Vector2(0,-1))
 	
@@ -41,9 +43,9 @@ func update(delta):
 func change_state():
 	if not fsm.body.on_ground():
 		fsm.change_state(get_node(falling_state_path))
-	elif Input.is_action_pressed("ui_up") :
+	elif fsm.is_control_pressed(fsm.Control.Up): #TODO Jump
 		fsm.change_state(get_node(jumping_state_path))
-	elif not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
+	elif not fsm.is_control_pressed(fsm.Control.Left) and not fsm.is_control_pressed(fsm.Control.Right):
 		fsm.change_state(get_node(idle_state_path))
 
 func on_enter():
