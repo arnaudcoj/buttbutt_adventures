@@ -12,7 +12,7 @@ func _ready():
 	fsm = get_node(fsm_path)
 
 func change_state():
-	if fsm.body.on_ground():
+	if fsm.body.test_move(fsm.body.transform, Vector2(0,1)):
 		fsm.change_state(get_node(idle_state_path))
 	elif Input.is_action_pressed("ui_up"):
 		fsm.change_state(get_node(jumping_state_path))
@@ -34,6 +34,5 @@ func update(delta):
 	fsm.body.move_and_slide(direction.normalized() * speed)
 
 func on_leave():
-	fsm.body.move_and_collide(Vector2(0,10))
 	#print("leave falling")
 	pass

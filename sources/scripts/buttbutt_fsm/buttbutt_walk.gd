@@ -22,6 +22,7 @@ func update(delta):
 		current_direction.x = fsm.body.get_collision_normal().y
 		current_direction.y = fsm.body.get_collision_normal().x
 	
+	print(current_direction)
 
 	var direction = current_direction
 	if Input.is_action_pressed("ui_right"):
@@ -55,6 +56,7 @@ func on_enter():
 	pass
 	
 func on_leave():
+	print("leave")
 	current_speed = 100
 	current_direction = Vector2(-1,0)
 	#print("leave walk")
