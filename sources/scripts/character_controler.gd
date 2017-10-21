@@ -3,6 +3,7 @@ extends Node
 export (NodePath) var target
 var body
 
+# Don't forget to add to controls_changer if add more controls
 enum Control {Left, Right, Up, Down}
 var left_control = Control.Left
 var right_control = Control.Right
@@ -26,3 +27,7 @@ func change_state(new_state):
 		
 func is_control_pressed(control):
 	return left_control == control and Input.is_action_pressed("left_action") or right_control == control and Input.is_action_pressed("right_action")
+
+func change_controls(new_left_control, new_right_control):
+	left_control = new_left_control
+	right_control = new_right_control
