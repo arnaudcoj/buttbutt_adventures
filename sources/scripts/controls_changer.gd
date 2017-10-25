@@ -2,8 +2,8 @@ extends Area2D
 
 # TODO export with enum when available
 
-export(int, "Left", "Right", "Up", "Down", "RunLeft", "RunRight") var left_control
-export(int, "Left", "Right", "Up", "Down", "RunLeft", "RunRight") var right_control
+export(int, "Left", "Right", "Up", "Down", "RunLeft", "RunRight", "Jump") var left_control
+export(int, "Left", "Right", "Up", "Down", "RunLeft", "RunRight", "Jump") var right_control
 
 func _ready():
 	connect("area_entered", self, "on_area_entered")

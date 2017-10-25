@@ -6,6 +6,7 @@ var fsm
 export (NodePath) var idle_state_path
 export (NodePath) var falling_state_path
 export (NodePath) var climbing_state_path
+export (NodePath) var jumping_state_path
 
 export var max_speed = 500
 var current_speed = 100

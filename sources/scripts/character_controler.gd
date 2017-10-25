@@ -4,7 +4,7 @@ export (NodePath) var target
 var body
 
 # Don't forget to add to controls_changer if add more controls
-enum Control {Left, Right, Up, Down, RunLeft, RunRight}
+enum Control {Left, Right, Up, Down, RunLeft, RunRight, Jump}
 var left_control = Control.Left
 var right_control = Control.Right
 

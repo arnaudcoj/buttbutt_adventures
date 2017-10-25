@@ -59,6 +59,7 @@ walk_state_path = NodePath("../walk")
 running_state_path = NodePath("../running")
 falling_state_path = NodePath("../falling")
 climbing_state_path = NodePath("../climbing")
+jumping_state_path = NodePath("../jumping")
 
 [node name="walk" type="Node" parent="character_controler"]
 
@@ -67,6 +68,7 @@ fsm_path = NodePath("..")
 idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
 climbing_state_path = NodePath("../climbing")
+jumping_state_path = NodePath("../jumping")
 max_speed = 500
 running_state_path = NodePath("../running")
 
@@ -78,6 +80,7 @@ fsm_path = NodePath("..")
 idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
 climbing_state_path = NodePath("../climbing")
+jumping_state_path = NodePath("../jumping")
 max_speed = 800
 walking_state_path = NodePath("../walk")
 
@@ -95,7 +98,14 @@ script = ExtResource( 9 )
 fsm_path = NodePath("..")
 idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
-speed = 500
+speed = 600
+
+[node name="jump_time" type="Timer" parent="character_controler/jumping"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
 
 [node name="climbing" type="Node" parent="character_controler"]
 
