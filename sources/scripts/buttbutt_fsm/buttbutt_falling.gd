@@ -6,7 +6,8 @@ var fsm
 export (NodePath) var idle_state_path
 export (NodePath) var climbing_state_path
 
-export var speed = 500
+export var max_speed = 500
+var speed = 100
 
 func _ready():
 	fsm = get_node(fsm_path)
@@ -19,6 +20,7 @@ func change_state():
 
 func on_enter():
 	fsm.body.current_direction = Vector2(-1,0)
+	speed = 100
 	pass
 
 func update(delta):
@@ -26,13 +28,18 @@ func update(delta):
 	
 	if fsm.is_control_pressed(fsm.Control.Left):
 		direction.x -= 1
+	elif fsm.is_control_pressed(fsm.Control.RunLeft):
+		direction.x -= 1.5
 	if fsm.is_control_pressed(fsm.Control.Right):
 		direction.x += 1
+	elif fsm.is_control_pressed(fsm.Control.RunRight):
+		direction.x += 1.5
 		
-	fsm.body.move_and_slide(direction.normalized() * speed)
+	fsm.body.move_and_slide(direction.normalized() * max_speed)
 	
 	direction.x = 0
 	direction.y = 1
+	speed = clamp(speed * 1.1, 0, max_speed)
 		
 	fsm.body.move_and_slide(direction.normalized() * speed)
 
