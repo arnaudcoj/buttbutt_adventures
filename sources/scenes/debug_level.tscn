@@ -59,8 +59,15 @@ _sections_unfolded = [ "Transform" ]
 [node name="controls_changer" parent="." instance=ExtResource( 3 )]
 
 position = Vector2( 192, 832 )
+right_control = 5
 
 [node name="controls_changer2" parent="." instance=ExtResource( 3 )]
+
+position = Vector2( 700, 844 )
+left_control = 0
+right_control = 2
+
+[node name="controls_changer3" parent="." instance=ExtResource( 3 )]
 
 position = Vector2( 1600, 704 )
 left_control = 0
