@@ -1,18 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/controls_changer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/level.gd" type="Script" id=1]
+[ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/controls_changer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/death_area.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 320.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 192.0
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 576.0
 
 [node name="TileMap" type="Node2D"]
 
+script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Collision", "Transform" ]
 
 [node name="TileMap" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -28,7 +47,7 @@ occluder_light_mask = 1
 tile_data = PoolIntArray( -196608, 0, -131072, 0, -65536, 0, -65519, 0, 0, 0, 8, 0, 17, 0, 65536, 0, 65544, 3, 65545, 3, 65546, 3, 65547, 3, 65549, 3, 65550, 3, 65551, 3, 65552, 3, 65553, 3, 131072, 0, 196608, 0, 196622, 3, 196623, 3, 196624, 3, 262144, 0, 262154, 3, 262155, 3, 262156, 3, 327680, 0, 327688, 0, 393216, 0, 393222, 1, 393223, 0, 393224, 0, 393225, 0, 393226, 0, 393227, 0, 393228, 0, 393229, 0, 393230, 0, 393232, 0, 393233, 0, 393234, 0, 393237, 0, 393238, 0, 393239, 0, 393240, 0, 393241, 0, 393242, 0, 393243, 0, 393244, 0, 393245, 0, 393246, 0, 393247, 0, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458768, 0, 458769, 0, 458770, 0, 458776, 0, 458777, 0, 524305, 0, 524306, 0, 524307, 0, 524312, 0, 524313, 0, 589841, 0, 589842, 0, 589843, 0, 589844, 0, 589848, 0, 589849, 0, 655360, 0, 655361, 0, 655364, 0, 655365, 0, 655368, 0, 655369, 0, 655370, 0, 655372, 0, 655373, 0, 655378, 0, 655379, 0, 655380, 0, 655381, 0, 655382, 0, 655383, 0, 655384, 0, 655385, 0, 720896, 0, 720898, 0, 720900, 0, 720902, 0, 720904, 0, 720910, 0, 786432, 0, 786434, 0, 786436, 0, 786437, 0, 786438, 0, 786440, 0, 786442, 0, 786445, 0, 851968, 0, 851970, 0, 851972, 0, 851974, 0, 851976, 0, 851978, 0, 851980, 0, 917504, 0, 917505, 0, 917508, 0, 917509, 0, 917510, 0, 917512, 0, 917513, 0, 917514, 0, 917516, 0, 917517, 0, 917518, 0 )
 _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
-[node name="buttbutt" parent="." instance=ExtResource( 2 )]
+[node name="buttbutt" parent="." instance=ExtResource( 3 )]
 
 position = Vector2( 448, 640 )
 
@@ -56,66 +75,86 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="controls_changer" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 192, 832 )
 left_control = 0
 
-[node name="controls_changer2" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer2" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 960, 704 )
 left_control = 6
 
-[node name="controls_changer3" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer3" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 1472, 704 )
 left_control = 6
 right_control = 5
 
-[node name="controls_changer4" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer4" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 3008, 1216 )
 left_control = 0
 right_control = 2
 
-[node name="controls_changer5" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer5" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 1344, 448 )
 
-[node name="controls_changer6" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer6" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 1216, 64 )
 left_control = 6
 
-[node name="controls_changer7" parent="." instance=ExtResource( 3 )]
+[node name="controls_changer7" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 2112, 64 )
 left_control = 0
 right_control = 6
 
-[node name="ladder" parent="." instance=ExtResource( 4 )]
+[node name="ladder" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 1600, 256 )
 scale = Vector2( 1, 3.62891 )
 
-[node name="ladder2" parent="." instance=ExtResource( 4 )]
+[node name="ladder2" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 2240, 519.125 )
 scale = Vector2( 1, 3.77734 )
 
-[node name="ladder3" parent="." instance=ExtResource( 4 )]
+[node name="ladder3" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 2752, 1160 )
 scale = Vector2( 1, 1.75 )
 
-[node name="ladder4" parent="." instance=ExtResource( 4 )]
+[node name="ladder4" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 2624, 1028 )
 scale = Vector2( 1, 1.875 )
 
-[node name="ladder5" parent="." instance=ExtResource( 4 )]
+[node name="ladder5" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 2496, 832 )
 scale = Vector2( 1, 2.875 )
+
+[node name="EndArea" parent="." instance=ExtResource( 6 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea"]
+
+shape = SubResource( 1 )
+
+[node name="DeathArea" parent="." instance=ExtResource( 7 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+
+shape = SubResource( 2 )
+
+[node name="DeathArea2" parent="." instance=ExtResource( 7 )]
+
+position = Vector2( 4544, 1344 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2"]
+
+shape = SubResource( 3 )
 
 
