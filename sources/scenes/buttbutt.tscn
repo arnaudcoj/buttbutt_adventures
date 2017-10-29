@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/buttbutt.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buttbutt_skeleton.tscn" type="PackedScene" id=2]
@@ -10,9 +10,10 @@
 [ext_resource path="res://scripts/buttbutt_fsm/buttbutt_falling.gd" type="Script" id=8]
 [ext_resource path="res://scripts/buttbutt_fsm/buttbutt_jumping.gd" type="Script" id=9]
 [ext_resource path="res://scripts/buttbutt_fsm/buttbutt_climbing.gd" type="Script" id=10]
-[ext_resource path="res://scripts/buttbutt_interaction_area.gd" type="Script" id=11]
+[ext_resource path="res://scripts/buttbutt_fsm/buttbutt_sliding.gd" type="Script" id=11]
+[ext_resource path="res://scripts/buttbutt_interaction_area.gd" type="Script" id=12]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 38.0
@@ -43,7 +44,7 @@ autoplay = "debug"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 position = Vector2( 0, -11 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="character_controler" type="Node" parent="."]
@@ -66,7 +67,7 @@ jumping_state_path = NodePath("../jumping")
 
 script = ExtResource( 6 )
 fsm_path = NodePath("..")
-idle_state_path = NodePath("../idle")
+slide_state_path = NodePath("../sliding")
 falling_state_path = NodePath("../falling")
 climbing_state_path = NodePath("../climbing")
 jumping_state_path = NodePath("../jumping")
@@ -78,7 +79,7 @@ running_state_path = NodePath("../running")
 script = ExtResource( 7 )
 _sections_unfolded = [ "Pause" ]
 fsm_path = NodePath("..")
-idle_state_path = NodePath("../idle")
+slide_state_path = NodePath("../sliding")
 falling_state_path = NodePath("../falling")
 climbing_state_path = NodePath("../climbing")
 jumping_state_path = NodePath("../jumping")
@@ -117,6 +118,18 @@ idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
 speed = 500
 
+[node name="sliding" type="Node" parent="character_controler"]
+
+script = ExtResource( 11 )
+fsm_path = NodePath("..")
+idle_state_path = NodePath("../idle")
+walk_state_path = NodePath("../walk")
+running_state_path = NodePath("../running")
+falling_state_path = NodePath("../falling")
+climbing_state_path = NodePath("../climbing")
+jumping_state_path = NodePath("../jumping")
+slide_multiplier = 0.8
+
 [node name="raycast" type="RayCast2D" parent="."]
 
 visible = false
@@ -137,7 +150,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 _sections_unfolded = [ "Collision" ]
 fsm_path = NodePath("../character_controler")
 

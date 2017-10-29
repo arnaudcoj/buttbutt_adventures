@@ -34,14 +34,14 @@ func update(delta):
 		direction.x += 1
 	elif fsm.is_control_pressed(fsm.Control.RunRight):
 		direction.x += 1.5
-		
+
 	fsm.body.move_and_slide(direction.normalized() * max_speed)
 	
 	direction.x = 0
 	direction.y = 1
 	speed = clamp(speed * 1.1, 0, max_speed)
 		
-	fsm.body.move_and_slide(direction.normalized() * speed)
+	fsm.body.move_and_collide(direction.normalized() * speed * delta)
 
 func on_leave():
 	#print("leave falling")

@@ -3,7 +3,7 @@ extends Node
 export (NodePath) var fsm_path
 var fsm
 
-export (NodePath) var idle_state_path
+export (NodePath) var slide_state_path
 export (NodePath) var falling_state_path
 export (NodePath) var climbing_state_path
 export (NodePath) var jumping_state_path
@@ -36,7 +36,7 @@ func update(delta):
 	else:
 		return
 
-	fsm.body.move_and_slide(direction.normalized() * current_speed, Vector2(0,-1))
+	fsm.body.move_and_slide(direction.normalized() * current_speed)
 
 	if fsm.body.get_raycast_point() != null:
 		fsm.body.move_and_collide(Vector2(0,fsm.body.get_raycast_point().y - fsm.body.position.y))
