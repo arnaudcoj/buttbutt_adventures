@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/level.gd" type="Script" id=1]
+[ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/controls_changer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 320.0
+
+[node name="TileMap" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Cell", "Collision", "Transform" ]
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+collision_use_kinematic = true
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+tile_data = PoolIntArray( -196601, 0, -196600, 0, -196599, 0, -196598, 0, -196597, 0, -196596, 0, -196595, 0, -196594, 0, -196593, 0, -196592, 0, -196591, 0, -196590, 0, -196589, 0, -196588, 0, -131065, 0, -65529, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 13, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 19, 0, 20, 0, 65536, 0, 65543, 0, 65544, 3, 65545, 3, 65546, 3, 65547, 3, 65549, 0, 131072, 0, 131079, 0, 131085, 0, 196608, 0, 196615, 0, 196617, 3, 196618, 3, 196619, 3, 196620, 3, 196621, 0, 262144, 0, 262151, 0, 262157, 0, 327680, 0, 327687, 3, 327688, 3, 327689, 3, 327690, 3, 327691, 3, 327693, 0, 393216, 0, 393229, 0, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 458763, 0, 458764, 0, 458765, 0, 655360, 0, 655361, 0, 655364, 0, 655365, 0, 655368, 0, 655369, 0, 655370, 0, 655372, 0, 655373, 0, 720896, 0, 720898, 0, 720900, 0, 720902, 0, 720904, 0, 720910, 0, 786432, 0, 786434, 0, 786436, 0, 786437, 0, 786438, 0, 786440, 0, 786442, 0, 786445, 0, 851968, 0, 851970, 0, 851972, 0, 851974, 0, 851976, 0, 851978, 0, 851982, 0, 917504, 0, 917505, 0, 917508, 0, 917509, 0, 917510, 0, 917512, 0, 917513, 0, 917514, 0, 917516, 0, 917517, 0 )
+_sections_unfolded = [ "Cell", "Collision", "Occluder" ]
+
+[node name="buttbutt" parent="." instance=ExtResource( 3 )]
+
+position = Vector2( 448, 640 )
+
+[node name="Camera2D" type="Camera2D" parent="buttbutt"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="controls_changer" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 192, 832 )
+left_control = 4
+right_control = 5
+
+[node name="controls_changer2" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 1600, 832 )
+left_control = 0
+right_control = 6
+
+[node name="controls_changer3" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 1088, 576 )
+left_control = 6
+
+[node name="controls_changer4" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 1600, 320 )
+left_control = 0
+right_control = 6
+
+[node name="controls_changer5" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 1088, 64 )
+left_control = 6
+right_control = 5
+
+[node name="EndArea" parent="." instance=ExtResource( 5 )]
+
+position = Vector2( 2368, -128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea"]
+
+shape = SubResource( 1 )
+
+

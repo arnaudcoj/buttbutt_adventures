@@ -19,9 +19,9 @@ func change_state():
 		fsm.change_state(get_node(jumping_state_path))
 	elif fsm.is_control_pressed(fsm.Control.Up) and fsm.body.can_climb():
 		fsm.change_state(get_node(climbing_state_path))
-	elif fsm.is_control_pressed(fsm.Control.RunLeft) or fsm.is_control_pressed(fsm.Control.RunRight) :
+	elif (fsm.is_control_pressed(fsm.Control.RunLeft) or fsm.is_control_pressed(fsm.Control.RunRight)) and not (fsm.is_control_pressed(fsm.Control.RunLeft) and fsm.is_control_pressed(fsm.Control.RunRight)) :
 		fsm.change_state(get_node(running_state_path))
-	elif fsm.is_control_pressed(fsm.Control.Left) or fsm.is_control_pressed(fsm.Control.Right) :
+	elif (fsm.is_control_pressed(fsm.Control.Left) or fsm.is_control_pressed(fsm.Control.Right)) and not (fsm.is_control_pressed(fsm.Control.Left) and fsm.is_control_pressed(fsm.Control.Right)) :
 		fsm.change_state(get_node(walk_state_path))
 
 func on_enter():

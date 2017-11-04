@@ -1,8 +1,5 @@
 extends KinematicBody2D
 
-var current_direction = Vector2(-1,0)
-var current_speed = Vector2(0,0)
-
 func _ready():
 	pass
 
@@ -32,5 +29,4 @@ func get_collision_normal():
 	return null
 	
 func move_and_slide(linear_velocity, floor_normal=Vector2( 0, -1 ), slope_stop_min_velocity=5, max_bounces=4, floor_max_angle=0.785398 ):
-	current_speed = linear_velocity
 	return .move_and_slide(linear_velocity, floor_normal, slope_stop_min_velocity, max_bounces, floor_max_angle)

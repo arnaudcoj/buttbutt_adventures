@@ -9,7 +9,7 @@ func change_state():
 		fsm.change_state(get_node(jumping_state_path))
 	elif fsm.is_control_pressed(fsm.Control.Up) and fsm.body.can_climb(): #TODO Jump
 		fsm.change_state(get_node(climbing_state_path))
-	elif not fsm.is_control_pressed(fsm.Control.Left) and not fsm.is_control_pressed(fsm.Control.Right) or (fsm.is_control_pressed(fsm.Control.Left) and fsm.is_control_pressed(fsm.Control.Right)):
+	elif (not fsm.is_control_pressed(fsm.Control.Left) and not fsm.is_control_pressed(fsm.Control.Right)) or (fsm.is_control_pressed(fsm.Control.Left) and fsm.is_control_pressed(fsm.Control.Right)):
 		fsm.change_state(get_node(slide_state_path))
 	elif fsm.is_control_pressed(fsm.Control.RunLeft) or fsm.is_control_pressed(fsm.Control.RunRight):
 		fsm.change_state(get_node(running_state_path))

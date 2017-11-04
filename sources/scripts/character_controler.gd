@@ -3,6 +3,8 @@ extends Node
 export (NodePath) var target
 var body
 
+var current_speed = Vector2()
+
 # Don't forget to add to controls_changer if add more controls
 enum Control {Left, Right, Up, Down, RunLeft, RunRight, Jump}
 var left_control = Control.Left
@@ -17,8 +19,11 @@ func _ready():
 	assert(body is KinematicBody2D)
 
 func _process(delta):
+	var old_pos = body.position
 	current_state.change_state()
 	current_state.update(delta)
+	current_speed = (body.position - old_pos) / delta
+	$"../buttbutt_animation".play(current_state.get_name()) # TODO animation tree
 
 func change_state(new_state):
 		current_state.on_leave()
