@@ -26,8 +26,9 @@ _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
+modulate = Color( 0.96875, 1, 0, 1 )
 build_mode = 0
 polygon = PoolVector2Array( -64, -64, 64, -64, 64, 64, -64, 64 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 

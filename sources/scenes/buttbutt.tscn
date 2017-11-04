@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/buttbutt.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buttbutt_skeleton.tscn" type="PackedScene" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://scripts/buttbutt_fsm/buttbutt_sliding.gd" type="Script" id=11]
 [ext_resource path="res://scripts/buttbutt_interaction_area.gd" type="Script" id=12]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 
 resource_name = "climbing"
 length = 1.0
@@ -28,10 +28,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 0.96875, 1, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 resource_name = "falling"
 length = 1.0
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "values": [ Color( 0.0078125, 0, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 
 resource_name = "idle"
 length = 1.0
@@ -67,7 +67,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0.9375, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 
 resource_name = "jumping"
 length = 1.0
@@ -82,10 +82,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.96875, 1, 0, 1 ) ]
+"values": [ Color( 0.347656, 0.347656, 0.347656, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 
 resource_name = "running"
 length = 1.0
@@ -103,7 +103,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0.71875, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 
 resource_name = "sliding"
 length = 1.0
@@ -121,7 +121,7 @@ tracks/0/keys = {
 "values": [ Color( 0.710938, 0.722229, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 
 resource_name = "walk"
 length = 1.0
@@ -139,15 +139,25 @@ tracks/0/keys = {
 "values": [ Color( 0, 0.71875, 0.651367, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
-extents = Vector2( 36, 72 )
+extents = Vector2( 43, 76 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=9]
 
 custom_solver_bias = 0.0
-radius = 71.1131
+radius = 36.2215
+
+[sub_resource type="CircleShape2D" id=10]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id=11]
+
+custom_solver_bias = 0.0
+radius = 10.0
 
 [node name="buttbutt" type="KinematicBody2D"]
 
@@ -160,25 +170,25 @@ _sections_unfolded = [ "Transform", "collision" ]
 
 [node name="buttbutt_skeleton" parent="." instance=ExtResource( 2 )]
 
-modulate = Color( 0, 0.71875, 0.651367, 1 )
+modulate = Color( 0.347656, 0.347656, 0.347656, 1 )
 scale = Vector2( 0.2, 0.2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="buttbutt_animation" parent="." instance=ExtResource( 3 )]
 
-anims/climbing = SubResource( 3 )
-anims/falling = SubResource( 4 )
-anims/idle = SubResource( 5 )
-anims/jumping = SubResource( 6 )
-anims/running = SubResource( 7 )
-anims/sliding = SubResource( 8 )
-anims/walk = SubResource( 9 )
+anims/climbing = SubResource( 1 )
+anims/falling = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jumping = SubResource( 4 )
+anims/running = SubResource( 5 )
+anims/sliding = SubResource( 6 )
+anims/walk = SubResource( 7 )
 autoplay = "debug"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="physics_collision" type="CollisionShape2D" parent="."]
 
 position = Vector2( 0, -11 )
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="character_controler" type="Node" parent="."]
@@ -210,6 +220,7 @@ running_state_path = NodePath("../running")
 
 [node name="running" type="Node" parent="character_controler"]
 
+editor/display_folded = true
 script = ExtResource( 7 )
 _sections_unfolded = [ "Pause" ]
 fsm_path = NodePath("..")
@@ -219,6 +230,13 @@ climbing_state_path = NodePath("../climbing")
 jumping_state_path = NodePath("../jumping")
 max_speed = 800
 walking_state_path = NodePath("../walk")
+
+[node name="time_before_falling" type="Timer" parent="character_controler/running"]
+
+process_mode = 1
+wait_time = 0.06
+one_shot = true
+autostart = false
 
 [node name="falling" type="Node" parent="character_controler"]
 
@@ -231,10 +249,9 @@ climbing_state_path = NodePath("../climbing")
 
 [node name="jumping" type="Node" parent="character_controler"]
 
-editor/display_folded = true
 script = ExtResource( 9 )
 fsm_path = NodePath("..")
-speed = 800
+speed = 600
 gravity_direction = Vector2( 0, -1 )
 idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
@@ -242,7 +259,7 @@ falling_state_path = NodePath("../falling")
 [node name="jump_time" type="Timer" parent="character_controler/jumping"]
 
 process_mode = 1
-wait_time = 0.5
+wait_time = 0.4
 one_shot = true
 autostart = false
 
@@ -264,7 +281,7 @@ running_state_path = NodePath("../running")
 falling_state_path = NodePath("../falling")
 climbing_state_path = NodePath("../climbing")
 jumping_state_path = NodePath("../jumping")
-slide_multiplier = 0.99
+slide_multiplier = 0.9
 
 [node name="raycast" type="RayCast2D" parent="."]
 
@@ -273,7 +290,7 @@ position = Vector2( 0, 65 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
-collision_layer = 1
+collision_mask = 1
 type_mask = 15
 _sections_unfolded = [ "Transform" ]
 
@@ -290,8 +307,48 @@ script = ExtResource( 12 )
 _sections_unfolded = [ "Collision" ]
 fsm_path = NodePath("../character_controler")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+[node name="interaction_collision" type="CollisionShape2D" parent="interaction_area"]
 
-shape = SubResource( 2 )
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 9 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="climb_up_area" type="Area2D" parent="."]
+
+position = Vector2( 0, -37 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="interaction_collision" type="CollisionShape2D" parent="climb_up_area"]
+
+modulate = Color( 1, 0.960938, 0, 1 )
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="climb_down_area" type="Area2D" parent="."]
+
+position = Vector2( 0, 57 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="interaction_collision" type="CollisionShape2D" parent="climb_down_area"]
+
+modulate = Color( 1, 0.9375, 0, 1 )
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[connection signal="timeout" from="character_controler/running/time_before_falling" to="character_controler/running" method="_on_time_before_falling_timeout"]
 
 

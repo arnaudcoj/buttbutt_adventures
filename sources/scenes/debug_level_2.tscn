@@ -80,11 +80,6 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 192, 832 )
 left_control = 0
 
-[node name="controls_changer8" parent="." instance=ExtResource( 4 )]
-
-position = Vector2( 1088, 576 )
-left_control = 0
-
 [node name="controls_changer2" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 960, 704 )
@@ -93,7 +88,7 @@ left_control = 6
 [node name="controls_changer3" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 1472, 704 )
-left_control = 6
+left_control = 1
 right_control = 5
 
 [node name="controls_changer4" parent="." instance=ExtResource( 4 )]
@@ -116,6 +111,12 @@ left_control = 6
 position = Vector2( 2112, 64 )
 left_control = 0
 right_control = 6
+
+[node name="controls_changer8" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 1856, 320 )
+left_control = 0
+right_control = 3
 
 [node name="ladder" parent="." instance=ExtResource( 5 )]
 
