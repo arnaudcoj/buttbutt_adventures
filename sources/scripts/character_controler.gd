@@ -18,7 +18,7 @@ func _ready():
 	body = get_node(target)
 	assert(body is KinematicBody2D)
 
-func _process(delta):
+func _physics_process(delta):
 	var old_pos = body.position
 	current_state.change_state()
 	current_state.update(delta)
