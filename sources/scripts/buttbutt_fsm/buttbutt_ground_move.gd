@@ -3,7 +3,7 @@ extends Node
 export (NodePath) var fsm_path
 var fsm
 
-export (NodePath) var slide_state_path
+export (NodePath) var stopping_state_path
 export (NodePath) var falling_state_path
 export (NodePath) var climbing_state_path
 export (NodePath) var jumping_state_path
