@@ -1,34 +1,38 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/level.gd" type="Script" id=1]
-[ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/controls_changer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/death_area.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/level/basics/bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/buttbutt.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/controls_changer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/death_area.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Shader" id=1]
 
-offsets = PoolRealArray( 0, 0.52071, 1 )
-colors = PoolColorArray( 0, 0.554688, 1, 1, 1, 1, 1, 1, 0, 0.507813, 1, 1 )
+code = "shader_type canvas_item;
 
-[sub_resource type="GradientTexture" id=5]
+void fragment() {
+	COLOR = texture(TEXTURE,UV + vec2((TIME + sin(sin(TIME) - 2.0) * 0.8) * -0.1, 0.0));
+}"
 
-gradient = SubResource( 4 )
-width = 2048
+[sub_resource type="ShaderMaterial" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+render_priority = 0
+shader = SubResource( 1 )
+
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 320.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 192.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 576.0
@@ -55,20 +59,21 @@ scroll_ignore_camera_zoom = true
 
 motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 1920, 1080 )
+motion_mirroring = Vector2( 2048, 2048 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 
-modulate = Color( 0.351563, 0.696045, 1, 1 )
-texture = SubResource( 5 )
+modulate = Color( 0.722656, 0.869995, 1, 1 )
+material = SubResource( 2 )
+texture = ExtResource( 2 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 1920, 1080 )
+region_rect = Rect2( 0, 0, 2048, 2048 )
 
 [node name="TileMap" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -83,10 +88,10 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -196608, 0, 65537, -131072, 0, 65537, -65536, 0, 65537, -65519, 0, 65537, 0, 0, 65537, 8, 0, 65537, 17, 0, 65537, 65536, 0, 65537, 65544, 3, 65537, 65545, 3, 65537, 65546, 3, 65537, 65547, 3, 65537, 65549, 3, 65537, 65550, 3, 65537, 65551, 3, 65537, 65552, 3, 65537, 65553, 3, 65537, 131072, 0, 65537, 196608, 0, 65537, 196622, 3, 65537, 196623, 3, 65537, 196624, 3, 65537, 262144, 0, 65537, 262154, 3, 65537, 262155, 3, 65537, 262156, 3, 65537, 327680, 0, 65537, 327688, 0, 65537, 393216, 0, 65537, 393222, 1, 65537, 393223, 0, 65537, 393224, 0, 65537, 393225, 0, 65537, 393226, 0, 65537, 393227, 0, 65537, 393228, 0, 65537, 393229, 0, 65537, 393230, 0, 65537, 393232, 0, 65537, 393233, 0, 65537, 393234, 0, 65537, 393237, 0, 65537, 393238, 0, 65537, 393239, 0, 65537, 393240, 0, 65537, 393241, 0, 65537, 393242, 0, 65537, 393243, 0, 65537, 393244, 0, 65537, 393245, 0, 65537, 393246, 0, 65537, 393247, 0, 65537, 458752, 0, 65537, 458753, 0, 65537, 458754, 0, 65537, 458755, 0, 65537, 458756, 0, 65537, 458757, 0, 65537, 458758, 0, 65537, 458759, 0, 65537, 458760, 0, 65537, 458761, 0, 65537, 458762, 0, 65537, 458763, 0, 65537, 458764, 0, 65537, 458765, 0, 65537, 458766, 0, 65537, 458768, 0, 65537, 458769, 0, 65537, 458770, 0, 65537, 458776, 0, 65537, 458777, 0, 65537, 524305, 0, 65537, 524306, 0, 65537, 524307, 0, 65537, 524312, 0, 65537, 524313, 0, 65537, 589841, 0, 65537, 589842, 0, 65537, 589843, 0, 65537, 589844, 0, 65537, 589848, 0, 65537, 589849, 0, 65537, 655360, 0, 65537, 655361, 0, 65537, 655364, 0, 65537, 655365, 0, 65537, 655368, 0, 65537, 655369, 0, 65537, 655370, 0, 65537, 655372, 0, 65537, 655373, 0, 65537, 655378, 0, 65537, 655379, 0, 65537, 655380, 0, 65537, 655381, 0, 65537, 655382, 0, 65537, 655383, 0, 65537, 655384, 0, 65537, 655385, 0, 65537, 720896, 0, 65537, 720898, 0, 65537, 720900, 0, 65537, 720902, 0, 65537, 720904, 0, 65537, 720910, 0, 65537, 786432, 0, 65537, 786434, 0, 65537, 786436, 0, 65537, 786437, 0, 65537, 786438, 0, 65537, 786440, 0, 65537, 786442, 0, 65537, 786445, 0, 65537, 851968, 0, 65537, 851970, 0, 65537, 851972, 0, 65537, 851974, 0, 65537, 851976, 0, 65537, 851978, 0, 65537, 851980, 0, 65537, 917504, 0, 65537, 917505, 0, 65537, 917508, 0, 65537, 917509, 0, 65537, 917510, 0, 65537, 917512, 0, 65537, 917513, 0, 65537, 917514, 0, 65537, 917516, 0, 65537, 917517, 0, 65537, 917518, 0, 65537 )
+tile_data = PoolIntArray( -196608, 0, 65537, -131072, 0, 65537, -65536, 0, 65537, -65519, 0, 65537, 0, 0, 65537, 8, 0, 65537, 17, 0, 65537, 65536, 0, 65537, 65544, 3, 65537, 65545, 3, 65537, 65546, 3, 65537, 65547, 3, 65537, 65549, 3, 65537, 65550, 3, 65537, 65551, 3, 65537, 65552, 3, 65537, 65553, 3, 65537, 131072, 0, 65537, 196608, 0, 65537, 196618, 0, 0, 196622, 3, 65537, 196623, 3, 65537, 196624, 3, 65537, 262144, 0, 65537, 262154, 3, 0, 262155, 3, 0, 262156, 3, 65537, 327680, 0, 65537, 327688, 0, 65537, 393216, 0, 65537, 393222, 1, 65537, 393223, 0, 65537, 393224, 0, 65537, 393225, 0, 65537, 393226, 0, 65537, 393227, 0, 65537, 393228, 0, 65537, 393229, 0, 65537, 393230, 0, 65537, 393232, 0, 65537, 393233, 0, 65537, 393234, 0, 65537, 393237, 0, 65537, 393238, 0, 65537, 393239, 0, 65537, 393240, 0, 65537, 393241, 0, 65537, 393242, 0, 65537, 393243, 0, 65537, 393244, 0, 65537, 393245, 0, 65537, 393246, 0, 65537, 393247, 0, 65537, 458752, 0, 65537, 458753, 0, 65537, 458754, 0, 65537, 458755, 0, 65537, 458756, 0, 65537, 458757, 0, 65537, 458758, 0, 65537, 458759, 0, 65537, 458760, 0, 65537, 458761, 0, 65537, 458762, 0, 65537, 458763, 0, 65537, 458764, 0, 65537, 458765, 0, 65537, 458766, 0, 65537, 458768, 0, 65537, 458769, 0, 65537, 458770, 0, 65537, 458776, 0, 65537, 458777, 0, 65537, 524305, 0, 65537, 524306, 0, 65537, 524307, 0, 65537, 524312, 0, 65537, 524313, 0, 65537, 589841, 0, 65537, 589842, 0, 65537, 589843, 0, 65537, 589844, 0, 65537, 589848, 0, 65537, 589849, 0, 65537, 655360, 0, 65537, 655361, 0, 65537, 655364, 0, 65537, 655365, 0, 65537, 655368, 0, 65537, 655369, 0, 65537, 655370, 0, 65537, 655372, 0, 65537, 655373, 0, 65537, 655378, 0, 65537, 655379, 0, 65537, 655380, 0, 65537, 655381, 0, 65537, 655382, 0, 65537, 655383, 0, 65537, 655384, 0, 65537, 655385, 0, 65537, 720896, 0, 65537, 720898, 0, 65537, 720900, 0, 65537, 720902, 0, 65537, 720904, 0, 65537, 720910, 0, 65537, 786432, 0, 65537, 786434, 0, 65537, 786436, 0, 65537, 786437, 0, 65537, 786438, 0, 65537, 786440, 0, 65537, 786442, 0, 65537, 786445, 0, 65537, 851968, 0, 65537, 851970, 0, 65537, 851972, 0, 65537, 851974, 0, 65537, 851976, 0, 65537, 851978, 0, 65537, 851980, 0, 65537, 917504, 0, 65537, 917505, 0, 65537, 917508, 0, 65537, 917509, 0, 65537, 917510, 0, 65537, 917512, 0, 65537, 917513, 0, 65537, 917514, 0, 65537, 917516, 0, 65537, 917517, 0, 65537, 917518, 0, 65537 )
 _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
-[node name="buttbutt" parent="." instance=ExtResource( 3 )]
+[node name="buttbutt" parent="." instance=ExtResource( 4 )]
 
 position = Vector2( 448, 640 )
 
@@ -114,92 +119,95 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="controls_changer" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 192, 832 )
 left_control = 0
 
-[node name="controls_changer2" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer2" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 960, 704 )
 left_control = 6
 
-[node name="controls_changer3" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer3" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 1472, 704 )
 left_control = 1
 right_control = 5
 
-[node name="controls_changer4" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer4" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 3008, 1216 )
 left_control = 0
 right_control = 2
 
-[node name="controls_changer5" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer5" parent="." instance=ExtResource( 5 )]
 
-position = Vector2( 1344, 448 )
+position = Vector2( 1472, 448 )
 
-[node name="controls_changer6" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer6" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 1216, 64 )
 left_control = 6
 
-[node name="controls_changer7" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer7" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 2112, 64 )
 left_control = 0
 right_control = 6
 
-[node name="controls_changer8" parent="." instance=ExtResource( 4 )]
+[node name="controls_changer8" parent="." instance=ExtResource( 5 )]
 
 position = Vector2( 1856, 320 )
 left_control = 0
 right_control = 3
 
-[node name="ladder" parent="." instance=ExtResource( 5 )]
+[node name="ladder" parent="." instance=ExtResource( 6 )]
 
 position = Vector2( 1600, 256 )
 scale = Vector2( 1, 4 )
 
-[node name="ladder2" parent="." instance=ExtResource( 5 )]
+[node name="ladder2" parent="." instance=ExtResource( 6 )]
 
 position = Vector2( 2240, 512 )
 scale = Vector2( 1, 4 )
 
-[node name="ladder3" parent="." instance=ExtResource( 5 )]
+[node name="ladder3" parent="." instance=ExtResource( 6 )]
 
 position = Vector2( 2752, 1152 )
 scale = Vector2( 1, 2 )
 
-[node name="ladder4" parent="." instance=ExtResource( 5 )]
+[node name="ladder4" parent="." instance=ExtResource( 6 )]
 
 position = Vector2( 2624, 1024 )
 scale = Vector2( 1, 2 )
 
-[node name="ladder5" parent="." instance=ExtResource( 5 )]
+[node name="ladder5" parent="." instance=ExtResource( 6 )]
 
 position = Vector2( 2496, 857.75 )
 scale = Vector2( 1, 2.80469 )
 
-[node name="EndArea" parent="." instance=ExtResource( 6 )]
+[node name="EndArea" parent="." instance=ExtResource( 7 )]
+
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
-[node name="DeathArea" parent="." instance=ExtResource( 7 )]
+[node name="DeathArea" parent="." instance=ExtResource( 8 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
 
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
-[node name="DeathArea2" parent="." instance=ExtResource( 7 )]
+[node name="DeathArea2" parent="." instance=ExtResource( 8 )]
 
 position = Vector2( 4544, 1344 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2"]
 
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 
