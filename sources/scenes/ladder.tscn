@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scripts/ladder.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/level/basics/tiles/tileset.png" type="Texture" id=2]
 
 [node name="ladder" type="Area2D"]
 
@@ -14,15 +13,6 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="."]
-
-texture = ExtResource( 2 )
-vframes = 4
-hframes = 4
-frame = 3
-region_rect = Rect2( 0, 10, 128, 118 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 

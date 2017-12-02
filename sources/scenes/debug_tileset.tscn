@@ -106,4 +106,24 @@ build_mode = 0
 polygon = PoolVector2Array( 63.5647, -63.8305, 63.5647, -0.194321, -64.7566, -0.194305, -64.407, -64.0053 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="ladder" type="Sprite" parent="."]
+
+position = Vector2( 704, 64 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 3
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="laddertop" type="Sprite" parent="."]
+
+position = Vector2( 960, 64 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 7
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
 
