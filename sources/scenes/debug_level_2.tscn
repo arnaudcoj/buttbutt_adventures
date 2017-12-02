@@ -189,9 +189,6 @@ scale = Vector2( 1, 2.80469 )
 
 [node name="EndArea" parent="." instance=ExtResource( 7 )]
 
-monitoring = false
-monitorable = false
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea"]
 
 shape = SubResource( 3 )

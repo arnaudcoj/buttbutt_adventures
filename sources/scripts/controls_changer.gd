@@ -11,3 +11,4 @@ func _ready():
 func on_area_entered(area):
 	if area.has_method("change_controls"):
 		area.change_controls(left_control, right_control)
+		$Particles2D.emitting = true

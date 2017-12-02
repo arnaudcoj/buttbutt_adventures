@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/controls_changer.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/level/debug/hud_gem_blue.png" type="Texture" id=2]
@@ -7,6 +7,68 @@
 
 custom_solver_bias = 0.0
 radius = 27.0795
+
+[sub_resource type="Gradient" id=5]
+
+offsets = PoolRealArray( 0, 0.668639, 0.775148, 0.946746 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.851064, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+
+gradient = SubResource( 5 )
+width = 2048
+
+[sub_resource type="Curve" id=2]
+
+min_value = -200.0
+max_value = 200.0
+bake_resolution = 100
+_data = [ Vector2( 0, 200 ), 0.0, 0.0, 0, 0, Vector2( 0.790667, -200 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+
+width = 2048
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 38.03
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 50.58
+flatness = 0.0
+gravity = Vector3( 0, 1, 0 )
+initial_velocity = 0.0
+initial_velocity_random = 0.0
+angular_velocity = 300.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 60.0
+radial_accel_random = 0.0
+radial_accel_curve = SubResource( 3 )
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 0.41
+scale_random = 0.01
+color_ramp = SubResource( 6 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
 
 [node name="controls_changer" type="Area2D"]
 
@@ -28,6 +90,27 @@ right_control = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+emitting = false
+amount = 28
+lifetime = 1.31
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.54
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 4 )
+texture = ExtResource( 2 )
+normal_map = null
+h_frames = 1
+v_frames = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 
