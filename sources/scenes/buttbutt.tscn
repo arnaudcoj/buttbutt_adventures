@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/buttbutt.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buttbutt_skeleton.tscn" type="PackedScene" id=2]
@@ -144,6 +144,12 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 43, 76 )
 
+[sub_resource type="CapsuleShape2D" id=12]
+
+custom_solver_bias = 0.0
+radius = 42.6895
+height = 66.6001
+
 [sub_resource type="CircleShape2D" id=9]
 
 custom_solver_bias = 0.0
@@ -185,10 +191,17 @@ anims/stopping = SubResource( 6 )
 anims/walk = SubResource( 7 )
 autoplay = "debug"
 
-[node name="physics_collision" type="CollisionShape2D" parent="."]
+[node name="rectangular_collision" type="CollisionShape2D" parent="."]
 
 position = Vector2( 0, -11 )
 shape = SubResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="capsule_collision" type="CollisionShape2D" parent="."]
+
+position = Vector2( 0, -11 )
+shape = SubResource( 12 )
+disabled = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="character_controler" type="Node" parent="."]

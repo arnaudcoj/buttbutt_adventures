@@ -41,3 +41,11 @@ func get_collision_normal():
 	
 func move_and_slide(linear_velocity, floor_normal=Vector2( 0, -1 ), slope_stop_min_velocity=5, max_bounces=4, floor_max_angle=0.785398 ):
 	return .move_and_slide(linear_velocity, floor_normal, slope_stop_min_velocity, max_bounces, floor_max_angle)
+	
+func enable_rectangular_collision():
+	$rectangular_collision.disabled = false
+	$capsule_collision.disabled = true
+	
+func enable_capsule_collision():
+	$rectangular_collision.disabled = true
+	$capsule_collision.disabled = false

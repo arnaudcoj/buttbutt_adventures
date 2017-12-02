@@ -18,6 +18,7 @@ func change_state():
 		fsm.change_state(get_node(falling_state_path))
 
 func on_enter():
+	fsm.body.enable_capsule_collision()
 	pass
 
 func update(delta):
@@ -41,8 +42,8 @@ func update(delta):
 	if fsm.is_control_pressed(fsm.Control.Down) and fsm.body.can_climb_down():
 		direction.y += 1
 		
-	fsm.body.move_and_collide(direction.normalized() * speed * delta)
+	fsm.body.move_and_slide(direction.normalized() * speed)
 
 func on_leave():
-	#print("leave jumping")
+	fsm.body.enable_rectangular_collision()
 	pass

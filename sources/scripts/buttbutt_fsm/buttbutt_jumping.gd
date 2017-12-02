@@ -8,6 +8,9 @@ func change_state():
 		fsm.change_state(get_node(falling_state_path))
 
 func on_enter():
-	#print("enter jumping")
 	.on_enter()
+	fsm.body.enable_capsule_collision()
 	$jump_time.start()
+	
+func on_leave():
+	fsm.body.enable_rectangular_collision()
