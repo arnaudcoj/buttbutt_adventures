@@ -32,7 +32,7 @@ func change_state(new_state):
 		current_state.on_enter()
 		
 func is_control_pressed(control):
-	return left_control == control and Input.is_action_pressed("left_action") or right_control == control and Input.is_action_pressed("right_action")
+	return left_control == control and controls_manager.is_left_control_pressed() or right_control == control and controls_manager.is_right_control_pressed()
 
 func change_controls(new_left_control, new_right_control):
 	left_control = new_left_control
