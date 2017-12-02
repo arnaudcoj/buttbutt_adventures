@@ -16,8 +16,6 @@ func _ready():
 func change_state():
 	if (fsm.is_control_pressed(fsm.Control.Left) or fsm.is_control_pressed(fsm.Control.Right) or fsm.is_control_pressed(fsm.Control.RunLeft) or fsm.is_control_pressed(fsm.Control.RunRight)) and not fsm.body.can_climb(): #TODO control jump
 		fsm.change_state(get_node(falling_state_path))
-	elif fsm.body.on_ground():
-		fsm.change_state(get_node(idle_state_path))
 
 func on_enter():
 	pass

@@ -28,6 +28,7 @@ func _physics_process(delta):
 func change_state(new_state):
 		current_state.on_leave()
 		current_state = new_state
+		print(new_state.get_name())
 		current_state.on_enter()
 		
 func is_control_pressed(control):
