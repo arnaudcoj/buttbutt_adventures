@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=2]
@@ -7,6 +7,16 @@
 [ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/death_area.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 0.52071, 1 )
+colors = PoolColorArray( 0, 0.554688, 1, 1, 1, 1, 1, 1, 0, 0.507813, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+
+gradient = SubResource( 4 )
+width = 2048
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -27,6 +37,33 @@ radius = 576.0
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Collision", "Transform" ]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+modulate = Color( 0.351563, 0.696045, 1, 1 )
+texture = SubResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1920, 1080 )
 
 [node name="TileMap" type="TileMap" parent="."]
 
