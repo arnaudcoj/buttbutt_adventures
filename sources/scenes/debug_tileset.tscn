@@ -81,7 +81,7 @@ polygon = PoolVector2Array( -64, -64, -64, 64, 64, 64 )
 
 [node name="plateforme" type="Sprite" parent="."]
 
-position = Vector2( 550.891, 66.3789 )
+position = Vector2( 550, 60 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
@@ -103,7 +103,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plateforme/StaticBody2D"]
 
 build_mode = 0
-polygon = PoolVector2Array( 63.5647, -63.8305, 63.5647, -0.194321, -64.7566, -0.194305, -64.407, -64.0053 )
+polygon = PoolVector2Array( 64, -64, 64, 0, -64, 0, -64, -64 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="ladder" type="Sprite" parent="."]
