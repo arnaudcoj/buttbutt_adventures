@@ -93,7 +93,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
 [node name="buttbutt" parent="." instance=ExtResource( 4 )]
 
-position = Vector2( 448, 640 )
+position = Vector2( 1216, -64 )
 
 [node name="Camera2D" type="Camera2D" parent="buttbutt"]
 

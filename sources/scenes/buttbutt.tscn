@@ -256,7 +256,9 @@ autostart = false
 script = ExtResource( 8 )
 fsm_path = NodePath("..")
 speed = 500
+gravity_speed = 1200
 gravity_direction = Vector2( 0, 1 )
+gravity_acceleration = 0.05
 stopping_state_path = NodePath("../stopping")
 climbing_state_path = NodePath("../climbing")
 
@@ -264,8 +266,10 @@ climbing_state_path = NodePath("../climbing")
 
 script = ExtResource( 9 )
 fsm_path = NodePath("..")
-speed = 600
+speed = 500
+gravity_speed = 600
 gravity_direction = Vector2( 0, -1 )
+gravity_acceleration = 0.2
 idle_state_path = NodePath("../idle")
 falling_state_path = NodePath("../falling")
 
