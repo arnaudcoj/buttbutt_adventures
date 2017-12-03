@@ -144,23 +144,23 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 43, 76 )
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=9]
 
 custom_solver_bias = 0.0
 radius = 42.6895
 height = 66.6001
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=10]
 
 custom_solver_bias = 0.0
 radius = 36.2215
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id=11]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -200,7 +200,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="capsule_collision" type="CollisionShape2D" parent="."]
 
 position = Vector2( 0, -11 )
-shape = SubResource( 12 )
+shape = SubResource( 9 )
 disabled = true
 _sections_unfolded = [ "Transform" ]
 
@@ -322,7 +322,7 @@ fsm_path = NodePath("../character_controler")
 [node name="interaction_collision" type="CollisionShape2D" parent="interaction_area"]
 
 modulate = Color( 1, 0, 0, 1 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="climb_up_area" type="Area2D" parent="."]
@@ -340,7 +340,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="interaction_collision" type="CollisionShape2D" parent="climb_up_area"]
 
 modulate = Color( 1, 0.960938, 0, 1 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="climb_down_area" type="Area2D" parent="."]
@@ -358,7 +358,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="interaction_collision" type="CollisionShape2D" parent="climb_down_area"]
 
 modulate = Color( 1, 0.9375, 0, 1 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [connection signal="timeout" from="character_controler/running/time_before_falling" to="character_controler/running" method="_on_time_before_falling_timeout"]
