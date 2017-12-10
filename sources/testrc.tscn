@@ -1,0 +1,259 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends KinematicBody2D
+
+onready var collision = get_node(\"CollisionShape2D\")
+
+export var skin_width = 0.015
+export var horizontal_ray_count = 4
+export var vertical_ray_count = 4
+
+var _horizontal_ray_spacing
+var _vertical_ray_spacing
+
+var _top_left_origin
+var _top_right_origin
+var _bottom_left_origin
+var _bottom_right_origin
+
+var collision_info = CollisionInfo.new()
+
+func _ready():
+	compute_ray_spacing()
+	
+func move(var motion):
+	update_raycast_origins()
+	collision_info.reset()
+	
+	if motion.x != 0:
+		motion = horizontal_collisions(motion)
+	if motion.y != 0:
+		motion = vertical_collisions(motion)
+	
+	move_and_collide(motion)
+	
+func horizontal_collisions(motion):
+	var space_state = get_world_2d().get_direct_space_state()
+	var direction_x = sign(motion.x)
+	var ray_length = abs(motion.x) + skin_width
+	
+	var i = 0
+	while i < horizontal_ray_count:
+		var ray_origin = _bottom_left_origin if direction_x < 0 else _bottom_right_origin
+		ray_origin += Vector2(0,-1) * _horizontal_ray_spacing * i
+		
+		var hit = space_state.intersect_ray(ray_origin, ray_origin + Vector2(ray_length * direction_x, 0), [self])
+		
+		if not hit.empty():
+			var hit_distance = (hit.position - ray_origin).length()
+			motion.x = (hit_distance - skin_width) * direction_x
+			ray_length = hit_distance
+			
+			collision_info.left = direction_x < 0
+			collision_info.right = direction_x > 0
+		i += 1
+	
+	return motion
+	
+func vertical_collisions(motion):
+	var space_state = get_world_2d().get_direct_space_state()
+	var direction_y = sign(motion.y)
+	var ray_length = abs(motion.y) + skin_width
+	
+	var i = 0
+	while i < vertical_ray_count:
+		var ray_origin = _top_left_origin if direction_y < 0 else _bottom_left_origin
+		ray_origin += Vector2(1,0) * _vertical_ray_spacing * i
+		
+		var hit = space_state.intersect_ray(ray_origin, ray_origin + Vector2(0, ray_length * direction_y), [self])
+		
+		if not hit.empty():
+			var hit_distance = (hit.position - ray_origin).length()
+			motion.y = (hit_distance - skin_width) * direction_y
+			ray_length = hit_distance
+			
+			collision_info.above = direction_y < 0
+			collision_info.below = direction_y > 0
+		
+		i += 1
+	
+	return motion
+	
+func compute_ray_spacing():
+	horizontal_ray_count = max(horizontal_ray_count, 2)
+	vertical_ray_count = max(vertical_ray_count, 2)
+	
+	var half_bounds_size = collision.shape.extents - Vector2(skin_width, skin_width)
+	
+	_horizontal_ray_spacing = half_bounds_size.y * 2 / (horizontal_ray_count - 1)
+	_vertical_ray_spacing = half_bounds_size.x * 2 / (vertical_ray_count - 1)
+
+func update_raycast_origins():
+	var half_bounds_size = collision.shape.extents - Vector2(skin_width, skin_width)
+	_bottom_left_origin = position + Vector2(-half_bounds_size.x, half_bounds_size.y)
+	_bottom_right_origin = position + Vector2(half_bounds_size.x, half_bounds_size.y)
+	_top_left_origin = position + Vector2(-half_bounds_size.x, -half_bounds_size.y)
+	_top_right_origin = position + Vector2(half_bounds_size.x, -half_bounds_size.y)
+	
+class CollisionInfo:
+	var above = false
+	var below = false
+	var left = false
+	var right = false
+	
+	func reset():
+		above = false
+		below = false
+		left = false
+		right = false"
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 50, 50 )
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Node
+
+onready var body = get_parent()
+
+export var speed = 2
+
+var velocity = Vector2()
+
+func _ready():
+	pass
+	
+func _process(delta):
+	
+	if body.collision_info.below or body.collision_info.above:
+		velocity.y = 0
+	if body.collision_info.left or body.collision_info.right:
+		velocity.x = 0
+	
+	var direction = Vector2()
+	if Input.is_action_pressed(\"ui_left\"):
+		direction.x -= 1
+	if Input.is_action_pressed(\"ui_right\"):
+		direction.x += 1
+	if Input.is_action_pressed(\"ui_up\"):
+		direction.y -= 1
+	if Input.is_action_pressed(\"ui_down\"):
+		direction.y += 1
+	
+	velocity += direction * speed
+	
+	body.move(velocity * delta)"
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 250, 50 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 50, 250 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+position = Vector2( 863.295, 642.862 )
+input_pickable = false
+collision_layer = 2
+collision_mask = 2
+collision/safe_margin = 0.08
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+skin_width = 0.015
+horizontal_ray_count = 4
+vertical_ray_count = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+
+shape = SubResource( 2 )
+
+[node name="player_script" type="Node" parent="KinematicBody2D"]
+
+script = SubResource( 3 )
+speed = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+position = Vector2( 869.331, 843.595 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+
+shape = SubResource( 4 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+position = Vector2( 852.594, 291.271 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+
+shape = SubResource( 4 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+position = Vector2( 280.744, 589.749 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+
+shape = SubResource( 5 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+position = Vector2( 1485.81, 553.485 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+
+shape = SubResource( 5 )
+
+
