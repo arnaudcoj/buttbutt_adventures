@@ -6,9 +6,11 @@ script/source = "extends KinematicBody2D
 
 onready var collision = get_node(\"CollisionShape2D\")
 
-export var skin_width = 0.015
+export var skin_width = 10 # a bit too high in my opinion but otherwise raycast doesn't work
 export var horizontal_ray_count = 4
 export var vertical_ray_count = 4
+
+var max_climb_angle = 80
 
 var _horizontal_ray_spacing
 var _vertical_ray_spacing
@@ -19,6 +21,7 @@ var _bottom_left_origin
 var _bottom_right_origin
 
 var collision_info = CollisionInfo.new()
+onready var rc = get_node(\"RayCast2D\")
 
 func _ready():
 	compute_ray_spacing()
@@ -40,6 +43,9 @@ func horizontal_collisions(motion):
 	var ray_length = abs(motion.x) + skin_width
 	
 	var i = 0
+	
+	rc.global_position = _bottom_left_origin if direction_x < 0 else _bottom_right_origin
+	
 	while i < horizontal_ray_count:
 		var ray_origin = _bottom_left_origin if direction_x < 0 else _bottom_right_origin
 		ray_origin += Vector2(0,-1) * _horizontal_ray_spacing * i
@@ -48,11 +54,28 @@ func horizontal_collisions(motion):
 		
 		if not hit.empty():
 			var hit_distance = (hit.position - ray_origin).length()
-			motion.x = (hit_distance - skin_width) * direction_x
-			ray_length = hit_distance
+			var slope_angle = abs(hit.normal.angle_to(Vector2(0,-1)))
 			
-			collision_info.left = direction_x < 0
-			collision_info.right = direction_x > 0
+			if i == 0 and abs(slope_angle) < abs(deg2rad(max_climb_angle)):
+				var distance_to_slope_start = 0.0
+				
+				if slope_angle != collision_info.slope_angle_old:
+					distance_to_slope_start = hit_distance - skin_width
+					motion.x -= distance_to_slope_start * direction_x
+				
+				motion = climb_slope(motion, slope_angle)
+				motion.x += distance_to_slope_start * direction_x
+			
+			if not collision_info.climbing_slope or abs(slope_angle) > abs(deg2rad(max_climb_angle)):
+				motion.x = (hit_distance - skin_width) * direction_x
+				ray_length = hit_distance
+			
+				if collision_info.climbing_slope:
+					motion.y = - tan (collision_info.slope_angle) * abs(motion.x) # -tan because y inverted
+			
+				collision_info.left = direction_x < 0
+				collision_info.right = direction_x > 0
+
 		i += 1
 	
 	return motion
@@ -74,10 +97,26 @@ func vertical_collisions(motion):
 			motion.y = (hit_distance - skin_width) * direction_y
 			ray_length = hit_distance
 			
+			if collision_info.climbing_slope:
+				motion.x = motion.y / tan(collision_info.slope_angle) * sign(motion.x)
+			
 			collision_info.above = direction_y < 0
 			collision_info.below = direction_y > 0
 		
 		i += 1
+	
+	return motion
+	
+func climb_slope(motion, slope_angle):
+	var move_distance = abs(motion.x)
+	var climb_motion_y = -sin(slope_angle) * move_distance # -sin because y inverted
+	
+	if motion.y > climb_motion_y: #> instead of <= because inverted
+		motion.y = climb_motion_y
+		motion.x = cos(slope_angle) * move_distance * sign(motion.x)
+		collision_info.below = true
+		collision_info.climbing_slope = true
+		collision_info.slope_angle = slope_angle
 	
 	return motion
 	
@@ -103,11 +142,20 @@ class CollisionInfo:
 	var left = false
 	var right = false
 	
+	var climbing_slope = false
+	
+	var slope_angle = 0.0
+	var slope_angle_old = 0.0
+	
 	func reset():
 		above = false
 		below = false
 		left = false
-		right = false"
+		right = false
+		
+		climbing_slope = false
+		slope_angle_old = slope_angle
+		slope_angle = 0.0"
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -126,9 +174,9 @@ export var acceleration_time_airborne = 0.2
 export var acceleration_time_grounded = 0.1
 export var move_speed = 600
 
-var velocity = Vector2()
-var jump_velocity = 0.0
 var gravity = 0.0
+var jump_velocity = 0.0
+var velocity = Vector2()
 
 func _ready():
 	gravity = (2.0 * jump_height) / pow(time_to_jump_apex, 2.0)
@@ -153,7 +201,6 @@ func _process(delta):
 	velocity.x = lerp(velocity.x, target_velocity_x, acceleration_time_grounded if body.collision_info.below else acceleration_time_airborne) # use actual smoothdamp 
 	velocity.y += gravity * delta
 	
-	print(velocity)
 	body.move(velocity * delta)"
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -179,7 +226,7 @@ script = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-skin_width = 0.015
+skin_width = 10
 horizontal_ray_count = 4
 vertical_ray_count = 4
 
@@ -195,6 +242,15 @@ time_to_jump_apex = 0.4
 acceleration_time_airborne = 0.2
 acceleration_time_grounded = 0.1
 move_speed = 600
+
+[node name="RayCast2D" type="RayCast2D" parent="KinematicBody2D"]
+
+position = Vector2( 8.92572, 42.7617 )
+rotation = 4.71239
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 50 )
+collision_mask = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -271,7 +327,7 @@ shape = SubResource( 5 )
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
 
 position = Vector2( 1182.33, 729.832 )
-rotation = 0.899076
+rotation = 0.872665
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -284,6 +340,25 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+
+shape = SubResource( 5 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+
+position = Vector2( 532.517, 716.2 )
+rotation = 5.41052
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
 
 shape = SubResource( 5 )
 
