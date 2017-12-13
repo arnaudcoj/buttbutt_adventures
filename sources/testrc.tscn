@@ -120,32 +120,40 @@ script/source = "extends Node
 
 onready var body = get_parent()
 
-export var speed = 2
+export var jump_height = 40.0
+export var time_to_jump_apex = 0.4
+export var acceleration_time_airborne = 0.2
+export var acceleration_time_grounded = 0.1
+export var move_speed = 600
 
 var velocity = Vector2()
+var jump_velocity = 0.0
+var gravity = 0.0
 
 func _ready():
-	pass
+	gravity = (2.0 * jump_height) / pow(time_to_jump_apex, 2.0)
+	jump_velocity = abs(gravity) * time_to_jump_apex
 	
 func _process(delta):
-	
 	if body.collision_info.below or body.collision_info.above:
 		velocity.y = 0
-	if body.collision_info.left or body.collision_info.right:
-		velocity.x = 0
+
+	var input = Vector2()
 	
-	var direction = Vector2()
 	if Input.is_action_pressed(\"ui_left\"):
-		direction.x -= 1
+		input.x -= 1
 	if Input.is_action_pressed(\"ui_right\"):
-		direction.x += 1
-	if Input.is_action_pressed(\"ui_up\"):
-		direction.y -= 1
-	if Input.is_action_pressed(\"ui_down\"):
-		direction.y += 1
+		input.x += 1
 	
-	velocity += direction * speed
+	if Input.is_action_pressed(\"ui_up\") and body.collision_info.below:
+		velocity.y = -jump_velocity
+		
+	var target_velocity_x = input.x * move_speed
 	
+	velocity.x = lerp(velocity.x, target_velocity_x, acceleration_time_grounded if body.collision_info.below else acceleration_time_airborne) # use actual smoothdamp 
+	velocity.y += gravity * delta
+	
+	print(velocity)
 	body.move(velocity * delta)"
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -182,7 +190,11 @@ shape = SubResource( 2 )
 [node name="player_script" type="Node" parent="KinematicBody2D"]
 
 script = SubResource( 3 )
-speed = 2
+jump_height = 40.0
+time_to_jump_apex = 0.4
+acceleration_time_airborne = 0.2
+acceleration_time_grounded = 0.1
+move_speed = 600
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -253,6 +265,25 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+
+shape = SubResource( 5 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+position = Vector2( 1182.33, 729.832 )
+rotation = 0.899076
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
 
 shape = SubResource( 5 )
 
