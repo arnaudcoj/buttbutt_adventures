@@ -105,6 +105,20 @@ func vertical_collisions(motion):
 		
 		i += 1
 	
+	if collision_info.climbing_slope:
+		var direction_x = sign(motion.x)
+		ray_length = abs(motion.x) + skin_width
+		var ray_origin = (_bottom_left_origin if direction_x < 0 else _bottom_right_origin) + Vector2(0,motion.y)
+		print(motion.y)
+		var hit = space_state.intersect_ray(ray_origin, ray_origin + Vector2(ray_length * direction_x, 0), [self])
+		
+		if not hit.empty():
+			var hit_distance = (hit.position - ray_origin).length()
+			var slope_angle = hit.normal.angle_to(Vector2(0,-1))
+			if slope_angle != collision_info.slope_angle:
+				motion.x = (hit_distance - skin_width) * direction_x
+				collision_info.slope_angle = slope_angle
+	
 	return motion
 	
 func climb_slope(motion, slope_angle):
@@ -237,7 +251,7 @@ shape = SubResource( 2 )
 [node name="player_script" type="Node" parent="KinematicBody2D"]
 
 script = SubResource( 3 )
-jump_height = 40.0
+jump_height = 200.0
 time_to_jump_apex = 0.4
 acceleration_time_airborne = 0.2
 acceleration_time_grounded = 0.1
@@ -290,7 +304,8 @@ shape = SubResource( 4 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
-position = Vector2( 280.744, 589.749 )
+position = Vector2( 269.886, 359.678 )
+rotation = -0.446079
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
