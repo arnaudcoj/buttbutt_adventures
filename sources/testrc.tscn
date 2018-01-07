@@ -40,13 +40,19 @@ func _physics_process(delta):
 		input.x -= 1
 	if Input.is_action_pressed(\"ui_right\") and not body.collision_info.right :
 		input.x += 1
+#	if Input.is_action_pressed(\"ui_up\") and not body.collision_info.above :
+#		input.y -= 1
+#	if Input.is_action_pressed(\"ui_down\") and not body.collision_info.below :
+#		input.y += 1
 	
 	if Input.is_action_pressed(\"ui_up\") and body.collision_info.below:
 		velocity.y = -jump_velocity
 		
 	var target_velocity_x = input.x * move_speed
+#	var target_velocity_y = input.y * move_speed
 	
 	velocity.x = lerp(velocity.x, target_velocity_x, acceleration_time_grounded if body.collision_info.below else acceleration_time_airborne) # use actual smoothdamp 
+#	velocity.y = lerp(velocity.y, target_velocity_y, acceleration_time_grounded if body.collision_info.below else acceleration_time_airborne) # use actual smoothdamp 
 	
 #	print(velocity)
 	
@@ -74,7 +80,7 @@ script = ExtResource( 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
-position = Vector2( 3993, 2087 )
+position = Vector2( 4981, 2517 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -84,8 +90,8 @@ _sections_unfolded = [ "Collision", "collision" ]
 __meta__ = {
 "_edit_group_": true
 }
-max_climb_angle = 75
-max_descend_angle = 75
+max_climb_angle = 65
+max_descend_angle = 65
 skin_width = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
@@ -475,9 +481,8 @@ shape = SubResource( 4 )
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="." index="18"]
 
-editor/display_folded = true
 position = Vector2( 4270.03, 2428.07 )
-rotation = -1.31452
+rotation = -1.39626
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -495,7 +500,7 @@ shape = SubResource( 4 )
 
 editor/display_folded = true
 position = Vector2( 3590.17, 2418.33 )
-rotation = 1.31423
+rotation = 1.39626
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -536,6 +541,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="StaticBody2D15" type="StaticBody2D" parent="." index="21"]
 
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -551,6 +557,7 @@ polygon = PoolVector2Array( 2124, 1651, 2200, 1726, 2295, 1757, 2420, 1770, 2554
 
 [node name="Area2D" type="Area2D" parent="." index="22"]
 
+editor/display_folded = true
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 1960, 8793 )
 input_pickable = true
@@ -565,6 +572,58 @@ _sections_unfolded = [ "Material", "Visibility" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 shape = SubResource( 5 )
+
+[node name="StaticBody2D22" type="StaticBody2D" parent="." index="23"]
+
+position = Vector2( 4995.57, 2623.28 )
+rotation = 1.5708
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D22" index="0"]
+
+shape = SubResource( 4 )
+
+[node name="StaticBody2D23" type="StaticBody2D" parent="." index="24"]
+
+position = Vector2( 5340, 2362 )
+rotation = 1.39626
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D23" index="0"]
+
+shape = SubResource( 4 )
+
+[node name="StaticBody2D24" type="StaticBody2D" parent="." index="25"]
+
+position = Vector2( 4727.31, 2362 )
+rotation = -1.41372
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D24" index="0"]
+
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="Area2D" to="." method="on_death_area_entered"]
 

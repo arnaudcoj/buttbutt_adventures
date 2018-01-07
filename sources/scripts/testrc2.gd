@@ -100,11 +100,11 @@ func vertical_collisions(motion):
 			collision = null
 	
 func can_slide(collision):
-	return collision.normal.y < 0 and abs(collision.normal.angle_to(Vector2(0,-1))) > deg2rad(max_descend_angle)
+	return acos(abs(collision.normal.dot(Vector2(0,-1)))) > deg2rad(max_descend_angle)
 	
 func slide_slope(collision):
 	var direction = Vector2(-collision.normal.y, collision.normal.x)
-	direction *= sign(collision.normal.x)
+	direction *= sign(collision.normal.x) * -sign(collision.normal.y)
 	
 	var motion = direction * collision.remainder.length()
 	return move_and_collide(motion)
