@@ -45,7 +45,6 @@ func descend_slope(raycast_hit, motion):
 	if direction.y > 0 and abs(raycast_hit.normal.angle_to(Vector2(0,-1))) < deg2rad(max_descend_angle) :
 		motion = direction * motion.length()
 		collision_info.descending_slope = true
-		collision_info.below = true
 	
 	return motion
 
@@ -53,9 +52,9 @@ func climb_slope(collision):
 	var direction = Vector2(-collision.normal.y, collision.normal.x)
 	direction *= sign(collision.remainder.x)
 	
-	if direction.y > 0 or abs(collision.normal.angle_to(Vector2(0,-1))) > deg2rad(max_climb_angle):
-		collision_info.left = direction.x < 0
-		collision_info.right = direction.x > 0
+	if collision.normal.y > 0 or abs(collision.normal.angle_to(Vector2(0,-1))) > deg2rad(max_climb_angle):
+		collision_info.left = collision.normal.x > 0
+		collision_info.right = collision.normal.x < 0
 		return null
 		
 	var motion = direction * collision.remainder.length()
@@ -80,7 +79,7 @@ func vertical_collisions(motion):
 	
 func slide_slope(collision):
 	var direction = Vector2(-collision.normal.y, collision.normal.x)
-	direction *= sign(collision.remainder.y)
+	direction *= sign(collision.normal.x)
 	
 	var motion = direction * collision.remainder.length()
 	return move_and_collide(motion)
