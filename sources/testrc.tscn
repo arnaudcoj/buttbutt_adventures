@@ -78,7 +78,7 @@ position = Vector2( 3993, 2087 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-collision/safe_margin = 0.1
+collision/safe_margin = 0.8
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision", "collision" ]
 __meta__ = {
@@ -86,7 +86,7 @@ __meta__ = {
 }
 max_climb_angle = 75
 max_descend_angle = 75
-skin_width = 2
+skin_width = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 

@@ -5,7 +5,7 @@ onready var collision = get_node("CollisionShape2D")
 export var max_climb_angle = 80
 export var max_descend_angle = 80
 
-export var skin_width = 2
+export var skin_width = 0.5
 var _bottom_left_origin
 var _bottom_right_origin
 var collision_info = CollisionInfo.new()
@@ -66,16 +66,41 @@ func climb_slope(collision):
 
 func vertical_collisions(motion):
 	motion.x = 0
+	var collision = null
 	
-	var collision = move_and_collide(motion)
+	# berk berk berk that's an ugly hack but at least it works
+	# this hack is used because move_and_collide resolve the collision along the normal
+	# this means that with the gravity, the body slides slowly along the slope
+	# AND WE DON4T WANT THIS
+	# don't hate me for this hack please ='(
+	#
+	# Explanation :
+	# if falling, check if collide with the ground with a 2px movement then go back to init position
+	# then we check if the ground is a slope using the can_slide method
+	# if true, proceed to the usual vertical_collision algorithm
+	# otherwise, mark the collision_info.below as true then quit the method
+	if motion.y > 0 :
+		var old_pos = position
+		collision = move_and_collide(Vector2(0,2))
+		position = old_pos
+		if collision != null:
+			if not can_slide(collision) and (collision.normal != Vector2(0, -1)):
+				collision_info.below = true
+				return
+	# it will be ok now =')
+	
+	collision = move_and_collide(motion)
 	
 	while collision != null:
-		if collision.normal.y < 0 and abs(collision.normal.angle_to(Vector2(0,-1))) > deg2rad(max_descend_angle):
+		if can_slide(collision):
 			collision = slide_slope(collision)
 		else:
 			collision_info.below = collision_info.below or collision.normal.y < 0
 			collision_info.above = collision_info.above or collision.normal.y > 0
 			collision = null
+	
+func can_slide(collision):
+	return collision.normal.y < 0 and abs(collision.normal.angle_to(Vector2(0,-1))) > deg2rad(max_descend_angle)
 	
 func slide_slope(collision):
 	var direction = Vector2(-collision.normal.y, collision.normal.x)
@@ -83,7 +108,6 @@ func slide_slope(collision):
 	
 	var motion = direction * collision.remainder.length()
 	return move_and_collide(motion)
-	
 	
 func update_raycast_origins():
 	var half_bounds_size = collision.shape.extents - Vector2(skin_width, skin_width)
