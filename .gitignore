@@ -1,3 +1,4 @@
 sources/logs
 *.import
 captures/raw
+*.apk

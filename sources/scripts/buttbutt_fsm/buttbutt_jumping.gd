@@ -1,16 +1,8 @@
-extends "res://scripts/buttbutt_fsm/buttbutt_air_move.gd"
+extends "res://scripts/buttbutt_fsm/buttbutt_classic_state.gd"
 
-export (NodePath) var idle_state_path
-export (NodePath) var falling_state_path
+onready var idle_state = fsm.get_node("idle")
+onready var fall_state = fsm.get_node("fall")
 
 func change_state():
-	if not fsm.is_control_pressed(fsm.Control.Jump) or $jump_time.is_stopped(): #TODO control jump
-		fsm.change_state(get_node(falling_state_path))
-
-func on_enter():
-	.on_enter()
-	fsm.body.enable_capsule_collision()
-	$jump_time.start()
-	
-func on_leave():
-	fsm.body.enable_rectangular_collision()
+	if not fsm.is_control_pressed(Controls.Jump) or fsm.velocity.y >= 0: #TODO control jump
+		fsm.change_state(fall_state)

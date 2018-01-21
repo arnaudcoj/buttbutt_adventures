@@ -1,49 +1,45 @@
 extends Node
 
-export (NodePath) var fsm_path
-var fsm
+onready var fsm = get_parent()
 
-export (NodePath) var idle_state_path
-export (NodePath) var falling_state_path
+onready var falling_state = $"../walk"
 
 export var speed = 500
 
 var reached_top
 
-func _ready():
-	fsm = get_node(fsm_path)
-
 func change_state():
-	if (fsm.is_control_pressed(fsm.Control.Left) or fsm.is_control_pressed(fsm.Control.Right) or fsm.is_control_pressed(fsm.Control.RunLeft) or fsm.is_control_pressed(fsm.Control.RunRight)) and not fsm.body.can_climb(): #TODO control jump
-		fsm.change_state(get_node(falling_state_path))
+	if (fsm.is_control_pressed(Controls.Left) or fsm.is_control_pressed(Controls.Right) or fsm.is_control_pressed(Controls.RunLeft) or fsm.is_control_pressed(Controls.RunRight)) and not fsm.body.climb_control.can_climb(): #TODO control jump
+		fsm.change_state(falling_state)
 
 func on_enter():
-	fsm.body.enable_capsule_collision()
-	pass
+	fsm.velocity = Vector2()
 
 func update(delta):
 	var direction = Vector2(0,0)
+	var motion = Vector2(0,0)
 	
-	if fsm.is_control_pressed(fsm.Control.Left):
+	if fsm.is_control_pressed(Controls.Left):
 		direction.x -= 1
-	if fsm.is_control_pressed(fsm.Control.Right):
+	if fsm.is_control_pressed(Controls.Right):
 		direction.x += 1
-	if fsm.is_control_pressed(fsm.Control.RunLeft):
+	if fsm.is_control_pressed(Controls.RunLeft):
 		direction.x -= 1.5
-	if fsm.is_control_pressed(fsm.Control.RunRight):
+	if fsm.is_control_pressed(Controls.RunRight):
 		direction.x += 1.5
-		
-	fsm.body.move_and_slide(direction.normalized() * speed)
 	
-	direction = Vector2()
 	
-	if fsm.is_control_pressed(fsm.Control.Up) and fsm.body.can_climb_up():
+	if fsm.is_control_pressed(Controls.Up) and fsm.body.climb_control.can_climb_up():
 		direction.y -= 1
-	if fsm.is_control_pressed(fsm.Control.Down) and fsm.body.can_climb_down():
+	if fsm.is_control_pressed(Controls.Down) and fsm.body.climb_control.can_climb_down():
 		direction.y += 1
-		
-	fsm.body.move_and_slide(direction.normalized() * speed)
+	
+	fsm.velocity = direction.normalized() * speed
+	motion = fsm.velocity * delta
+	if motion.x == 0 and motion.y != 0:
+		motion.x = clamp(fsm.body.climb_control.get_climb_area_center().x - fsm.body.position.x, -speed * delta * 0.5, speed * delta * 0.5)
+	
+	fsm.body.move(motion)
 
 func on_leave():
-	fsm.body.enable_rectangular_collision()
 	pass

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var collision = get_node("CollisionShape2D")
+onready var collision_shape = get_node("CollisionShape2D")
 
 export var max_climb_angle = 80
 export var max_descend_angle = 80
@@ -110,7 +110,7 @@ func slide_slope(collision):
 	return move_and_collide(motion)
 	
 func update_raycast_origins():
-	var half_bounds_size = collision.shape.extents - Vector2(skin_width, skin_width)
+	var half_bounds_size = collision_shape.shape.extents - Vector2(skin_width, skin_width)
 	_bottom_left_origin = position + Vector2(-half_bounds_size.x, half_bounds_size.y)
 	_bottom_right_origin = position + Vector2(half_bounds_size.x, half_bounds_size.y)
 	
