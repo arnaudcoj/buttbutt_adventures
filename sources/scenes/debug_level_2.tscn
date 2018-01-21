@@ -8,22 +8,22 @@
 [ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/death_area.tscn" type="PackedScene" id=7]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 320.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 192.0
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 576.0
 
-[node name="TileMap" type="Node2D"]
+[node name="TileMap" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Collision", "Transform" ]
@@ -34,7 +34,6 @@ layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 scroll_offset = Vector2( 0, 0 )
 scroll_base_offset = Vector2( 0, 0 )
 scroll_base_scale = Vector2( 1, 1 )
@@ -66,6 +65,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 [node name="buttbutt" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( -862.122, 274.199 )
+nb_passes_horizontal_move = 3
 
 [node name="Camera2D" type="Camera2D" parent="buttbutt" index="6"]
 
@@ -82,8 +82,6 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = false
 smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
 drag_margin_left = 0.2
 drag_margin_top = 0.2
 drag_margin_right = 0.2
@@ -171,13 +169,13 @@ scale = Vector2( 1, 2.80469 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea" index="0"]
 
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="DeathArea" parent="." index="18" instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea" index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="DeathArea2" parent="." index="19" instance=ExtResource( 7 )]
 
@@ -185,6 +183,6 @@ position = Vector2( 4544, 1344 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2" index="0"]
 
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 

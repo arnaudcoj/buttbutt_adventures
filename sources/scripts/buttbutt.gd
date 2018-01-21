@@ -12,6 +12,8 @@ export var max_descend_angle = 80
 var collision_info = CollisionInfo.new()
 onready var space_state = get_world_2d().get_direct_space_state()
 
+export var nb_passes_horizontal_move = 3
+
 func on_ground():
 	#todo better on_ground test
 	return test_move(transform, Vector2(0,10))
@@ -22,7 +24,10 @@ func move(var motion):
 	if motion.y != 0:
 		vertical_collisions(motion)
 	if motion.x != 0 :
-		horizontal_collisions(motion)
+		var i = 0
+		while (i < nb_passes_horizontal_move):
+			horizontal_collisions(motion / nb_passes_horizontal_move)
+			i += 1
 	
 func horizontal_collisions(motion):
 	# we only want horizontal motion here
