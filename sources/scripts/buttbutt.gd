@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal change_controls
+
 onready var body = get_parent()
 
 onready var collision_shape = $collision_shape

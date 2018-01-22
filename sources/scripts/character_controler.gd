@@ -23,6 +23,7 @@ var jump_velocity
 func _ready():
 	gravity = (2.0 * jump_height) / pow(time_to_jump_apex, 2.0)
 	jump_velocity = abs(gravity) * time_to_jump_apex
+	body.emit_signal("change_controls", left_control, right_control)
 
 func _physics_process(delta):
 	state.change_state()
@@ -41,6 +42,7 @@ func is_control_pressed(control):
 func change_controls(new_left_control, new_right_control):
 	left_control = new_left_control
 	right_control = new_right_control
+	body.emit_signal("change_controls", new_left_control, new_right_control)
 	
 func move(motion):
 	body.move(motion)

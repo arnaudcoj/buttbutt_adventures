@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tilesets/debug_tileset.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/end_area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/death_area.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/TouchControls.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -64,8 +65,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
 [node name="buttbutt" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( -862.122, 274.199 )
-nb_passes_horizontal_move = 3
+position = Vector2( 222, 608 )
 
 [node name="Camera2D" type="Camera2D" parent="buttbutt" index="6"]
 
@@ -93,96 +93,112 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="controls_changer" parent="." index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 192, 832 )
+position = Vector2( 228, 819 )
 left_control = 0
 
-[node name="controls_changer2" parent="." index="4" instance=ExtResource( 4 )]
+[node name="controls_changer10" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 228, 819 )
+left_control = 0
+
+[node name="controls_changer2" parent="." index="5" instance=ExtResource( 4 )]
 
 position = Vector2( 960, 704 )
 left_control = 6
 
-[node name="controls_changer3" parent="." index="5" instance=ExtResource( 4 )]
+[node name="controls_changer3" parent="." index="6" instance=ExtResource( 4 )]
 
 position = Vector2( 1472, 704 )
 left_control = 1
 right_control = 5
 
-[node name="controls_changer4" parent="." index="6" instance=ExtResource( 4 )]
+[node name="controls_changer4" parent="." index="7" instance=ExtResource( 4 )]
 
 position = Vector2( 3008, 1216 )
 left_control = 0
 right_control = 2
 
-[node name="controls_changer5" parent="." index="7" instance=ExtResource( 4 )]
+[node name="controls_changer5" parent="." index="8" instance=ExtResource( 4 )]
 
 position = Vector2( 1472, 448 )
 
-[node name="controls_changer6" parent="." index="8" instance=ExtResource( 4 )]
+[node name="controls_changer6" parent="." index="9" instance=ExtResource( 4 )]
 
 position = Vector2( 1216, 64 )
 left_control = 6
 
-[node name="controls_changer7" parent="." index="9" instance=ExtResource( 4 )]
+[node name="controls_changer7" parent="." index="10" instance=ExtResource( 4 )]
 
 position = Vector2( 2112, 64 )
 left_control = 0
 right_control = 6
 
-[node name="controls_changer8" parent="." index="10" instance=ExtResource( 4 )]
+[node name="controls_changer8" parent="." index="11" instance=ExtResource( 4 )]
 
 position = Vector2( 1856, 320 )
 left_control = 0
 right_control = 3
 
-[node name="controls_changer9" parent="." index="11" instance=ExtResource( 4 )]
+[node name="controls_changer9" parent="." index="12" instance=ExtResource( 4 )]
 
 position = Vector2( -433.255, 2626.81 )
 left_control = 1
 right_control = 5
 
-[node name="ladder" parent="." index="12" instance=ExtResource( 5 )]
+[node name="ladder" parent="." index="13" instance=ExtResource( 5 )]
 
 position = Vector2( 1600, 256 )
 scale = Vector2( 1, 4 )
 
-[node name="ladder2" parent="." index="13" instance=ExtResource( 5 )]
+[node name="ladder2" parent="." index="14" instance=ExtResource( 5 )]
 
 position = Vector2( 2240, 512 )
 scale = Vector2( 1, 4 )
 
-[node name="ladder3" parent="." index="14" instance=ExtResource( 5 )]
+[node name="ladder3" parent="." index="15" instance=ExtResource( 5 )]
 
 position = Vector2( 2752, 1152 )
 scale = Vector2( 1, 2 )
 
-[node name="ladder4" parent="." index="15" instance=ExtResource( 5 )]
+[node name="ladder4" parent="." index="16" instance=ExtResource( 5 )]
 
 position = Vector2( 2624, 1024 )
 scale = Vector2( 1, 2 )
 
-[node name="ladder5" parent="." index="16" instance=ExtResource( 5 )]
+[node name="ladder5" parent="." index="17" instance=ExtResource( 5 )]
 
 position = Vector2( 2496, 832 )
 scale = Vector2( 1, 2.80469 )
 
-[node name="EndArea" parent="." index="17" instance=ExtResource( 6 )]
+[node name="EndArea" parent="." index="18" instance=ExtResource( 6 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="DeathArea" parent="." index="18" instance=ExtResource( 7 )]
+[node name="DeathArea" parent="." index="19" instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea" index="0"]
 
 shape = SubResource( 2 )
 
-[node name="DeathArea2" parent="." index="19" instance=ExtResource( 7 )]
+[node name="DeathArea2" parent="." index="20" instance=ExtResource( 7 )]
 
 position = Vector2( 4544, 1344 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2" index="0"]
 
 shape = SubResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="21"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="TouchControls" parent="CanvasLayer" index="0" instance=ExtResource( 8 )]
+
+[connection signal="change_controls" from="buttbutt" to="CanvasLayer/TouchControls" method="on_controls_changed"]
 
 
