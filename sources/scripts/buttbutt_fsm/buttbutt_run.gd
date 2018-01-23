@@ -20,6 +20,10 @@ func change_state():
 		else:
 			fsm.change_state(stop_state)
 
+func update(delta):
+	.update(delta)
+	fsm.body.buttbutt_animation.flip(fsm.velocity.x > 0)
+
 func apply_gravity(delta):
 	if $time_before_fall.is_stopped():
 		# applying gravity

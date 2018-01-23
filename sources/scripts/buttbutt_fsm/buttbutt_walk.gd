@@ -18,6 +18,11 @@ func change_state():
 	elif fsm.is_control_pressed(Controls.RunLeft) or fsm.is_control_pressed(Controls.RunRight):
 		fsm.change_state(running_state)
 
+func update(delta):
+	.update(delta)
+	fsm.body.buttbutt_animation.flip(fsm.velocity.x > 0)
+		
+
 func is_moving_right():
 	return fsm.is_control_pressed(Controls.Right)
 	

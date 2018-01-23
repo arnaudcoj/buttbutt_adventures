@@ -89,11 +89,11 @@ __meta__ = {
 left_control = 2
 right_control = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
 
 emitting = false
 amount = 28
@@ -114,7 +114,7 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="." index="2"]
 
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
