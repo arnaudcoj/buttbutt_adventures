@@ -13,7 +13,10 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="home_screen" parent="CanvasLayer" index="0" instance=ExtResource( 2 )]
+
+mouse_default_cursor_shape = 0
 
 

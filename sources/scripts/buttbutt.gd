@@ -15,6 +15,7 @@ var collision_info = CollisionInfo.new()
 onready var space_state = get_world_2d().get_direct_space_state()
 
 export var nb_passes_horizontal_move = 3
+export var slope_sticking = true
 
 func on_ground():
 	#todo better on_ground test
@@ -23,13 +24,13 @@ func on_ground():
 func move(var motion):
 	collision_info.reset()
 	
-	if motion.y != 0:
-		vertical_collisions(motion)
 	if motion.x != 0 :
 		var i = 0
 		while (i < nb_passes_horizontal_move):
 			horizontal_collisions(motion / nb_passes_horizontal_move)
 			i += 1
+	if motion.y != 0:
+		vertical_collisions(motion)
 	
 func horizontal_collisions(motion):
 	# we only want horizontal motion here
@@ -52,7 +53,7 @@ func horizontal_collisions(motion):
 	# it will be ok now =')
 	
 	# modify the motion to follow slope angle if any
-	if collision != null:
+	if collision != null and slope_sticking:
 		motion = descend_slope(collision.normal, motion)
 	
 	# move the body
@@ -76,15 +77,14 @@ func descend_slope(normal, motion):
 
 func climb_slope(collision):
 	var direction = Vector2(-collision.normal.y, collision.normal.x)
-	direction *= sign(collision.remainder.x)
+	direction *= sign(collision.remainder.x) * sign(-collision.normal.y)
 	
-	if collision.normal.y > 0 or abs(collision.normal.angle_to(Vector2(0,-1))) > deg2rad(max_climb_angle):
+	if collision.normal.y == 0 or abs(collision.normal.angle_to(Vector2(0,sign(collision.normal.y)))) > deg2rad(max_climb_angle):
 		collision_info.left = collision.normal.x > 0
 		collision_info.right = collision.normal.x < 0
 		return null
-		
-	var motion = direction * collision.remainder.length()
 	
+	var motion = direction * collision.remainder.length()
 	collision_info.climbing_slope = true
 	collision_info.below = true
 	

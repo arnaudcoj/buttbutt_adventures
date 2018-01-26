@@ -24,7 +24,8 @@ func on_enter():
 	pass
 
 func update(delta):
-	pass
+	#update collision info
+	fsm.body.move(Vector2(0,0))
 
 func on_leave():
 	pass

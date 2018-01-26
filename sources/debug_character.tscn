@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/buttbutt.gd" type="Script" id=1]
+[ext_resource path="res://scripts/classic_controler.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 70.8042, 105.926 )
+
+[node name="debug_character" type="KinematicBody2D"]
+
+position = Vector2( 4370.25, 2777.12 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+max_climb_angle = 80
+max_descend_angle = 80
+nb_passes_horizontal_move = 3
+slope_sticking = false
+
+[node name="collision_shape" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 5 )
+script = ExtResource( 2 )
+speed = 500
+
+
