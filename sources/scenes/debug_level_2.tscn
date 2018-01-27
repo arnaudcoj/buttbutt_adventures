@@ -24,7 +24,7 @@ radius = 192.0
 custom_solver_bias = 0.0
 radius = 576.0
 
-[node name="TileMap" type="Node2D"]
+[node name="TileMap" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Collision", "Transform" ]
@@ -202,8 +202,6 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="TouchControls" parent="CanvasLayer" index="0" instance=ExtResource( 8 )]
-
-mouse_default_cursor_shape = 0
 
 [connection signal="change_controls" from="buttbutt" to="CanvasLayer/TouchControls" method="on_controls_changed"]
 

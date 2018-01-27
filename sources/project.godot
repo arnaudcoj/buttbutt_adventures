@@ -51,4 +51,5 @@ common/stdout/print_fps=false
 
 [rendering]
 
+environment/default_clear_color=Color( 0.493149, 0.669338, 0.738281, 1 )
 environment/default_environment="res://default_env.tres"
