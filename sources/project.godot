@@ -46,6 +46,7 @@ right_action=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_na
 
 [physics]
 
+common/fixed_fps=30
 common/stdout/print_fps=false
 
 [rendering]

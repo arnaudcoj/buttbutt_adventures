@@ -3,8 +3,22 @@ extends Control
 var left_tween
 var right_tween
 
+onready var fps_label = $fps_label
+
+var timer = 0
+var frame_counter = 0
+
 func _ready():
 	pass
+	
+func _physics_process(delta):
+	timer += delta
+	frame_counter += 1
+	
+	if timer > 1.0:
+		fps_label.set_text(str(Engine.get_frames_per_second()) + " fps\nphysics : " + str(frame_counter) + " fps")
+		timer = fmod(timer, 1.0)
+		frame_counter = 0
 
 func on_controls_changed(new_left_control, new_right_control):
 	left_tween = $LeftTween
