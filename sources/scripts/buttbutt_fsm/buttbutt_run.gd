@@ -8,6 +8,7 @@ onready var jump_state = fsm.get_node("jump")
 	
 func change_state():
 	if not fsm.body.on_ground():
+#		fsm.body.move_and_collide(Vector2(0, -fsm.velocity.y * 0.03333))
 		if $time_before_fall.is_stopped():
 			$time_before_fall.start()
 	if fsm.is_control_pressed(Controls.Jump):
@@ -28,6 +29,11 @@ func apply_gravity(delta):
 	if $time_before_fall.is_stopped():
 		# applying gravity
 		fsm.velocity.y += fsm.gravity * delta
+	else:
+		if (fsm.velocity.y > 0):
+			fsm.velocity.y *= -1
+		else:
+			fsm.velocity.y = 0
 	
 func is_moving_right():
 	return fsm.is_control_pressed(Controls.RunRight)

@@ -253,16 +253,18 @@ script = ExtResource( 4 )
 
 script = ExtResource( 5 )
 speed_multiplier = 1
+distance_before_falling = 128
 
 [node name="run" type="Node" parent="character_controler" index="2"]
 
 script = ExtResource( 6 )
 speed_multiplier = 2
+distance_before_falling = 128
 
 [node name="time_before_fall" type="Timer" parent="character_controler/run" index="0"]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 autostart = false
 
@@ -270,6 +272,7 @@ autostart = false
 
 script = ExtResource( 7 )
 speed_multiplier = 1
+distance_before_falling = 128
 
 [node name="climb" type="Node" parent="character_controler" index="4"]
 
@@ -280,6 +283,7 @@ speed = 500
 
 script = ExtResource( 9 )
 speed_multiplier = 1
+distance_before_falling = 128
 
 [node name="jump_time" type="Timer" parent="character_controler/jump" index="0"]
 

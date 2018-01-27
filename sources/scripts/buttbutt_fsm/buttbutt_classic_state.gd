@@ -3,6 +3,9 @@ extends Node
 onready var fsm = get_parent()
 
 export var speed_multiplier = 1
+export var distance_before_falling = 128
+
+var quit_ground = false
 
 func update(delta):
 	
@@ -27,7 +30,8 @@ func update(delta):
 		if fsm.is_control_pressed(Controls.Right) and not fsm.body.collision_info.right :
 			input.x += 1
 			
-	apply_gravity(delta)
+	if not fsm.body.collision_info.below:
+		apply_gravity(delta)
 	
 	# jumping
 	if fsm.is_control_pressed(Controls.Jump) and fsm.body.collision_info.below:
@@ -47,6 +51,7 @@ func update(delta):
 func apply_gravity(delta):
 	# applying gravity
 	fsm.velocity.y += fsm.gravity * delta
+	print("gravity")
 	
 
 func on_enter():
