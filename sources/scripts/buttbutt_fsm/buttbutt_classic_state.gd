@@ -44,14 +44,11 @@ func update(delta):
 	fsm.velocity.x = lerp(fsm.velocity.x, target_velocity_x, fsm.acceleration_time_grounded if fsm.body.collision_info.below else fsm.acceleration_time_airborne) # use actual smoothdamp 
 #	velocity.y = lerp(velocity.y, target_velocity_y, acceleration_time_grounded if fsm.body.collision_info.below else acceleration_time_airborne) # use actual smoothdamp 
 	
-#	print(velocity)
-	
 	fsm.move(fsm.velocity * delta)
 
 func apply_gravity(delta):
 	# applying gravity
 	fsm.velocity.y += fsm.gravity * delta
-	print("gravity")
 	
 
 func on_enter():
