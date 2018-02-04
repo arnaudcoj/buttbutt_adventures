@@ -9,7 +9,7 @@ var quit_ground = false
 
 func update(delta):
 	
-	if fsm.body.collision_info.below or fsm.body.collision_info.above:
+	if fsm.body.collision_info.below:
 		fsm.velocity.y = 0
 		
 

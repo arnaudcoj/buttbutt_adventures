@@ -2695,7 +2695,7 @@ tracks/33/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=9]
 
 resource_name = "stop"
 length = 1.0
@@ -3545,7 +3545,7 @@ radius = 10.0
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="buttbutt" type="KinematicBody2D" index="0"]
+[node name="buttbutt" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -3641,13 +3641,13 @@ scale = Vector2( 1, 1 )
 [node name="right_arm_sprite" parent="buttbutt_skeleton/back" index="2"]
 
 position = Vector2( 64.4236, -48.0332 )
-rotation = -0.660699
+rotation = -0.660698
 scale = Vector2( 1, 1 )
 
 [node name="left_arm_sprite" parent="buttbutt_skeleton/back" index="3"]
 
 position = Vector2( -173.281, -124.577 )
-rotation = 0.957194
+rotation = 0.95719
 scale = Vector2( 1, 1 )
 
 [node name="left_ear_sprite" parent="buttbutt_skeleton/back" index="4"]
@@ -3658,13 +3658,13 @@ scale = Vector2( 1, 1 )
 
 [node name="right_ear_sprite" parent="buttbutt_skeleton/back" index="5"]
 
-position = Vector2( -14.3291, -317.492 )
+position = Vector2( -14.329, -317.492 )
 rotation = -0.15549
 scale = Vector2( 1, 1 )
 
 [node name="hairs_sprite" parent="buttbutt_skeleton/back" index="6"]
 
-position = Vector2( -74.2575, -475.931 )
+position = Vector2( -74.2574, -475.931 )
 rotation = -0.15549
 scale = Vector2( 1, 1 )
 
@@ -3737,7 +3737,7 @@ anims/front_base = SubResource( 5 )
 anims/idle = SubResource( 6 )
 anims/jump = SubResource( 7 )
 anims/run = SubResource( 8 )
-anims/stop = SubResource( 15 )
+anims/stop = SubResource( 9 )
 anims/walk = SubResource( 10 )
 blend_times = [  ]
 

@@ -19,7 +19,7 @@ export var slope_sticking = true
 
 func on_ground():
 	#todo better on_ground test
-	return test_move(transform, Vector2(0,1))
+	return test_move(transform, Vector2(0,10))
 
 func move(var motion):
 	collision_info.reset()
