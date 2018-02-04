@@ -28,6 +28,11 @@ func _ready():
 func _physics_process(delta):
 	state.change_state()
 	state.update(delta)
+	#todo better
+	if (state.name == "idle"):
+		anim.playback_speed = 1
+	else:
+		anim.playback_speed = velocity.length() / move_speed
 	
 func change_state(new_state):
 	print(new_state.get_name())
