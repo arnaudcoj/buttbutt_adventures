@@ -3560,6 +3560,7 @@ slope_sticking = true
 
 [node name="buttbutt_skeleton" parent="." index="0" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 scale = Vector2( 0.2, 0.2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
@@ -3570,45 +3571,35 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="left_leg_sprite" parent="buttbutt_skeleton/front" index="0"]
 
-position = Vector2( 44.2986, 115.771 )
-rotation = -0.509914
+position = Vector2( 63.3082, 87.4257 )
+rotation = 0.0
 scale = Vector2( 1, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="right_leg_sprite" parent="buttbutt_skeleton/front" index="1"]
 
-position = Vector2( -46.2809, 121.208 )
-rotation = 0.224131
+position = Vector2( -48.2349, 119.08 )
 scale = Vector2( 1, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="right_arm_sprite" parent="buttbutt_skeleton/front" index="2"]
 
-position = Vector2( -174.817, -176.04 )
-rotation = -0.276187
+position = Vector2( -160.876, -152.478 )
+rotation = -0.10821
 scale = Vector2( 1, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="right_ear_sprite" parent="buttbutt_skeleton/front" index="3"]
 
-position = Vector2( -134.49, -514.491 )
-rotation = 0.123582
+position = Vector2( -186.91, -470.29 )
+rotation = 0.0126689
+scale = Vector2( 1, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="trunc_sprite" parent="buttbutt_skeleton/front" index="4"]
 
-position = Vector2( 14.9854, -109.816 )
-rotation = 0.110913
+position = Vector2( 6.43866, -84.6475 )
 scale = Vector2( 1, 1 )
-
-[node name="trousers" parent="buttbutt_skeleton/front" index="5"]
-
-rotation = -0.0468467
-
-[node name="trunc" parent="buttbutt_skeleton/front/trousers" index="0"]
-
-position = Vector2( 20.1116, -108.994 )
-rotation = 0.15776
 
 [node name="hairs" parent="buttbutt_skeleton/front/trousers/trunc" index="1"]
 
@@ -3616,12 +3607,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="right_arm" parent="buttbutt_skeleton/front/trousers/trunc" index="2"]
 
-position = Vector2( -195.966, -44.8081 )
-rotation = -0.3871
-
-[node name="left_arm" parent="buttbutt_skeleton/front/trousers/trunc" index="3"]
-
-rotation = -0.230919
+rotation = -0.10821
 
 [node name="right_ear" parent="buttbutt_skeleton/front/trousers/trunc" index="5"]
 
@@ -3629,14 +3615,11 @@ rotation = 0.0126689
 
 [node name="right_leg" parent="buttbutt_skeleton/front/trousers" index="1"]
 
-position = Vector2( -51.9063, 118.908 )
-rotation = 0.270978
 _sections_unfolded = [ "Transform" ]
 
 [node name="left_leg" parent="buttbutt_skeleton/front/trousers" index="2"]
 
-position = Vector2( 38.8285, 117.718 )
-rotation = -0.463067
+rotation = 0.0
 _sections_unfolded = [ "Transform" ]
 
 [node name="back" parent="buttbutt_skeleton" index="1"]

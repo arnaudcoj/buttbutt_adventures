@@ -4,7 +4,7 @@
 
 [node name="tileset" type="Node"]
 
-[node name="full_ground" type="Sprite" parent="."]
+[node name="full_ground" type="Sprite" parent="." index="0"]
 
 position = Vector2( 70, 70 )
 texture = ExtResource( 1 )
@@ -14,7 +14,7 @@ frame = 1
 region_rect = Rect2( 0, 0, 128, 128 )
 _sections_unfolded = [ "Animation", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="full_ground"]
+[node name="StaticBody2D" type="StaticBody2D" parent="full_ground" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -24,12 +24,12 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="full_ground/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="full_ground/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -64, -64, 64, -64, 64, 64, -64, 64 )
 
-[node name="upward" type="Sprite" parent="."]
+[node name="upward" type="Sprite" parent="." index="1"]
 
 position = Vector2( 230, 70 )
 texture = ExtResource( 1 )
@@ -39,7 +39,7 @@ frame = 4
 region_rect = Rect2( 0, 0, 128, 128 )
 _sections_unfolded = [ "Animation", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="upward"]
+[node name="StaticBody2D" type="StaticBody2D" parent="upward" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -49,12 +49,12 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upward/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upward/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( 64, -64, -64, 64, 64, 64 )
 
-[node name="downward" type="Sprite" parent="."]
+[node name="downward" type="Sprite" parent="." index="2"]
 
 position = Vector2( 385, 68 )
 texture = ExtResource( 1 )
@@ -64,7 +64,7 @@ frame = 5
 region_rect = Rect2( 0, 0, 128, 128 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="downward"]
+[node name="StaticBody2D" type="StaticBody2D" parent="downward" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -74,12 +74,12 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="downward/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="downward/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -64, -64, -64, 64, 64, 64 )
 
-[node name="plateforme" type="Sprite" parent="."]
+[node name="plateforme" type="Sprite" parent="." index="3"]
 
 position = Vector2( 550, 60 )
 texture = ExtResource( 1 )
@@ -89,7 +89,7 @@ frame = 8
 region_rect = Rect2( 0, 0, 128, 128 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="plateforme"]
+[node name="StaticBody2D" type="StaticBody2D" parent="plateforme" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -100,13 +100,13 @@ friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plateforme/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="plateforme/StaticBody2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( 64, -64, 64, 0, -64, 0, -64, -64 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ladder" type="Sprite" parent="."]
+[node name="ladder" type="Sprite" parent="." index="4"]
 
 position = Vector2( 704, 64 )
 texture = ExtResource( 1 )
@@ -116,13 +116,53 @@ frame = 3
 region_rect = Rect2( 0, 0, 128, 128 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
-[node name="laddertop" type="Sprite" parent="."]
+[node name="laddertop" type="Sprite" parent="." index="5"]
 
 position = Vector2( 960, 64 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
 frame = 7
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="sign_arrow" type="Sprite" parent="." index="6"]
+
+position = Vector2( 1088, 64 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 12
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="water" type="Sprite" parent="." index="7"]
+
+position = Vector2( 1216, 64 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 9
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="water_surface" type="Sprite" parent="." index="8"]
+
+position = Vector2( 1344, 64 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 10
+region_rect = Rect2( 0, 0, 128, 128 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="exit" type="Sprite" parent="." index="9"]
+
+position = Vector2( 832, 64 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 2
 region_rect = Rect2( 0, 0, 128, 128 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
