@@ -18,7 +18,11 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="home_screen" parent="canvas" index="0" instance=ExtResource( 2 )]
 
+rect_clip_content = false
+
 [node name="level_selector" parent="canvas" index="1" instance=ExtResource( 3 )]
+
+rect_clip_content = false
 
 [node name="level_container" type="Node" parent="." index="1"]
 

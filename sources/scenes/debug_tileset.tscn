@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://assets/sprites/level/basics/tiles/tileset.png" type="Texture" id=1]
-[ext_resource path="res://shaders/water_material.tres" type="Material" id=2]
 
 [node name="tileset" type="Node"]
 
@@ -139,7 +138,6 @@ _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="water" type="Sprite" parent="." index="7"]
 
-material = ExtResource( 2 )
 position = Vector2( 1216, 64 )
 texture = ExtResource( 1 )
 vframes = 4
@@ -150,7 +148,7 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform" 
 
 [node name="water_surface" type="Sprite" parent="." index="8"]
 
-material = ExtResource( 2 )
+use_parent_material = true
 position = Vector2( 1344, 64 )
 texture = ExtResource( 1 )
 vframes = 4

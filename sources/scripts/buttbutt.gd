@@ -43,12 +43,12 @@ func horizontal_collisions(motion):
 	# don't hate me for this hack please ='(
 	#
 	# Explanation :
-	# if falling, check if collide with the ground with a 2px movement then go back to init position
+	# if falling, check if collide with the ground with a 10px movement then go back to init position
 	# then we check if the ground is a slope using the can_slide method
 	# if true, proceed to the usual vertical_collision algorithm
 	# otherwise, mark the collision_info.below as true then quit the method
 	var old_pos = position
-	collision = move_and_collide(Vector2(0,30))
+	collision = move_and_collide(Vector2(0,10))
 	position = old_pos
 	# it will be ok now =')
 	
@@ -102,7 +102,7 @@ func vertical_collisions(motion):
 	# don't hate me for this hack please ='(
 	#
 	# Explanation :
-	# if falling, check if collide with the ground with a 2px movement then go back to init position
+	# if falling, check if collide with the ground with a 10px movement then go back to init position
 	# then we check if the ground is a slope using the can_slide method
 	# if true, proceed to the usual vertical_collision algorithm
 	# otherwise, mark the collision_info.below as true then quit the method
