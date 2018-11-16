@@ -4,14 +4,14 @@
 
 [sub_resource type="DynamicFont" id=1]
 
-size = 77
+size = 20
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 1 )
-_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [resource]
 
 default_font = SubResource( 1 )
-_sections_unfolded = [ "Resource" ]
 
