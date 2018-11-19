@@ -19,11 +19,6 @@ config/name="ButtButt Adventures"
 run/main_scene="res://levels/DebugLevel.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-controls_manager="*res://scripts/controls_manager.gd"
-Controls="*res://scripts/Controls.gd"
-
 [display]
 
 window/size/width=1920
