@@ -5,6 +5,8 @@ var velocity := Vector2(0,0)
 var jumping := false
 var falling := true
 
+var last_action := ""
+
 func _ready():
 	body = get_parent()
 
@@ -23,6 +25,18 @@ func _input(event):
 		get_tree().reload_current_scene()
 
 func _physics_process(delta):
+	if Input.is_action_just_released("ui_left") and last_action == "ui_left":
+		if Input.is_action_pressed("ui_right"):
+			last_action = "ui_right"
+		else:
+			last_action = ""
+	if Input.is_action_just_released("ui_right") and last_action == "ui_right":
+		if Input.is_action_pressed("ui_left"):
+			last_action = "ui_left"
+		else:
+			last_action = ""
+	
+		
 	# reset jump state when colliding with ceiling or floor (not on walls, allow to slide against them)
 	if body.is_on_ceiling() or body.is_on_floor():
 		jumping = false
@@ -36,8 +50,11 @@ func _physics_process(delta):
 	
 	# physic used when the character is on the ground
 	if body.is_on_floor():
+		velocity.x = 0
+		velocity.y = 0
 		# left direction
-		if Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("ui_left") and last_action != "ui_right":
+			last_action = "ui_left"
 			# fetch slope normal
 			var normal = body.get_left_ground_normal()
 			# fetch opposite slope normal (used for descending slope)
@@ -51,11 +68,12 @@ func _physics_process(delta):
 				normal = Vector2.UP
 			
 			# use normal informations to move along slope direction
-			velocity.x = -500 * abs(normal.y)
-			velocity.y = -500 * normal.x
+			velocity.x -= 500 * abs(normal.y)
+			velocity.y -= 500 * normal.x
 			
 		# right direction
-		elif Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("ui_right") and last_action != "ui_left":
+			last_action = "ui_right"
 			# fetch slope normal
 			var normal = body.get_right_ground_normal()
 			# fetch opposite slope normal (used for descending slope)
@@ -69,29 +87,26 @@ func _physics_process(delta):
 				normal = Vector2.UP
 
 			# use normal informations to move along slope direction
-			velocity.x = 500 * abs(normal.y)
-			velocity.y = 500 * normal.x
-			
-		# no direction
-		else:
-			velocity.x = 0
-			velocity.y = 0
+			velocity.x += 500 * abs(normal.y)
+			velocity.y += 500 * normal.x
 		
 		# jump
-		if Input.is_action_just_pressed("ui_up") and not jumping:
+		if (Input.is_action_pressed("ui_up") or (Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_right"))) and not jumping:
 			velocity.y = -1000
 			jumping = true
 			falling = false
 			
 	# physics used when in air
 	else:
-		if Input.is_action_pressed("ui_left"):
-			velocity.x = -400
-		elif Input.is_action_pressed("ui_right"):
-			velocity.x = 400
-		else:
-			velocity.x = 0
-			
+		velocity.x = 0
+		
+		if Input.is_action_pressed("ui_left") and last_action != "ui_right":
+			last_action = "ui_left"
+			velocity.x -= 400
+		if Input.is_action_pressed("ui_right") and last_action != "ui_left":
+			last_action = "ui_right"
+			velocity.x += 400
+		
 		velocity.y += 2000 * delta
 		falling = true
 	
