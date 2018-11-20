@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/buttbutt/buttbutt.gd" type="Script" id=1]
 [ext_resource path="res://entities/buttbutt/Skeleton.tscn" type="PackedScene" id=2]
@@ -8,6 +8,12 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 50, 100 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 60.0
+height = 120.0
 
 [node name="ButtButt" type="KinematicBody2D"]
 input_pickable = false
@@ -67,3 +73,17 @@ collision_mask = 1
 collide_with_areas = false
 collide_with_bodies = true
 
+[node name="InteractionArea" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+self_modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_area_entered"]
