@@ -18,3 +18,7 @@ func _input(event):
 func is_inside(position : Vector2) -> bool:
 	return (rect_position.x <= position.x and position.x <= rect_position.x + rect_size.x 
 	and rect_position.y <= position.y and position.y <= rect_position.y + rect_size.y )
+
+func _exit_tree():
+	if touch_id != null:
+		Input.action_release(action)
