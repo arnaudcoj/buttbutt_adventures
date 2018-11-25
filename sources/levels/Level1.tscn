@@ -7,9 +7,9 @@
 [ext_resource path="res://levels/DeathZone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/GoalZone.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/ControlsChanger.tscn" type="PackedScene" id=7]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight22.png" type="Texture" id=8]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight23.png" type="Texture" id=9]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight43_jump.png" type="Texture" id=10]
+[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight43_jump.png" type="Texture" id=8]
+[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight22.png" type="Texture" id=9]
+[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight23.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -40,7 +40,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 131071, 6, 0, 196603, 1, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131090, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196626, 0, 0, 327671, 1, 0, 327672, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262150, 1, 0, 262155, 1, 0, 262156, 2, 0, 262162, 0, 0, 393203, 1, 0, 393204, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327698, 0, 0, 458750, 0, 0, 393234, 0, 0, 524272, 1, 0, 524273, 0, 0, 524286, 0, 0, 458770, 0, 0, 589822, 0, 0, 524292, 1, 0, 524293, 0, 0, 524303, 1, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 655358, 0, 0, 589827, 1, 0, 589828, 0, 0, 589829, 0, 0, 589833, 1, 0, 589834, 0, 0, 589838, 1, 0, 589839, 0, 0, 589842, 0, 0, 720877, 0, 0, 720878, 0, 0, 720879, 2, 0, 720894, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655378, 0, 0, 786414, 0, 0, 786418, 0, 0, 786419, 2, 0, 786430, 0, 0, 720914, 0, 0, 851950, 0, 0, 851954, 0, 0, 851955, 0, 0, 851956, 2, 0, 786450, 0, 0, 917486, 0, 0, 917490, 0, 0, 917491, 0, 0, 917492, 0, 0, 917493, 0, 0, 917495, 0, 0, 917496, 2, 0, 851979, 0, 0, 851980, 0, 0, 851981, 2, 0, 851986, 0, 0, 983022, 0, 0, 983026, 0, 0, 983031, 0, 0, 983032, 0, 0, 983033, 2, 0, 917515, 0, 0, 917522, 0, 0, 1048558, 0, 0, 1048562, 0, 0, 1048567, 0, 0, 1048568, 0, 0, 1048569, 0, 0, 1048570, 2, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 2, 0, 983051, 0, 0, 983055, 1, 0, 983056, 0, 0, 983057, 0, 0, 983058, 0, 0, 1114094, 0, 0, 1114098, 0, 0, 1114103, 0, 0, 1114104, 0, 0, 1114105, 0, 0, 1114106, 0, 0, 1114107, 0, 0, 1114108, 0, 0, 1114109, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 0, 0, 1048587, 0, 0, 1048594, 0, 0, 1179630, 0, 0, 1179634, 0, 0, 1179639, 0, 0, 1179640, 0, 0, 1179641, 0, 0, 1179642, 0, 0, 1179643, 0, 0, 1179644, 0, 0, 1179645, 0, 0, 1114118, 0, 0, 1114121, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 2, 0, 1114130, 0, 0, 1245166, 0, 0, 1245170, 0, 0, 1245175, 0, 0, 1245180, 0, 0, 1245181, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179657, 0, 0, 1179664, 1, 0, 1179665, 0, 0, 1179666, 0, 0, 1310702, 0, 0, 1310706, 0, 0, 1310711, 0, 0, 1310716, 0, 0, 1310717, 0, 0, 1310718, 0, 0, 1310719, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245190, 0, 0, 1245193, 0, 0, 1245202, 0, 0, 1376238, 0, 0, 1376242, 0, 0, 1376247, 0, 0, 1376252, 0, 0, 1310721, 0, 0, 1310726, 0, 0, 1310729, 0, 0, 1310730, 0, 0, 1310731, 0, 0, 1310732, 0, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1441774, 0, 0, 1441778, 0, 0, 1441783, 0, 0, 1441788, 0, 0, 1376257, 0, 0, 1376262, 0, 0, 1376267, 0, 0, 1376272, 0, 0, 1507310, 0, 0, 1507314, 0, 0, 1507319, 0, 0, 1507324, 0, 0, 1441793, 0, 0, 1441798, 0, 0, 1441803, 0, 0, 1441808, 0, 0, 1572846, 0, 0, 1572850, 0, 0, 1572855, 0, 0, 1572860, 0, 0, 1507329, 0, 0, 1507334, 0, 0, 1507339, 0, 0, 1507344, 0, 0, 1638382, 0, 0, 1638386, 0, 0, 1638391, 0, 0, 1638396, 0, 0, 1572865, 0, 0, 1572870, 0, 0, 1572875, 0, 0, 1572880, 0, 0 )
+tile_data = PoolIntArray( 131071, 6, 0, 196603, 1, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131090, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196626, 0, 0, 327671, 1, 0, 327672, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262150, 1, 0, 262155, 1, 0, 262156, 2, 0, 262162, 0, 0, 393203, 1, 0, 393204, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327698, 0, 0, 458750, 0, 0, 393234, 0, 0, 524272, 1, 0, 524273, 0, 0, 524286, 0, 0, 458770, 0, 0, 589822, 0, 0, 524292, 1, 0, 524293, 0, 0, 524303, 1, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 655358, 0, 0, 589827, 1, 0, 589828, 0, 0, 589829, 0, 0, 589833, 1, 0, 589834, 0, 0, 589838, 1, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 720875, 0, 0, 720876, 0, 0, 720877, 0, 0, 720878, 2, 0, 720894, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655378, 0, 0, 786414, 0, 0, 786415, 0, 0, 786418, 0, 0, 786419, 2, 0, 786430, 0, 0, 720914, 0, 0, 851954, 0, 0, 851955, 0, 0, 851956, 2, 0, 786450, 0, 0, 917490, 0, 0, 917491, 0, 0, 917492, 0, 0, 917493, 0, 0, 917495, 0, 0, 917496, 2, 0, 851979, 0, 0, 851980, 0, 0, 851981, 2, 0, 851986, 0, 0, 983032, 0, 0, 983033, 2, 0, 917515, 0, 0, 917522, 0, 0, 1048569, 0, 0, 1048570, 2, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 2, 0, 983051, 0, 0, 983055, 1, 0, 983056, 0, 0, 983057, 0, 0, 983058, 0, 0, 1114106, 0, 0, 1114107, 0, 0, 1114108, 0, 0, 1114109, 0, 0, 1048582, 2, 0, 1048587, 0, 0, 1048594, 0, 0, 1179643, 0, 0, 1179644, 0, 0, 1179645, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 2, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 2, 0, 1114130, 0, 0, 1245180, 0, 0, 1245181, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179655, 0, 0, 1179664, 1, 0, 1179665, 0, 0, 1179666, 0, 0, 1310717, 0, 0, 1310718, 0, 0, 1310719, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245191, 0, 0, 1245202, 0, 0, 1310727, 0, 0, 1310728, 0, 0, 1310729, 0, 0, 1310730, 0, 0, 1310731, 0, 0, 1310732, 0, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0 )
 
 [node name="ButtButt" parent="." index="1" instance=ExtResource( 3 )]
 position = Vector2( 254.73, 245.192 )
@@ -74,63 +74,72 @@ __meta__ = {
 [node name="ControlsChanger1" parent="ControlsChangers" index="0" instance=ExtResource( 7 )]
 position = Vector2( 241, 528.484 )
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
 [node name="ControlsChanger2" parent="ControlsChangers" index="1" instance=ExtResource( 7 )]
 position = Vector2( 1730.42, 1193.97 )
 right_action = "jump"
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
 [node name="ControlsChanger3" parent="ControlsChangers" index="2" instance=ExtResource( 7 )]
 position = Vector2( -181.992, 2346.35 )
 left_action = "jump"
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
-[node name="ControlsChanger4" parent="ControlsChangers" index="3" instance=ExtResource( 7 )]
+[node name="ControlsChanger8" parent="ControlsChangers" index="3" instance=ExtResource( 7 )]
+position = Vector2( 1112.71, 2483.67 )
+left_action = "jump"
+sprites = {
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
+}
+
+[node name="ControlsChanger4" parent="ControlsChangers" index="4" instance=ExtResource( 7 )]
 position = Vector2( 2212.11, 2208.04 )
 right_action = "jump"
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
-[node name="ControlsChanger5" parent="ControlsChangers" index="4" instance=ExtResource( 7 )]
+[node name="ControlsChanger5" parent="ControlsChangers" index="5" instance=ExtResource( 7 )]
 position = Vector2( 1621.61, 2083.63 )
 left_action = "jump"
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
-[node name="ControlsChanger6" parent="ControlsChangers" index="5" instance=ExtResource( 7 )]
+[node name="ControlsChanger6" parent="ControlsChangers" index="6" instance=ExtResource( 7 )]
 position = Vector2( 2224.78, 1574.25 )
 right_action = "jump"
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
-[node name="ControlsChanger7" parent="ControlsChangers" index="6" instance=ExtResource( 7 )]
-position = Vector2( -2357.56, 1174.96 )
+[node name="ControlsChanger7" parent="ControlsChangers" index="7" instance=ExtResource( 7 )]
+position = Vector2( -2621.12, 1181.78 )
 left_action = "jump"
 sprites = {
-"jump": ExtResource( 10 ),
-"walk_left": ExtResource( 8 ),
-"walk_right": ExtResource( 9 )
+"jump": ExtResource( 8 ),
+"walk_left": ExtResource( 9 ),
+"walk_right": ExtResource( 10 )
 }
 
 [connection signal="controls" from="ButtButt" to="CanvasLayer/ControlCanvas" method="update_controls_icons"]
