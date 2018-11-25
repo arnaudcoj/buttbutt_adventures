@@ -1,9 +1,9 @@
 extends "res://entities/buttbutt/fsm/fsm_state.gd"
 
 func get_next_state():
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("jump"):
 		return $"../Jump"
-	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
+	if not Input.is_action_pressed("walk_left") and not Input.is_action_pressed("walk_right"):
 		return $"../Idle"
 	if not body.is_on_floor():
 		return $"../Fall"
@@ -15,7 +15,7 @@ func update_physics(delta):
 	# left direction
 #	if Input.is_action_pressed("ui_left") and last_action != "ui_right":
 #		last_action = "ui_left"
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("walk_left"):
 		# fetch slope normal
 		var normal = body.get_left_ground_normal()
 		# fetch opposite slope normal (used for descending slope)
@@ -35,7 +35,7 @@ func update_physics(delta):
 	# right direction
 #	if Input.is_action_pressed("ui_right") and last_action != "ui_left":
 #		last_action = "ui_right"
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("walk_right"):
 		# fetch slope normal
 		var normal = body.get_right_ground_normal()
 		# fetch opposite slope normal (used for descending slope)

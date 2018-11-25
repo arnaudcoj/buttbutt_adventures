@@ -2,7 +2,8 @@ extends Node
 
 var body : KinematicBody2D
 
-var last_action := ""
+var left_action = "walk_left"
+var right_action = "walk_right"
 
 func _ready():
 	body = get_parent()
@@ -21,14 +22,24 @@ func _input(event):
 	elif event.is_action_pressed("ui_select"):
 		get_tree().reload_current_scene()
 
-func _physics_process(delta):
-	if Input.is_action_just_released("ui_left") and last_action == "ui_left":
-		if Input.is_action_pressed("ui_right"):
-			last_action = "ui_right"
-		else:
-			last_action = ""
-	if Input.is_action_just_released("ui_right") and last_action == "ui_right":
-		if Input.is_action_pressed("ui_left"):
-			last_action = "ui_left"
-		else:
-			last_action = ""
+func _process(delta):
+	if Input.is_action_just_pressed("left_action"):
+		Input.action_press(left_action)
+	elif Input.is_action_just_released("left_action"):
+		Input.action_release(left_action)
+		
+	if Input.is_action_just_pressed("right_action"):
+		Input.action_press(right_action)
+	elif Input.is_action_just_released("right_action"):
+		Input.action_release(right_action)
+	
+#	if Input.is_action_just_released("ui_left") and last_action == "ui_left":
+#		if Input.is_action_pressed("ui_right"):
+#			last_action = "ui_right"
+#		else:
+#			last_action = ""
+#	if Input.is_action_just_released("ui_right") and last_action == "ui_right":
+#		if Input.is_action_pressed("ui_left"):
+#			last_action = "ui_left"
+#		else:
+#			last_action = ""

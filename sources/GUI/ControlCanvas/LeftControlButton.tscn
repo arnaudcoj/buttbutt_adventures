@@ -5,7 +5,7 @@
 
 [node name="LeftControlButton" instance=ExtResource( 1 )]
 anchor_right = 0.5
-action = "ui_left"
+action = "left_action"
 
 [node name="Control" type="Control" parent="." index="0"]
 anchor_left = 0.0
