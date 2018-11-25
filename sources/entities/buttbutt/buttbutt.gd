@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal dead
+signal goal
 
 var velocity := Vector2()
 
@@ -14,7 +15,14 @@ func get_right_ground_normal() :
 		return $RightGroundRaycast.get_collision_normal()
 	return null
 	
-func _on_area_entered(area):
-	emit_signal("dead")
-	#DEBUG
-	get_tree().reload_current_scene()
+func _on_area_entered(area : Area2D):
+	if area.is_in_group("death"):
+		print("dead")
+		emit_signal("dead")
+		#DEBUG
+		get_tree().reload_current_scene()
+	elif area.is_in_group("goal"):
+		print("goal")
+		emit_signal("goal")
+		#DEBUG
+		get_tree().reload_current_scene()
