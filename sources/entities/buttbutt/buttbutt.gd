@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 signal dead
 signal goal
+signal controls
 
 var velocity := Vector2()
 
@@ -26,3 +27,6 @@ func _on_area_entered(area : Area2D):
 		emit_signal("goal")
 		#DEBUG
 		get_tree().reload_current_scene()
+	elif area.is_in_group("controls"):
+		print("controls changed : ", area.left_action, area.right_action)
+		emit_signal("controls", area.left_action, area.right_action)

@@ -2,6 +2,8 @@ extends Control
 
 export var action := "ui_select"
 
+export var sprites = {"walk_left": Object(), "walk_right": Object(), "jump": Object()} 
+
 var touch_id = null
 
 func _input(event):
@@ -22,3 +24,6 @@ func is_inside(position : Vector2) -> bool:
 func _exit_tree():
 	if touch_id != null:
 		Input.action_release(action)
+
+func update_control_icon(new_action):
+	$Control/TextureRect.texture = sprites[new_action]

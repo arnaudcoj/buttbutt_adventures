@@ -7,6 +7,7 @@ var right_action = "walk_right"
 
 func _ready():
 	body = get_parent()
+	body.emit_signal("controls", left_action, right_action)
 
 func _input(event):
 	# change time scale
@@ -43,3 +44,14 @@ func _process(delta):
 #			last_action = "ui_left"
 #		else:
 #			last_action = ""
+
+func update_controls(new_left_action, new_right_action):
+	if left_action != new_left_action:
+		if Input.is_action_pressed(left_action):
+			Input.action_release(left_action)
+		left_action = new_left_action
+	
+	if right_action != new_right_action:
+		if Input.is_action_pressed(right_action):
+			Input.action_release(right_action)
+		right_action = new_right_action
