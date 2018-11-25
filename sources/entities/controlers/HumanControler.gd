@@ -1,11 +1,9 @@
 extends Node
 
 var body : KinematicBody2D
-var velocity := Vector2(0,0)
-var jumping := false
-var falling := true
 
-var last_action := ""
+var left_action = "walk_left"
+var right_action = "walk_right"
 
 func _ready():
 	body = get_parent()
@@ -24,98 +22,24 @@ func _input(event):
 	elif event.is_action_pressed("ui_select"):
 		get_tree().reload_current_scene()
 
-func _physics_process(delta):
-	if Input.is_action_just_released("ui_left") and last_action == "ui_left":
-		if Input.is_action_pressed("ui_right"):
-			last_action = "ui_right"
-		else:
-			last_action = ""
-	if Input.is_action_just_released("ui_right") and last_action == "ui_right":
-		if Input.is_action_pressed("ui_left"):
-			last_action = "ui_left"
-		else:
-			last_action = ""
-	
+func _process(delta):
+	if Input.is_action_just_pressed("left_action"):
+		Input.action_press(left_action)
+	elif Input.is_action_just_released("left_action"):
+		Input.action_release(left_action)
 		
-	# reset jump state when colliding with ceiling or floor (not on walls, allow to slide against them)
-	if body.is_on_ceiling() or body.is_on_floor():
-		jumping = false
-		falling = body.is_on_ceiling()
-		velocity.y = 0
+	if Input.is_action_just_pressed("right_action"):
+		Input.action_press(right_action)
+	elif Input.is_action_just_released("right_action"):
+		Input.action_release(right_action)
 	
-	# reset jump state when starting to fall
-	if jumping and velocity.y > 0:
-		jumping = false
-		falling = true
-	
-	# physic used when the character is on the ground
-	if body.is_on_floor():
-		velocity.x = 0
-		velocity.y = 0
-		# left direction
-		if Input.is_action_pressed("ui_left") and last_action != "ui_right":
-			last_action = "ui_left"
-			# fetch slope normal
-			var normal = body.get_left_ground_normal()
-			# fetch opposite slope normal (used for descending slope)
-			if normal == null:
-				normal = body.get_right_ground_normal()
-				# avoid following slope angle when there is no ground in the input direction
-				if normal != null and normal.dot(Vector2.UP) > 0:
-					normal = null
-			# use horizontal movement if no slope found
-			if normal == null:
-				normal = Vector2.UP
-			
-			# use normal informations to move along slope direction
-			velocity.x -= 500 * abs(normal.y)
-			velocity.y -= 500 * normal.x
-			
-		# right direction
-		if Input.is_action_pressed("ui_right") and last_action != "ui_left":
-			last_action = "ui_right"
-			# fetch slope normal
-			var normal = body.get_right_ground_normal()
-			# fetch opposite slope normal (used for descending slope)
-			if normal == null:
-				normal = body.get_left_ground_normal()
-				# avoid following slope angle when there is no ground in the input direction
-				if normal != null and normal.dot(Vector2.UP) > 0:
-					normal = null
-			# use horizontal movement if no slope found
-			if normal == null:
-				normal = Vector2.UP
-
-			# use normal informations to move along slope direction
-			velocity.x += 500 * abs(normal.y)
-			velocity.y += 500 * normal.x
-		
-		# jump
-		if (Input.is_action_pressed("ui_up") or (Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_right"))) and not jumping:
-			velocity.y = -1000
-			jumping = true
-			falling = false
-			
-	# physics used when in air
-	else:
-		velocity.x = 0
-		
-		if Input.is_action_pressed("ui_left") and last_action != "ui_right":
-			last_action = "ui_left"
-			velocity.x -= 400
-		if Input.is_action_pressed("ui_right") and last_action != "ui_left":
-			last_action = "ui_right"
-			velocity.x += 400
-		
-		velocity.y += 2000 * delta
-		falling = true
-	
-	# Calls to KinematicBody2D functions
-	if jumping or (falling and body.is_on_wall()):
-		body.move_and_slide(velocity, Vector2(0, -1), true, false, 4, 0.85)
-	elif falling:
-		body.move_and_slide(velocity, Vector2.UP, true, false, 1)
-	else:
-		if velocity.x != 0:
-			body.move_and_slide_with_snap(velocity, Vector2(0, 32), Vector2.UP, true, false, 4, 0.85)
-			
+#	if Input.is_action_just_released("ui_left") and last_action == "ui_left":
+#		if Input.is_action_pressed("ui_right"):
+#			last_action = "ui_right"
+#		else:
+#			last_action = ""
+#	if Input.is_action_just_released("ui_right") and last_action == "ui_right":
+#		if Input.is_action_pressed("ui_left"):
+#			last_action = "ui_left"
+#		else:
+#			last_action = ""

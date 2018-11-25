@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 signal dead
 
+var velocity := Vector2()
+
 func get_left_ground_normal() :
 	if $LeftGroundRaycast.get_collider() != null:
 		return $LeftGroundRaycast.get_collision_normal()
