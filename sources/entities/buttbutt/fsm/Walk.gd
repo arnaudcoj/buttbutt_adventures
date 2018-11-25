@@ -12,10 +12,13 @@ func update_physics(delta):
 	body.velocity.x = 0
 	body.velocity.y = 0
 	
+	if Input.is_action_pressed("walk_left") and Input.is_action_pressed("walk_right"):
+		pass
+		
 	# left direction
 #	if Input.is_action_pressed("ui_left") and last_action != "ui_right":
 #		last_action = "ui_left"
-	if Input.is_action_pressed("walk_left"):
+	elif Input.is_action_pressed("walk_left"):
 		# fetch slope normal
 		var normal = body.get_left_ground_normal()
 		# fetch opposite slope normal (used for descending slope)
@@ -35,7 +38,7 @@ func update_physics(delta):
 	# right direction
 #	if Input.is_action_pressed("ui_right") and last_action != "ui_left":
 #		last_action = "ui_right"
-	if Input.is_action_pressed("walk_right"):
+	elif Input.is_action_pressed("walk_right"):
 		# fetch slope normal
 		var normal = body.get_right_ground_normal()
 		# fetch opposite slope normal (used for descending slope)
