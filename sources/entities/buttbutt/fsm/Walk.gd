@@ -56,4 +56,4 @@ func update_physics(delta):
 		body.velocity.y += 500 * normal.x
 			
 	if body.velocity.x != 0:
-		body.move_and_slide_with_snap(body.velocity, Vector2(0, 32), Vector2.UP, true, false, 4, 0.85)
+		body.move_and_slide_with_snap(body.velocity, Vector2(0, 32), Vector2.UP, true, 4, 0.85)

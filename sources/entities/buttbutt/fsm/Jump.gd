@@ -30,7 +30,7 @@ func update_physics(delta):
 	
 	body.velocity.y += 2000 * delta
 	
-	body.move_and_slide(body.velocity, Vector2(0, -1), true, false, 4, 0.85)
+	body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
 
 func enter_state():
 	print("enter ", name)
