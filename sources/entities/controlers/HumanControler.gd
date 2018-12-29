@@ -23,6 +23,12 @@ func _input(event):
 	elif event.is_action_pressed("ui_select"):
 		get_tree().reload_current_scene()
 
+func _exit_tree():
+	if Input.is_action_pressed(left_action):
+		Input.action_release(left_action)
+	if Input.is_action_pressed(right_action):
+		Input.action_release(right_action)
+
 func _process(delta):
 	if Input.is_action_just_pressed("left_action"):
 		Input.action_press(left_action)
