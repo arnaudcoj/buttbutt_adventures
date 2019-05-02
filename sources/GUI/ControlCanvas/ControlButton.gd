@@ -2,7 +2,7 @@ extends Control
 
 export var action := "ui_select"
 
-export var sprites = {"walk_left": Object(), "walk_right": Object(), "jump": Object()} 
+export (Theme) var controls_theme
 
 var touch_id = null
 
@@ -26,4 +26,5 @@ func _exit_tree():
 		Input.action_release(action)
 
 func update_control_icon(new_action):
-	$Control/TextureRect.texture = sprites[new_action]
+	$Control/TextureRect.texture = controls_theme.get_icon(new_action, "controls")
+	#$Control/TextureRect.texture = sprites[new_action]
