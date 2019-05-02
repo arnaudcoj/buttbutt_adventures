@@ -31,7 +31,7 @@ window/handheld/emulate_touchscreen=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "net.kivano.fsm" )
+enabled=PoolStringArray(  )
 
 [gdnative]
 
@@ -74,6 +74,7 @@ common/stdout/print_fps=false
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.493149, 0.669338, 0.738281, 1 )
 environment/default_environment="res://default_env.tres"
