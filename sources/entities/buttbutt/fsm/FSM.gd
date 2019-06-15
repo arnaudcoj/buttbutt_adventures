@@ -1,4 +1,5 @@
 extends Node
+class_name FSM
 
 onready var current_state = self.get_child(0)
 

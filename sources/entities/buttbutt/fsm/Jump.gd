@@ -1,4 +1,4 @@
-extends "res://entities/buttbutt/fsm/fsm_state.gd"
+extends FSMState
 
 func get_next_state():
 	if body.is_on_floor():

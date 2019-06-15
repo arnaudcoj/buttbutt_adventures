@@ -1,4 +1,4 @@
-extends "res://entities/buttbutt/fsm/fsm_state.gd"
+extends FSMState
 
 func get_next_state():
 	if Input.is_action_just_pressed("jump"):
