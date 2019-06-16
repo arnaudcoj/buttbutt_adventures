@@ -77,3 +77,5 @@ right_action = "jump"
 position = Vector2( -2621.12, 1181.78 )
 left_action = "jump"
 [connection signal="controls" from="ButtButt" to="CanvasLayer/ControlCanvas" method="update_controls_icons"]
+[connection signal="dead" from="ButtButt" to="." method="on_game_over"]
+[connection signal="goal" from="ButtButt" to="." method="on_game_over"]
