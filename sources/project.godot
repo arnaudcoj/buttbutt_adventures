@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "FSM",
+"language": "GDScript",
+"path": "res://utils/scripts/fsm/FSM.gd"
+}, {
+"base": "Node",
+"class": "FSMState",
+"language": "GDScript",
+"path": "res://entities/buttbutt/fsm/fsm_state.gd"
+}, {
+"base": "FSM",
+"class": "PhysicsFSM",
+"language": "GDScript",
+"path": "res://utils/scripts/fsm/PhysicsFSM.gd"
+} ]
 _global_script_class_icons={
-
+"FSM": "",
+"FSMState": "",
+"PhysicsFSM": ""
 }
 
 [application]

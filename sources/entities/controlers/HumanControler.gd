@@ -18,10 +18,6 @@ func _input(event):
 	# reset time scale
 	elif event.is_action_pressed("ui_end"):
 		Engine.time_scale = 1
-		
-	# reset scene
-	elif event.is_action_pressed("ui_select"):
-		get_tree().reload_current_scene()
 
 func _exit_tree():
 	if Input.is_action_pressed(left_action):
