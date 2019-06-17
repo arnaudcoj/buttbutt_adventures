@@ -15,4 +15,5 @@ func close():
 	hide()
 	
 func is_over():
-	return $Timer.is_stopped()
+	return true
+	#return $Timer.is_stopped()

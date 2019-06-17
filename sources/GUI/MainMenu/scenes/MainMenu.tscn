@@ -45,7 +45,7 @@ margin_top = -220.0
 margin_bottom = -180.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 2 )
-text = "Press Enter to start"
+text = "Press Enter or touch the screen to start"
 align = 1
 valign = 1
 
