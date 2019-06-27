@@ -20,27 +20,30 @@ height = 120.0
 script = ExtResource( 1 )
 
 [node name="Skeleton" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -99.9696 )
 
 [node name="FullCollision" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0776994, -0.0303788 )
+position = Vector2( 0, -100 )
 shape = SubResource( 1 )
 
 [node name="HumanControler" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -99.9696 )
 current = true
 
 [node name="LeftGroundRaycast" type="RayCast2D" parent="."]
-position = Vector2( -50, 95 )
+position = Vector2( -50, -4.96962 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 
 [node name="RightGroundRaycast" type="RayCast2D" parent="."]
-position = Vector2( 50, 95 )
+position = Vector2( 50, -4.96962 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2( 0, -99.9696 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 self_modulate = Color( 1, 0, 0, 1 )
