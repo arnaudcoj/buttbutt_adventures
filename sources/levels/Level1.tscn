@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tilesets/debug_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://entities/buttbutt/ButtButt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GUI/ControlCanvas/ControlCanvas.tscn" type="PackedScene" id=4]
-[ext_resource path="res://levels/DeathZone.tscn" type="PackedScene" id=5]
-[ext_resource path="res://levels/GoalZone.tscn" type="PackedScene" id=6]
-[ext_resource path="res://levels/ControlsChanger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://levels/DeathZone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/GoalZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/ControlsChanger.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6441.5, 460.863 )
@@ -25,17 +24,13 @@ tile_data = PoolIntArray( 131071, 6, 0, 196603, 1, 0, 196604, 0, 0, 196605, 0, 0
 [node name="ButtButt" parent="." index="1" instance=ExtResource( 3 )]
 position = Vector2( 254.73, 245.192 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
-
-[node name="ControlCanvas" parent="CanvasLayer" index="0" instance=ExtResource( 4 )]
-
-[node name="DeathZone" parent="." index="3" instance=ExtResource( 5 )]
+[node name="DeathZone" parent="." index="3" instance=ExtResource( 4 )]
 position = Vector2( 2329.63, 3192.64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" index="0"]
 shape = SubResource( 1 )
 
-[node name="GoalZone" parent="." index="4" instance=ExtResource( 6 )]
+[node name="GoalZone" parent="." index="4" instance=ExtResource( 5 )]
 position = Vector2( -35.7979, 150.589 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalZone" index="0"]
@@ -46,36 +41,35 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ControlsChanger1" parent="ControlsChangers" index="0" instance=ExtResource( 7 )]
+[node name="ControlsChanger1" parent="ControlsChangers" index="0" instance=ExtResource( 6 )]
 position = Vector2( 241, 528.484 )
 
-[node name="ControlsChanger2" parent="ControlsChangers" index="1" instance=ExtResource( 7 )]
+[node name="ControlsChanger2" parent="ControlsChangers" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1730.42, 1193.97 )
 right_action = "jump"
 
-[node name="ControlsChanger3" parent="ControlsChangers" index="2" instance=ExtResource( 7 )]
+[node name="ControlsChanger3" parent="ControlsChangers" index="2" instance=ExtResource( 6 )]
 position = Vector2( -181.992, 2346.35 )
 left_action = "jump"
 
-[node name="ControlsChanger8" parent="ControlsChangers" index="3" instance=ExtResource( 7 )]
+[node name="ControlsChanger8" parent="ControlsChangers" index="3" instance=ExtResource( 6 )]
 position = Vector2( 1112.71, 2483.67 )
 left_action = "jump"
 
-[node name="ControlsChanger4" parent="ControlsChangers" index="4" instance=ExtResource( 7 )]
+[node name="ControlsChanger4" parent="ControlsChangers" index="4" instance=ExtResource( 6 )]
 position = Vector2( 2212.11, 2208.04 )
 right_action = "jump"
 
-[node name="ControlsChanger5" parent="ControlsChangers" index="5" instance=ExtResource( 7 )]
+[node name="ControlsChanger5" parent="ControlsChangers" index="5" instance=ExtResource( 6 )]
 position = Vector2( 1621.61, 2083.63 )
 left_action = "jump"
 
-[node name="ControlsChanger6" parent="ControlsChangers" index="6" instance=ExtResource( 7 )]
+[node name="ControlsChanger6" parent="ControlsChangers" index="6" instance=ExtResource( 6 )]
 position = Vector2( 2224.78, 1574.25 )
 right_action = "jump"
 
-[node name="ControlsChanger7" parent="ControlsChangers" index="7" instance=ExtResource( 7 )]
+[node name="ControlsChanger7" parent="ControlsChangers" index="7" instance=ExtResource( 6 )]
 position = Vector2( -2621.12, 1181.78 )
 left_action = "jump"
-[connection signal="controls" from="ButtButt" to="CanvasLayer/ControlCanvas" method="update_controls_icons"]
 [connection signal="dead" from="ButtButt" to="." method="on_game_over"]
 [connection signal="goal" from="ButtButt" to="." method="on_game_over"]
