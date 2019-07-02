@@ -26,3 +26,6 @@ func _on_area_entered(area : Area2D):
 	elif area.is_in_group("controls"):
 		print("controls changed : ", area.left_action, area.right_action)
 		emit_signal("controls", area.left_action, area.right_action)
+
+func on_pause():
+	$HumanControler.reset()

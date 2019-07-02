@@ -1,5 +1,8 @@
 extends FSMState
 
+export (NodePath) var level_path
+onready var level = get_node(level_path)
+
 export (NodePath) var pause_screen_path
 onready var pause_screen = get_node(pause_screen_path)
 
@@ -25,6 +28,7 @@ func leave_state():
 	resume_button.disconnect("pressed", self, "_on_resume_pressed")
 	quit_button.disconnect("pressed", self, "_on_quit_pressed")
 	action_wanted = NONE
+	level.unpause()
 
 func enter_state():
 	print("enter ", name)
@@ -32,6 +36,7 @@ func enter_state():
 	hud_screen.hide()
 	resume_button.connect("pressed", self, "_on_resume_pressed")
 	quit_button.connect("pressed", self, "_on_quit_pressed")
+	level.pause()
 
 func _enter_tree():
 	get_node(pause_screen_path).hide()

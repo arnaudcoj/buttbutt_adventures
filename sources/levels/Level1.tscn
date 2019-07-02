@@ -13,7 +13,7 @@ extents = Vector2( 6441.5, 460.863 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 75.4213
 
-[node name="Level" instance=ExtResource( 1 )]
+[node name="Level" index="0" instance=ExtResource( 1 )]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 tile_set = ExtResource( 2 )
@@ -71,5 +71,7 @@ right_action = "jump"
 [node name="ControlsChanger7" parent="ControlsChangers" index="7" instance=ExtResource( 6 )]
 position = Vector2( -2621.12, 1181.78 )
 left_action = "jump"
+[connection signal="pause" from="." to="ButtButt" method="on_pause"]
+[connection signal="controls" from="ButtButt" to="CanvasLayer/InGameCanvas/HUD/ControlCanvas" method="update_controls_icons"]
 [connection signal="dead" from="ButtButt" to="." method="on_game_over"]
 [connection signal="goal" from="ButtButt" to="." method="on_game_over"]

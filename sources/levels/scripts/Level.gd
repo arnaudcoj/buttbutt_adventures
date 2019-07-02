@@ -1,5 +1,7 @@
 extends Node2D
 
+signal pause
+
 var game_over 
 
 func on_game_over():
@@ -8,7 +10,14 @@ func on_game_over():
 func is_game_over():
 	return game_over
 
-func _input(event):
+#func _input(event):
 	# reset scene DEBUG
-	if event.is_action_pressed("ui_select"):
-		game_over = true
+	#if event.is_action_pressed("ui_select"):
+	#	game_over = true
+		
+func pause():
+	get_tree().paused = true
+	emit_signal("pause")
+	
+func unpause():
+	get_tree().paused = false
