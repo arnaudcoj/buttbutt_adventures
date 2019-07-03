@@ -11,11 +11,11 @@ func enter_state():
 	level_instance = level_to_load.instance()
 	level_instance.connect("exit", self, "exit_state")
 	level_root.add_child(level_instance)
-	
+
 func leave_state():
 	for node in level_root.get_children():
 		node.queue_free()
-	
+
 func get_next_state():
 	if Input.is_action_pressed("ui_cancel"):
 		return $"../Quit"

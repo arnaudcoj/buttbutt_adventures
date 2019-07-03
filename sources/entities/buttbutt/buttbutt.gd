@@ -6,6 +6,12 @@ signal controls
 
 var velocity := Vector2()
 
+export (NodePath) var controler_path
+onready var controler = get_node(controler_path)
+
+func _ready():
+	connect("controls", controler, "update_controls")
+
 func get_left_ground_normal() :
 	if $LeftGroundRaycast.get_collider() != null:
 		return $LeftGroundRaycast.get_collision_normal()
@@ -28,4 +34,4 @@ func _on_area_entered(area : Area2D):
 		emit_signal("controls", area.left_action, area.right_action)
 
 func on_pause():
-	$HumanControler.reset()
+	controler.reset()

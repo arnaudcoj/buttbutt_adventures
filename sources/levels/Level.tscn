@@ -1,150 +1,34 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/scripts/Level.gd" type="Script" id=1]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight12.png" type="Texture" id=2]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight10.png" type="Texture" id=3]
-[ext_resource path="res://GUI/ControlCanvas/ControlCanvas.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GUI/fonts/Cartwheel/Sansani Fonts - Cartwheel.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight33.png" type="Texture" id=6]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight19.png" type="Texture" id=7]
-[ext_resource path="res://utils/scripts/fsm/FSM.gd" type="Script" id=8]
-[ext_resource path="res://levels/scripts/fsm/GameState.gd" type="Script" id=9]
-[ext_resource path="res://levels/scripts/fsm/PauseState.gd" type="Script" id=10]
-[ext_resource path="res://levels/scripts/fsm/QuitGameState.gd" type="Script" id=11]
-
-[sub_resource type="InputEventAction" id=2]
-action = "ui_select"
-
-[sub_resource type="ShortCut" id=3]
-shortcut = SubResource( 2 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 100
-font_data = ExtResource( 5 )
+[ext_resource path="res://GUI/InGame/scenes/InGameCanvas.tscn" type="PackedScene" id=2]
+[ext_resource path="res://utils/scripts/fsm/FSM.gd" type="Script" id=3]
+[ext_resource path="res://levels/scripts/fsm/GameState.gd" type="Script" id=4]
+[ext_resource path="res://levels/scripts/fsm/PauseState.gd" type="Script" id=5]
+[ext_resource path="res://levels/scripts/fsm/QuitGameState.gd" type="Script" id=6]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
+in_game_canvas_path = NodePath("CanvasLayer/InGameCanvas")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
 
-[node name="InGameCanvas" type="Control" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-
-[node name="HUD" type="Control" parent="CanvasLayer/InGameCanvas"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-
-[node name="TopPanel" type="Control" parent="CanvasLayer/InGameCanvas/HUD"]
-anchor_right = 1.0
-margin_bottom = 300.0
-mouse_filter = 1
-
-[node name="PauseButton" type="TextureButton" parent="CanvasLayer/InGameCanvas/HUD/TopPanel"]
-margin_left = 131.235
-margin_top = 75.8701
-margin_right = 273.235
-margin_bottom = 208.87
-shortcut = SubResource( 3 )
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 3 )
-expand = true
-
-[node name="ControlCanvas" parent="CanvasLayer/InGameCanvas/HUD" instance=ExtResource( 4 )]
-anchor_top = 1.0
-margin_top = -750.0
-
-[node name="PauseScreen" type="Control" parent="CanvasLayer/InGameCanvas"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-
-[node name="Background" type="ColorRect" parent="CanvasLayer/InGameCanvas/PauseScreen"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.196078 )
-
-[node name="Popup" type="Control" parent="CanvasLayer/InGameCanvas/PauseScreen/Background"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -500.0
-margin_top = -350.0
-margin_right = 500.0
-margin_bottom = 250.0
-mouse_filter = 1
-
-[node name="Panel" type="Panel" parent="CanvasLayer/InGameCanvas/PauseScreen/Background/Popup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/InGameCanvas/PauseScreen/Background/Popup/Panel"]
-anchor_right = 1.0
-margin_top = 50.0
-margin_bottom = 14.0
-mouse_filter = 1
-custom_fonts/font = SubResource( 1 )
-text = "PAUSE"
-align = 1
-valign = 1
-
-[node name="Buttons" type="Control" parent="CanvasLayer/InGameCanvas/PauseScreen/Background/Popup/Panel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -300.0
-mouse_filter = 1
-
-[node name="QuitButton" type="TextureButton" parent="CanvasLayer/InGameCanvas/PauseScreen/Background/Popup/Panel/Buttons"]
-anchor_left = 0.25
-anchor_top = 0.4
-anchor_right = 0.25
-anchor_bottom = 0.4
-margin_left = -120.0
-margin_top = -120.0
-margin_right = 120.0
-margin_bottom = 120.0
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 3 )
-expand = true
-
-[node name="ResumeButton" type="TextureButton" parent="CanvasLayer/InGameCanvas/PauseScreen/Background/Popup/Panel/Buttons"]
-anchor_left = 0.75
-anchor_top = 0.4
-anchor_right = 0.75
-anchor_bottom = 0.4
-margin_left = -120.0
-margin_top = -120.0
-margin_right = 120.0
-margin_bottom = 120.0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 3 )
-expand = true
+[node name="InGameCanvas" parent="CanvasLayer" instance=ExtResource( 2 )]
 
 [node name="LevelFSM" type="Node" parent="."]
 pause_mode = 2
-script = ExtResource( 8 )
+script = ExtResource( 3 )
 
 [node name="Game" type="Node" parent="LevelFSM"]
-script = ExtResource( 9 )
-pause_button_path = NodePath("../../CanvasLayer/InGameCanvas/HUD/TopPanel/PauseButton")
-pause_screen_path = NodePath("../../CanvasLayer/InGameCanvas/PauseScreen")
-hud_screen_path = NodePath("../../CanvasLayer/InGameCanvas/HUD")
+script = ExtResource( 4 )
+in_game_canvas_path = NodePath("../../CanvasLayer/InGameCanvas")
 
 [node name="Pause" type="Node" parent="LevelFSM"]
-script = ExtResource( 10 )
+script = ExtResource( 5 )
+in_game_canvas_path = NodePath("../../CanvasLayer/InGameCanvas")
 level_path = NodePath("../..")
-pause_screen_path = NodePath("../../CanvasLayer/InGameCanvas/PauseScreen")
-hud_screen_path = NodePath("../../CanvasLayer/InGameCanvas/HUD")
-quit_button_path = NodePath("../../CanvasLayer/InGameCanvas/PauseScreen/Background/Popup/Panel/Buttons/QuitButton")
-resume_button_path = NodePath("../../CanvasLayer/InGameCanvas/PauseScreen/Background/Popup/Panel/Buttons/ResumeButton")
 
 [node name="Quit" type="Node" parent="LevelFSM"]
-script = ExtResource( 11 )
+script = ExtResource( 6 )
 level_path = NodePath("../..")
-[connection signal="pause" from="." to="CanvasLayer/InGameCanvas/HUD/ControlCanvas" method="on_pause"]
