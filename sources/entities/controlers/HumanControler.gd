@@ -57,3 +57,7 @@ func update_controls(new_left_action, new_right_action):
 		if Input.is_action_pressed(right_action):
 			Input.action_release(right_action)
 		right_action = new_right_action
+
+func reset():
+	Input.action_release(left_action)
+	Input.action_release(right_action)

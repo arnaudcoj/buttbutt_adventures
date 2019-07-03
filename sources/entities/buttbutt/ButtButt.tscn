@@ -18,6 +18,7 @@ height = 120.0
 
 [node name="ButtButt" type="KinematicBody2D"]
 script = ExtResource( 1 )
+controler_path = NodePath("HumanControler")
 
 [node name="Skeleton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -99.9696 )
@@ -63,5 +64,4 @@ script = ExtResource( 7 )
 
 [node name="Fall" type="Node" parent="FSM"]
 script = ExtResource( 8 )
-[connection signal="controls" from="." to="HumanControler" method="update_controls"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_area_entered"]
