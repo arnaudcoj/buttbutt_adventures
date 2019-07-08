@@ -54,6 +54,16 @@ func update_physics(delta):
 		# use normal informations to move along slope direction
 		body.velocity.x += 500 * abs(normal.y)
 		body.velocity.y += 500 * normal.x
+	
+	# todo better placement
+	if body.is_on_wall():
+		var ledge_position = null
+		if body.velocity.x < 0:
+			ledge_position = body.ledge_detectors.left_ledge_detector.get_ledge_position()
+		elif body.velocity.x > 0:
+			ledge_position = body.ledge_detectors.right_ledge_detector.get_ledge_position()
+		if ledge_position != null:
+			body.position.y = ledge_position.y - 2
 			
 	if body.velocity.x != 0:
 		body.move_and_slide_with_snap(body.velocity, Vector2(0, 32), Vector2.UP, true, 4, 0.85)
