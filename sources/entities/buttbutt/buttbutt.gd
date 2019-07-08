@@ -9,19 +9,11 @@ var velocity := Vector2()
 export (NodePath) var controler_path
 onready var controler = get_node(controler_path)
 
+onready var ground_raycasters = $GroundRaycasters
+
 func _ready():
 	connect("controls", controler, "update_controls")
 
-func get_left_ground_normal() :
-	if $LeftGroundRaycast.get_collider() != null:
-		return $LeftGroundRaycast.get_collision_normal()
-	return null
-
-func get_right_ground_normal() :
-	if $RightGroundRaycast.get_collider() != null:
-		return $RightGroundRaycast.get_collision_normal()
-	return null
-	
 func _on_area_entered(area : Area2D):
 	if area.is_in_group("death"):
 		print("dead")

@@ -20,10 +20,10 @@ func update_physics(delta):
 #		last_action = "ui_left"
 	elif Input.is_action_pressed("walk_left"):
 		# fetch slope normal
-		var normal = body.get_left_ground_normal()
+		var normal = body.ground_raycasters.get_left_ground_normal()
 		# fetch opposite slope normal (used for descending slope)
 		if normal == null:
-			normal = body.get_right_ground_normal()
+			normal = body.ground_raycasters.get_right_ground_normal()
 			# avoid following slope angle when there is no ground in the input direction
 			if normal != null and normal.dot(Vector2.UP) > 0:
 				normal = null
@@ -40,10 +40,10 @@ func update_physics(delta):
 #		last_action = "ui_right"
 	elif Input.is_action_pressed("walk_right"):
 		# fetch slope normal
-		var normal = body.get_right_ground_normal()
+		var normal = body.ground_raycasters.get_right_ground_normal()
 		# fetch opposite slope normal (used for descending slope)
 		if normal == null:
-			normal = body.get_left_ground_normal()
+			normal = body.ground_raycasters.get_left_ground_normal()
 			# avoid following slope angle when there is no ground in the input direction
 			if normal != null and normal.dot(Vector2.UP) > 0:
 				normal = null

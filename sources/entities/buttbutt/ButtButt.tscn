@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/buttbutt/buttbutt.gd" type="Script" id=1]
 [ext_resource path="res://entities/buttbutt/Skeleton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/controlers/HumanControler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://utils/scripts/fsm/PhysicsFSM.gd" type="Script" id=4]
-[ext_resource path="res://entities/buttbutt/fsm/Idle.gd" type="Script" id=5]
-[ext_resource path="res://entities/buttbutt/fsm/Walk.gd" type="Script" id=6]
-[ext_resource path="res://entities/buttbutt/fsm/Jump.gd" type="Script" id=7]
-[ext_resource path="res://entities/buttbutt/fsm/Fall.gd" type="Script" id=8]
+[ext_resource path="res://entities/buttbutt/scripts/ground_raycasters.gd" type="Script" id=3]
+[ext_resource path="res://entities/controlers/HumanControler.tscn" type="PackedScene" id=4]
+[ext_resource path="res://utils/scripts/fsm/PhysicsFSM.gd" type="Script" id=5]
+[ext_resource path="res://entities/buttbutt/fsm/Idle.gd" type="Script" id=6]
+[ext_resource path="res://entities/buttbutt/fsm/Walk.gd" type="Script" id=7]
+[ext_resource path="res://entities/buttbutt/fsm/Jump.gd" type="Script" id=8]
+[ext_resource path="res://entities/buttbutt/fsm/Fall.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 100 )
@@ -28,18 +29,19 @@ position = Vector2( 0, -99.9696 )
 position = Vector2( 0, -100 )
 shape = SubResource( 1 )
 
-[node name="HumanControler" parent="." instance=ExtResource( 3 )]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -99.9696 )
 current = true
 
-[node name="LeftGroundRaycast" type="RayCast2D" parent="."]
+[node name="GroundRaycasters" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="LeftGroundRaycaster" type="RayCast2D" parent="GroundRaycasters"]
 position = Vector2( -50, -4.96962 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 
-[node name="RightGroundRaycast" type="RayCast2D" parent="."]
+[node name="RightGroundRaycaster" type="RayCast2D" parent="GroundRaycasters"]
 position = Vector2( 50, -4.96962 )
 enabled = true
 cast_to = Vector2( 0, 10 )
@@ -53,18 +55,20 @@ collision_mask = 4
 self_modulate = Color( 1, 0, 0, 1 )
 shape = SubResource( 3 )
 
-[node name="FSM" type="Node" parent="."]
-script = ExtResource( 4 )
+[node name="HumanControler" parent="." instance=ExtResource( 4 )]
 
-[node name="Idle" type="Node" parent="FSM"]
+[node name="FSM" type="Node" parent="."]
 script = ExtResource( 5 )
 
-[node name="Walk" type="Node" parent="FSM"]
+[node name="Idle" type="Node" parent="FSM"]
 script = ExtResource( 6 )
 
-[node name="Jump" type="Node" parent="FSM"]
+[node name="Walk" type="Node" parent="FSM"]
 script = ExtResource( 7 )
 
-[node name="Fall" type="Node" parent="FSM"]
+[node name="Jump" type="Node" parent="FSM"]
 script = ExtResource( 8 )
+
+[node name="Fall" type="Node" parent="FSM"]
+script = ExtResource( 9 )
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_area_entered"]

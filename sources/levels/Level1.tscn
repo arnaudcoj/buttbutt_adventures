@@ -13,7 +13,7 @@ extents = Vector2( 6441.5, 460.863 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 75.4213
 
-[node name="Level" index="0" instance=ExtResource( 1 )]
+[node name="Level" instance=ExtResource( 1 )]
 player_path = NodePath("ButtButt")
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
