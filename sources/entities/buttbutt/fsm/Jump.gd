@@ -1,6 +1,9 @@
 extends FSMState
 
 func get_next_state():
+	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
+		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
+		return $"../LedgeGrab"
 	if body.is_on_floor():
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			return $"../Walk"
@@ -29,16 +32,6 @@ func update_physics(delta):
 		body.velocity.x += 400
 	
 	body.velocity.y += 2000 * delta
-	
-	# todo better placement
-	if body.is_on_wall():
-		var ledge_position = null
-		if body.velocity.x < 0:
-			ledge_position = body.ledge_detectors.left_ledge_detector.get_ledge_position()
-		elif body.velocity.x > 0:
-			ledge_position = body.ledge_detectors.right_ledge_detector.get_ledge_position()
-		if ledge_position != null:
-			body.position.y = ledge_position.y - 2
 	
 	body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
 

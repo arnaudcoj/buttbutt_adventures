@@ -26,5 +26,21 @@ func _on_area_entered(area : Area2D):
 		print("controls changed : ", area.left_action, area.right_action)
 		emit_signal("controls", area.left_action, area.right_action)
 
+func can_grab_left_ledge():
+	if is_on_wall():
+		var ledge_position = null
+		if velocity.x < 0:
+			ledge_position = ledge_detectors.left_ledge_detector.get_ledge_position()
+		return ledge_position != null
+	return false
+
+func can_grab_right_ledge():
+	if is_on_wall():
+		var ledge_position = null
+		if velocity.x > 0:
+			ledge_position = ledge_detectors.right_ledge_detector.get_ledge_position()
+		return ledge_position != null
+	return false
+
 func on_pause():
 	controler.reset()
