@@ -1,5 +1,7 @@
 extends FSMState
 
+export var speed := Vector2(400, 0)
+
 onready var timer : Timer = $Timer
 
 func get_next_state():
@@ -30,11 +32,11 @@ func update_physics(delta):
 #	if Input.is_action_pressed("ui_left") and last_action != "ui_right":
 #		last_action = "ui_left"
 	if Input.is_action_pressed("walk_left"):
-		body.velocity.x -= 400
+		body.velocity.x -= speed.x
 #	if Input.is_action_pressed("ui_right") and last_action != "ui_left":
 #		last_action = "ui_right"
 	if Input.is_action_pressed("walk_right"):
-		body.velocity.x += 400
+		body.velocity.x += speed.x
 	
 	body.velocity.y += 2000 * delta
 	

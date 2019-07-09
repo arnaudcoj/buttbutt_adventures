@@ -80,12 +80,15 @@ script = ExtResource( 8 )
 
 [node name="Walk" type="Node" parent="FSM"]
 script = ExtResource( 9 )
+speed = 700.0
 
 [node name="Jump" type="Node" parent="FSM"]
 script = ExtResource( 10 )
+speed = Vector2( 500, 800 )
 
 [node name="Fall" type="Node" parent="FSM"]
 script = ExtResource( 11 )
+speed = Vector2( 500, 0 )
 
 [node name="Timer" type="Timer" parent="FSM/Fall"]
 wait_time = 0.1

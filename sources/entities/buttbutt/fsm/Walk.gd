@@ -1,5 +1,7 @@
 extends FSMState
 
+export var speed := 500.0
+
 func get_next_state():
 	if body.can_jump and Input.is_action_just_pressed("jump"):
 		return $"../Jump"
@@ -39,8 +41,8 @@ func update_physics(delta):
 			normal = Vector2.UP
 		
 		# use normal informations to move along slope direction
-		body.velocity.x -= 500 * abs(normal.y)
-		body.velocity.y -= 500 * normal.x
+		body.velocity.x -= speed * abs(normal.y)
+		body.velocity.y -= speed * normal.x
 		
 	# right direction
 #	if Input.is_action_pressed("ui_right") and last_action != "ui_left":
@@ -59,8 +61,8 @@ func update_physics(delta):
 			normal = Vector2.UP
 
 		# use normal informations to move along slope direction
-		body.velocity.x += 500 * abs(normal.y)
-		body.velocity.y += 500 * normal.x
+		body.velocity.x += speed * abs(normal.y)
+		body.velocity.y += speed * normal.x
 	
 	if body.velocity.x != 0:
 		body.move_and_slide_with_snap(body.velocity, Vector2(0, 32), Vector2.UP, true, 4, 0.85)
