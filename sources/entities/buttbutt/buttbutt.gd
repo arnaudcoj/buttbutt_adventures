@@ -9,19 +9,12 @@ var velocity := Vector2()
 export (NodePath) var controler_path
 onready var controler = get_node(controler_path)
 
+onready var ground_raycasters = $GroundRaycasters
+onready var ledge_detectors = $LedgeDetectors
+
 func _ready():
 	connect("controls", controler, "update_controls")
 
-func get_left_ground_normal() :
-	if $LeftGroundRaycast.get_collider() != null:
-		return $LeftGroundRaycast.get_collision_normal()
-	return null
-
-func get_right_ground_normal() :
-	if $RightGroundRaycast.get_collider() != null:
-		return $RightGroundRaycast.get_collision_normal()
-	return null
-	
 func _on_area_entered(area : Area2D):
 	if area.is_in_group("death"):
 		print("dead")
@@ -32,6 +25,22 @@ func _on_area_entered(area : Area2D):
 	elif area.is_in_group("controls"):
 		print("controls changed : ", area.left_action, area.right_action)
 		emit_signal("controls", area.left_action, area.right_action)
+
+func can_grab_left_ledge():
+	if is_on_wall():
+		var ledge_position = null
+		if velocity.x < 0:
+			ledge_position = ledge_detectors.left_ledge_detector.get_ledge_position()
+		return ledge_position != null
+	return false
+
+func can_grab_right_ledge():
+	if is_on_wall():
+		var ledge_position = null
+		if velocity.x > 0:
+			ledge_position = ledge_detectors.right_ledge_detector.get_ledge_position()
+		return ledge_position != null
+	return false
 
 func on_pause():
 	controler.reset()

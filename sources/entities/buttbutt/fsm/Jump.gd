@@ -1,6 +1,9 @@
 extends FSMState
 
 func get_next_state():
+	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
+		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
+		return $"../LedgeGrab"
 	if body.is_on_floor():
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			return $"../Walk"
