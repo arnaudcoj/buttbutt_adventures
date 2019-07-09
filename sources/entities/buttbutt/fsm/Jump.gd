@@ -38,3 +38,4 @@ func update_physics(delta):
 func enter_state():
 	print("enter ", name)
 	body.velocity.y = -800
+	body.can_jump = false

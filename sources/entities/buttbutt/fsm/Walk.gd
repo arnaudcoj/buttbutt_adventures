@@ -1,7 +1,7 @@
 extends FSMState
 
 func get_next_state():
-	if Input.is_action_just_pressed("jump"):
+	if body.can_jump and Input.is_action_just_pressed("jump"):
 		return $"../Jump"
 	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
 		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
@@ -10,6 +10,10 @@ func get_next_state():
 		return $"../Idle"
 	if not body.is_on_floor():
 		return $"../Fall"
+
+func enter_state():
+	.enter_state()
+	body.can_jump = true
 
 func update_physics(delta):
 	body.velocity.x = 0

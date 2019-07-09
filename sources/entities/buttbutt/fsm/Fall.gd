@@ -1,6 +1,10 @@
 extends FSMState
 
+onready var timer : Timer = $Timer
+
 func get_next_state():
+	if body.can_jump and Input.is_action_just_pressed("jump"):
+		return $"../Jump"
 	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
 		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
 		return $"../LedgeGrab"
@@ -10,6 +14,16 @@ func get_next_state():
 		else:
 			return $"../Idle"
 
+func enter_state():
+	.enter_state()
+	timer.connect("timeout", self, "on_timer_timeout")
+	if body.can_jump:
+		timer.start()
+
+func leave_state():
+	timer.stop()
+	timer.disconnect("timeout", self, "on_timer_timeout")
+	
 func update_physics(delta):
 	body.velocity.x = 0
 		
@@ -28,3 +42,6 @@ func update_physics(delta):
 		body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
 	else:
 		body.move_and_slide(body.velocity, Vector2.UP, true, 1)
+
+func on_timer_timeout():
+	body.can_jump = false

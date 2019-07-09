@@ -87,6 +87,9 @@ script = ExtResource( 10 )
 [node name="Fall" type="Node" parent="FSM"]
 script = ExtResource( 11 )
 
+[node name="Timer" type="Timer" parent="FSM/Fall"]
+wait_time = 0.1
+
 [node name="LedgeGrab" type="Node" parent="FSM"]
 script = ExtResource( 12 )
 

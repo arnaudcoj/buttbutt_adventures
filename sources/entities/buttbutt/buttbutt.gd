@@ -12,6 +12,8 @@ onready var controler = get_node(controler_path)
 onready var ground_raycasters = $GroundRaycasters
 onready var ledge_detectors = $LedgeDetectors
 
+var can_jump = false
+
 func _ready():
 	connect("controls", controler, "update_controls")
 

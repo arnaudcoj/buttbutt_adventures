@@ -27,6 +27,8 @@ func enter_state():
 	tween.interpolate_property(body, "position", origin, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
+	body.can_jump = false
+	
 func leave_state():
 	.leave_state()
 	tween.disconnect("tween_all_completed", self, "on_tween_completed")
@@ -51,4 +53,3 @@ func get_anim_length(distance : float) -> float :
 
 func on_tween_completed():
 	tween_completed = true
-	print("jaj")
