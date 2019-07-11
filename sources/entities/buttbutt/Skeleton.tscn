@@ -21,6 +21,7 @@
 [node name="Skeleton" type="Node2D"]
 
 [node name="Front" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="ButtPivot" type="Position2D" parent="Front"]
 position = Vector2( -0.694, 67.931 )
@@ -179,88 +180,109 @@ scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 9 )
 
 [node name="Back" type="Node2D" parent="."]
-editor/display_folded = true
 visible = false
 
-[node name="Butt" type="Node2D" parent="Back"]
+[node name="ButtPivot" type="Position2D" parent="Back"]
 position = Vector2( -0.694, 69.0065 )
 
-[node name="Body" type="Node2D" parent="Back/Butt"]
+[node name="Butt" type="Node2D" parent="Back/ButtPivot"]
+
+[node name="BodyPivot" type="Position2D" parent="Back/ButtPivot/Butt"]
+
+[node name="Body" type="Node2D" parent="Back/ButtPivot/Butt/BodyPivot"]
 position = Vector2( -0.620411, -85.3772 )
 
-[node name="LeftEar" type="Node2D" parent="Back/Butt/Body"]
+[node name="LeftEarPivot" type="Position2D" parent="Back/ButtPivot/Butt/BodyPivot/Body"]
 editor/display_folded = true
-position = Vector2( -42.551, -91.1451 )
+position = Vector2( -28.8681, -69.9876 )
+
+[node name="LeftEar" type="Node2D" parent="Back/ButtPivot/Butt/BodyPivot/Body/LeftEarPivot"]
+position = Vector2( -13.683, -21.1575 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="LeftEarSprite" type="Sprite" parent="Back/Butt/Body/LeftEar"]
+[node name="LeftEarSprite" type="Sprite" parent="Back/ButtPivot/Butt/BodyPivot/Body/LeftEarPivot/LeftEar"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 10 )
 
-[node name="RightEar" type="Node2D" parent="Back/Butt/Body"]
+[node name="RightEarPivot" type="Position2D" parent="Back/ButtPivot/Butt/BodyPivot/Body"]
+position = Vector2( 30.549, -70.4277 )
+
+[node name="RightEar" type="Node2D" parent="Back/ButtPivot/Butt/BodyPivot/Body/RightEarPivot"]
 editor/display_folded = true
-position = Vector2( 46.1181, -90.5656 )
+position = Vector2( 15.5691, -20.1379 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="RightEarSprite" type="Sprite" parent="Back/Butt/Body/RightEar"]
+[node name="RightEarSprite" type="Sprite" parent="Back/ButtPivot/Butt/BodyPivot/Body/RightEarPivot/RightEar"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 11 )
 
-[node name="LeftArm" type="Node2D" parent="Back/Butt/Body"]
+[node name="LeftArmPivot" type="Position2D" parent="Back/ButtPivot/Butt/BodyPivot/Body"]
+position = Vector2( -42.9521, 6.15435 )
+
+[node name="LeftArm" type="Node2D" parent="Back/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot"]
 editor/display_folded = true
-position = Vector2( 77.6742, 4.04454 )
+position = Vector2( 120.626, -2.10981 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="LeftArmSprite" type="Sprite" parent="Back/Butt/Body/LeftArm"]
+[node name="LeftArmSprite" type="Sprite" parent="Back/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot/LeftArm"]
 position = Vector2( -169.205, 13.9809 )
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 12 )
 
-[node name="RightArm" type="Node2D" parent="Back/Butt/Body"]
+[node name="RightArmPivot" type="Position2D" parent="Back/ButtPivot/Butt/BodyPivot/Body"]
+position = Vector2( 39.7917, 7.0346 )
+
+[node name="RightArm" type="Node2D" parent="Back/ButtPivot/Butt/BodyPivot/Body/RightArmPivot"]
 editor/display_folded = true
-position = Vector2( 85.9989, 24.8676 )
+position = Vector2( 48.8479, 12.5515 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="RightArmSprite" type="Sprite" parent="Back/Butt/Body/RightArm"]
+[node name="RightArmSprite" type="Sprite" parent="Back/ButtPivot/Butt/BodyPivot/Body/RightArmPivot/RightArm"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 13 )
 
-[node name="BodySprite" type="Sprite" parent="Back/Butt/Body"]
+[node name="BodySprite" type="Sprite" parent="Back/ButtPivot/Butt/BodyPivot/Body"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 14 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftLeg" type="Node2D" parent="Back/Butt"]
-position = Vector2( -48.8206, 35.2431 )
+[node name="LeftLegPivot" type="Position2D" parent="Back/ButtPivot/Butt"]
+position = Vector2( -23.3267, -12.3235 )
+
+[node name="LeftLeg" type="Node2D" parent="Back/ButtPivot/Butt/LeftLegPivot"]
+position = Vector2( -25.4938, 47.5666 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="LeftLegSprite" type="Sprite" parent="Back/Butt/LeftLeg"]
+[node name="LeftLegSprite" type="Sprite" parent="Back/ButtPivot/Butt/LeftLegPivot/LeftLeg"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 15 )
 
-[node name="RightLeg" type="Node2D" parent="Back/Butt"]
-position = Vector2( 47.9636, 34.8202 )
+[node name="RightLegPivot" type="Position2D" parent="Back/ButtPivot/Butt"]
+position = Vector2( 20.686, -13.2038 )
+
+[node name="RightLeg" type="Node2D" parent="Back/ButtPivot/Butt/RightLegPivot"]
+position = Vector2( 27.2777, 48.024 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="RightLegSprite" type="Sprite" parent="Back/Butt/RightLeg"]
+[node name="RightLegSprite" type="Sprite" parent="Back/ButtPivot/Butt/RightLegPivot/RightLeg"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 16 )
 
-[node name="ButtSprite" type="Sprite" parent="Back/Butt"]
+[node name="ButtSprite" type="Sprite" parent="Back/ButtPivot/Butt"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 17 )
 __meta__ = {
