@@ -26,7 +26,7 @@ script = ExtResource( 1 )
 controler_path = NodePath("HumanControler")
 
 [node name="Skeleton" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, -99.9696 )
+position = Vector2( -1, -123 )
 
 [node name="FullCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -100 )
