@@ -2,8 +2,8 @@
 
 [ext_resource path="res://entities/buttbutt/scripts/ledge_detector.gd" type="Script" id=1]
 
-[sub_resource type="SegmentShape2D" id=1]
-b = Vector2( 0, 50 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 25 )
 
 [node name="LedgeDetector" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,8 +14,9 @@ __meta__ = {
 [node name="SideArea" type="Area2D" parent="."]
 collision_layer = 8
 
-[node name="CollisionSegment" type="CollisionShape2D" parent="SideArea"]
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape2D" parent="SideArea"]
+position = Vector2( 0, 25 )
+shape = SubResource( 2 )
 
-[node name="RaycastDestination" type="Position2D" parent="."]
-position = Vector2( 0, 100 )
+[node name="RayCaster" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 200 )
