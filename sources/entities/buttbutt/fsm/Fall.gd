@@ -4,6 +4,16 @@ export var speed := Vector2(400, 0)
 
 onready var timer : Timer = $Timer
 
+var jump_delay_enabled = true
+
+func _input(event):
+	if event.is_action_pressed("debug_toggle_platform_helpers"):
+		jump_delay_enabled = !jump_delay_enabled
+		if jump_delay_enabled:
+			print("enable jump delay")
+		else:
+			print("disable jump delay")
+
 func get_next_state():
 	if body.can_jump and Input.is_action_just_pressed("jump"):
 		return $"../Jump"
@@ -19,8 +29,11 @@ func get_next_state():
 func enter_state():
 	.enter_state()
 	timer.connect("timeout", self, "on_timer_timeout")
-	if body.can_jump:
-		timer.start()
+	if jump_delay_enabled:
+		if body.can_jump:
+			timer.start()
+	else:
+		body.can_jump = false
 
 func leave_state():
 	timer.stop()
