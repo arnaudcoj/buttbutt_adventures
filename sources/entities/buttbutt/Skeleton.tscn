@@ -127,6 +127,7 @@ position = Vector2( -0.694, 67.931 )
 [node name="Butt" type="Node2D" parent="Front/ButtPivot"]
 
 [node name="BodyPivot" type="Position2D" parent="Front/ButtPivot/Butt"]
+editor/display_folded = true
 position = Vector2( 0, 7.809 )
 
 [node name="Body" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot"]
@@ -206,25 +207,29 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftLeg" type="Node2D" parent="Front/ButtPivot/Butt"]
-editor/display_folded = true
-position = Vector2( 47.899, 35.9242 )
+[node name="LeftLegPivot" type="Position2D" parent="Front/ButtPivot/Butt"]
+position = Vector2( 37.815, 1.32684 )
+
+[node name="LeftLeg" type="Node2D" parent="Front/ButtPivot/Butt/LeftLegPivot"]
+position = Vector2( 10.084, 34.5974 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="LeftLegSprite" type="Sprite" parent="Front/ButtPivot/Butt/LeftLeg"]
+[node name="LeftLegSprite" type="Sprite" parent="Front/ButtPivot/Butt/LeftLegPivot/LeftLeg"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 5 )
 
-[node name="RightLeg" type="Node2D" parent="Front/ButtPivot/Butt"]
-editor/display_folded = true
-position = Vector2( -49.0964, 36.523 )
+[node name="RightLegPivot" type="Position2D" parent="Front/ButtPivot/Butt"]
+position = Vector2( -37.815, -1.32684 )
+
+[node name="RightLeg" type="Node2D" parent="Front/ButtPivot/Butt/RightLegPivot"]
+position = Vector2( -11.2814, 37.8498 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="RightLegSprite" type="Sprite" parent="Front/ButtPivot/Butt/RightLeg"]
+[node name="RightLegSprite" type="Sprite" parent="Front/ButtPivot/Butt/RightLegPivot/RightLeg"]
 scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 6 )
 
