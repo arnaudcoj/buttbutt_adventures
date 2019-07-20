@@ -34,6 +34,8 @@ func enter_state():
 			timer.start()
 	else:
 		body.can_jump = false
+	
+	body.skeleton.animation_player.play("Fall")
 
 func leave_state():
 	timer.stop()
