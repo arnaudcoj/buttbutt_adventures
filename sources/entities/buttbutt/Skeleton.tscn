@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://entities/buttbutt/scripts/buttbutt_skeleton.gd" type="Script" id=1]
 [ext_resource path="res://entities/buttbutt/front/left_ear.png" type="Texture" id=2]
@@ -94,6 +94,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Front/ButtPivot/Butt:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -187,9 +223,172 @@ tracks/7/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Front/ButtPivot/Butt:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=3]
-resource_name = "Walk"
+resource_name = "Jump"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8, 1.6, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.4, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.0965538, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -75.2619, -0.25, 0, 0.25, 0, -83, -0.25, 0, 0.25, 0, -75.262, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9, 2 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Front/ButtPivot/Butt/ButtSprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.27, 0.27 ), Vector2( 0.285, 0.27 ), Vector2( 0.27, 0.27 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Front/ButtPivot/Butt/LeftLegPivot:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Front/ButtPivot/Butt/RightLegPivot:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Front/ButtPivot:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Front/ButtPivot/Butt:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.3, 0.8 ), Vector2( 0.8, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 2.0
 loop = true
 tracks/0/type = "bezier"
@@ -280,6 +479,42 @@ tracks/7/keys = {
 "update": 0,
 "values": [ 5.0, -5.0 ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Front/ButtPivot/Butt:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [node name="Skeleton" type="Node2D"]
 script = ExtResource( 1 )
@@ -292,11 +527,10 @@ position = Vector2( -0.694, 67.931 )
 [node name="Butt" type="Node2D" parent="Front/ButtPivot"]
 
 [node name="BodyPivot" type="Position2D" parent="Front/ButtPivot/Butt"]
-editor/display_folded = true
 position = Vector2( 0, 7.809 )
 
 [node name="Body" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot"]
-position = Vector2( 0.0965538, -75.2619 )
+position = Vector2( 0.0965538, -75.262 )
 
 [node name="FacePivot" type="Position2D" parent="Front/ButtPivot/Butt/BodyPivot/Body"]
 position = Vector2( -15.7914, -34.548 )
@@ -340,6 +574,7 @@ remote_path = NodePath("../../../../../../../RemoteSprites/RightEar")
 [node name="LeftArmPivot" type="Position2D" parent="Front/ButtPivot/Butt/BodyPivot/Body"]
 editor/display_folded = true
 position = Vector2( 35.6503, -7.04203 )
+rotation = -0.785398
 
 [node name="LeftArm" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot"]
 editor/display_folded = true
@@ -354,6 +589,7 @@ texture = ExtResource( 3 )
 
 [node name="RightArmPivot" type="Position2D" parent="Front/ButtPivot/Butt/BodyPivot/Body"]
 position = Vector2( -45.3331, -10.563 )
+rotation = 0.785398
 
 [node name="RightArm" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot"]
 position = Vector2( -34.2886, -15.4744 )
@@ -422,7 +658,9 @@ texture = ExtResource( 8 )
 
 [node name="RightArm" type="Node2D" parent="Front/RemoteSprites"]
 editor/display_folded = true
-position = Vector2( -80.2191, 0.855497 )
+position = Vector2( -77.9123, -26.5947 )
+rotation = 0.785398
+scale = Vector2( 1, 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -433,7 +671,7 @@ scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 9 )
 
 [node name="Face" type="Node2D" parent="Front/RemoteSprites"]
-position = Vector2( -17.2053, -51.303 )
+position = Vector2( -17.2053, -51.3031 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -553,4 +791,5 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Default = SubResource( 1 )
 anims/Idle = SubResource( 2 )
-anims/Walk = SubResource( 3 )
+anims/Jump = SubResource( 3 )
+anims/Walk = SubResource( 4 )
