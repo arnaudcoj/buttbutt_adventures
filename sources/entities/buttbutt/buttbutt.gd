@@ -32,16 +32,14 @@ func can_grab_left_ledge():
 	if is_on_wall():
 		var ledge_position = null
 		if velocity.x < 0:
-			ledge_position = ledge_detectors.left_ledge_detector.get_ledge_position()
-		return ledge_position != null
+			return ledge_detectors.left_ledge_detector.can_grab_ledge()
 	return false
 
 func can_grab_right_ledge():
 	if is_on_wall():
 		var ledge_position = null
 		if velocity.x > 0:
-			ledge_position = ledge_detectors.right_ledge_detector.get_ledge_position()
-		return ledge_position != null
+			return ledge_detectors.right_ledge_detector.can_grab_ledge()
 	return false
 
 func on_pause():

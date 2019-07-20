@@ -53,13 +53,16 @@ cast_to = Vector2( 0, 10 )
 script = ExtResource( 4 )
 
 [node name="LeftLedgeDetector" parent="LedgeDetectors" instance=ExtResource( 5 )]
-position = Vector2( -57, -200 )
+position = Vector2( -50, -200 )
 
-[node name="RaycastDestination" parent="LedgeDetectors/LeftLedgeDetector" index="1"]
-position = Vector2( 2, 200 )
+[node name="RayCaster" parent="LedgeDetectors/LeftLedgeDetector" index="1"]
+position = Vector2( -1, 0 )
 
 [node name="RightLedgeDetector" parent="LedgeDetectors" instance=ExtResource( 5 )]
-position = Vector2( 57, -200 )
+position = Vector2( 50, -200 )
+
+[node name="RayCaster" parent="LedgeDetectors/RightLedgeDetector" index="1"]
+position = Vector2( 1, 0 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 position = Vector2( 0, -99.9696 )
@@ -100,3 +103,5 @@ script = ExtResource( 12 )
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_area_entered"]
 
 [editable path="LedgeDetectors/LeftLedgeDetector"]
+
+[editable path="LedgeDetectors/RightLedgeDetector"]
