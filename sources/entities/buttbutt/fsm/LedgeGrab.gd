@@ -27,6 +27,7 @@ func enter_state():
 	tween.interpolate_property(body, "position", origin, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
+	body.skeleton.play("LedgeGrab")
 	body.can_jump = false
 	
 func leave_state():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://entities/buttbutt/scripts/buttbutt_skeleton.gd" type="Script" id=1]
 [ext_resource path="res://entities/buttbutt/front/left_ear.png" type="Texture" id=2]
@@ -189,6 +189,42 @@ tracks/13/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 7.42024, 31.2443 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Front/ButtPivot/Butt/BodyPivot:rotation_degrees")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot/RightArm:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -34.2886, -15.4744 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot/LeftArm:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 42.382, 10.728 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -490,6 +526,94 @@ tracks/7/keys = {
 "values": [ Vector2( -8.73872, -56.4044 ), Vector2( -8.739, -50 ), Vector2( -8.739, -63 ) ]
 }
 
+[sub_resource type="Animation" id=30]
+resource_name = "LedgeGrab"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Front/ButtPivot/Butt/BodyPivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -11.1964, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Front/ButtPivot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -8.32695, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 11.8637, -81.6971 ), Vector2( 0, -82.046 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 30.0, -15.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.394859, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -32.9943, 0.0, 10.8326 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Front/ButtPivot/Butt/RightLegPivot:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 35.5473, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Front/ButtPivot/Butt/LeftLegPivot:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 21.8858, 0.0 ]
+}
+
 [sub_resource type="Animation" id=5]
 length = 0.7
 loop = true
@@ -664,6 +788,9 @@ animation = "Idle"
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Jump"
 
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "LedgeGrab"
+
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Walk"
 
@@ -705,18 +832,47 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+xfade_time = 0.05
+
 [sub_resource type="AnimationNodeStateMachine" id=26]
 states/Fall/node = SubResource( 10 )
-states/Fall/position = Vector2( 657, 286 )
+states/Fall/position = Vector2( 888, 286 )
 states/Idle/node = SubResource( 11 )
-states/Idle/position = Vector2( 657, -16 )
+states/Idle/position = Vector2( 683, -51 )
 states/Jump/node = SubResource( 12 )
-states/Jump/position = Vector2( 745, 78 )
+states/Jump/position = Vector2( 888, 78 )
+states/LedgeGrab/node = SubResource( 31 )
+states/LedgeGrab/position = Vector2( 462, 286 )
 states/Walk/node = SubResource( 13 )
-states/Walk/position = Vector2( 551, 78 )
-transitions = [ "Idle", "Fall", SubResource( 14 ), "Jump", "Fall", SubResource( 15 ), "Walk", "Fall", SubResource( 16 ), "Walk", "Jump", SubResource( 17 ), "Idle", "Jump", SubResource( 18 ), "Idle", "Walk", SubResource( 19 ), "Walk", "Idle", SubResource( 20 ), "Jump", "Idle", SubResource( 21 ), "Jump", "Walk", SubResource( 22 ), "Fall", "Idle", SubResource( 23 ), "Fall", "Jump", SubResource( 24 ), "Fall", "Walk", SubResource( 25 ) ]
+states/Walk/position = Vector2( 462, 78 )
+transitions = [ "Idle", "Fall", SubResource( 14 ), "Jump", "Fall", SubResource( 15 ), "Walk", "Fall", SubResource( 16 ), "Walk", "Jump", SubResource( 17 ), "Idle", "Jump", SubResource( 18 ), "Idle", "Walk", SubResource( 19 ), "Walk", "Idle", SubResource( 20 ), "Jump", "Idle", SubResource( 21 ), "Jump", "Walk", SubResource( 22 ), "Fall", "Idle", SubResource( 23 ), "Fall", "Jump", SubResource( 24 ), "Fall", "Walk", SubResource( 25 ), "LedgeGrab", "Fall", SubResource( 32 ), "LedgeGrab", "Jump", SubResource( 33 ), "LedgeGrab", "Idle", SubResource( 34 ), "LedgeGrab", "Walk", SubResource( 35 ), "Jump", "LedgeGrab", SubResource( 36 ), "Walk", "LedgeGrab", SubResource( 37 ), "Fall", "LedgeGrab", SubResource( 38 ), "Idle", "LedgeGrab", SubResource( 39 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 127, -93 )
+graph_offset = Vector2( 109, -54 )
 
 [sub_resource type="AnimationNodeBlendTree" id=27]
 graph_offset = Vector2( -323, -17.5 )
@@ -745,13 +901,13 @@ position = Vector2( -0.694, 67.931 )
 position = Vector2( 0, 4.33256 )
 
 [node name="Body" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot"]
-position = Vector2( 0.097, -76.7985 )
+position = Vector2( 0.097, -77.7487 )
 
 [node name="FacePivot" type="Position2D" parent="Front/ButtPivot/Butt/BodyPivot/Body"]
 position = Vector2( -15.7914, -34.548 )
 
 [node name="Face" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot/Body/FacePivot"]
-position = Vector2( 15.3385, 29.9442 )
+position = Vector2( 15.3051, 29.973 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -789,8 +945,7 @@ remote_path = NodePath("../../../../../../../RemoteSprites/RightEar")
 position = Vector2( 35.6503, -7.04203 )
 
 [node name="LeftArm" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot/Body/LeftArmPivot"]
-editor/display_folded = true
-position = Vector2( 42.3824, 10.7281 )
+position = Vector2( 42.382, 10.728 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -847,7 +1002,7 @@ texture = ExtResource( 6 )
 
 [node name="ButtSprite" type="Sprite" parent="Front/ButtPivot/Butt"]
 position = Vector2( 0.67, 0 )
-scale = Vector2( 0.273723, 0.27 )
+scale = Vector2( 0.276025, 0.27 )
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
@@ -857,7 +1012,7 @@ __meta__ = {
 
 [node name="RightEar" type="Node2D" parent="Front/RemoteSprites"]
 editor/display_folded = true
-position = Vector2( -46.3038, -114 )
+position = Vector2( -46.3038, -114.951 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -869,7 +1024,7 @@ texture = ExtResource( 8 )
 
 [node name="RightArm" type="Node2D" parent="Front/RemoteSprites"]
 editor/display_folded = true
-position = Vector2( -80.2187, -4.15753 )
+position = Vector2( -80.2187, -5.10771 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -880,7 +1035,7 @@ scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 9 )
 
 [node name="Face" type="Node2D" parent="Front/RemoteSprites"]
-position = Vector2( -9.78862, -65.5431 )
+position = Vector2( -9.822, -66.4645 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -1003,6 +1158,7 @@ anims/Default = SubResource( 1 )
 anims/Fall = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Jump = SubResource( 4 )
+anims/LedgeGrab = SubResource( 30 )
 anims/Walk = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
