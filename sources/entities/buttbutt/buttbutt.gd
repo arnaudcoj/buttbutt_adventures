@@ -9,12 +9,14 @@ var velocity := Vector2()
 export (NodePath) var controler_path
 onready var controler = get_node(controler_path)
 
+onready var skeleton = $Skeleton
 onready var ground_raycasters = $GroundRaycasters
 onready var ledge_detectors = $LedgeDetectors
 
 var can_jump = false
 
 func _ready():
+	print(skeleton)
 	connect("controls", controler, "update_controls")
 
 func _on_area_entered(area : Area2D):
@@ -44,3 +46,6 @@ func can_grab_right_ledge():
 
 func on_pause():
 	controler.reset()
+	
+func _enter_tree():
+	skeleton = $Skeleton

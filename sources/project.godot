@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "ButtButtSkeleton",
+"language": "GDScript",
+"path": "res://entities/buttbutt/scripts/buttbutt_skeleton.gd"
+}, {
 "base": "Node",
 "class": "FSM",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://utils/scripts/fsm/PhysicsFSM.gd"
 } ]
 _global_script_class_icons={
+"ButtButtSkeleton": "",
 "FSM": "",
 "FSMState": "",
 "PhysicsFSM": ""
@@ -111,5 +117,5 @@ common/stdout/print_fps=false
 
 quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.493149, 0.669338, 0.738281, 1 )
+environment/default_clear_color=Color( 0.0627451, 0.376471, 0.627451, 1 )
 environment/default_environment="res://default_env.tres"

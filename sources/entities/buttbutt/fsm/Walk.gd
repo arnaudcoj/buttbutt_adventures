@@ -15,6 +15,7 @@ func get_next_state():
 
 func enter_state():
 	.enter_state()
+	body.skeleton.play("Walk")
 	body.can_jump = true
 
 func update_physics(delta):
@@ -66,3 +67,7 @@ func update_physics(delta):
 	
 	if body.velocity.x != 0:
 		body.move_and_slide_with_snap(body.velocity, Vector2(0, 32), Vector2.UP, true, 4, 0.85)
+		if body.velocity.x > 0:
+			body.skeleton.flip(ButtButtSkeleton.ORIENTATION_RIGHT)
+		else:
+			body.skeleton.flip(ButtButtSkeleton.ORIENTATION_LEFT)
