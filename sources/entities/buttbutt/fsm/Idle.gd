@@ -11,4 +11,4 @@ func get_next_state():
 func enter_state():
 	.enter_state()
 	body.can_jump = true
-	body.skeleton.animation_player.play("Idle")
+	body.skeleton.play("Idle")

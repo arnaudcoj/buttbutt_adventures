@@ -41,4 +41,4 @@ func enter_state():
 	print("enter ", name)
 	body.velocity.y = -speed.y
 	body.can_jump = false
-	body.skeleton.animation_player.play("Jump")
+	body.skeleton.play("Jump")

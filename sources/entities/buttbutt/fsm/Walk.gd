@@ -15,7 +15,7 @@ func get_next_state():
 
 func enter_state():
 	.enter_state()
-	body.skeleton.animation_player.play("Walk")
+	body.skeleton.play("Walk")
 	body.can_jump = true
 
 func update_physics(delta):
