@@ -354,57 +354,41 @@ tracks/12/keys = {
 
 [sub_resource type="Animation" id=3]
 loop = true
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:scale:x")
+tracks/0/type = "value"
+tracks/0/path = NodePath("Front/ButtPivot/Butt/ButtSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.4, 0.8, 1 )
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.27, 0.27 ), Vector2( 0.285, 0.27 ), Vector2( 0.27, 0.27 ) ]
 }
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:scale:y")
+tracks/1/type = "value"
+tracks/1/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 0.55, 1 )
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.097, -75.262 ), Vector2( 0.097, -83 ), Vector2( 0.097, -75.262 ) ]
 }
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:position:x")
+tracks/2/type = "value"
+tracks/2/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0.0965538, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body:position:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( -75.2619, -0.25, 0, 0.25, 0, -83, -0.25, 0, 0.25, 0, -75.262, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.45, 1 )
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Front/ButtPivot/Butt/ButtSprite:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.27, 0.27 ), Vector2( 0.285, 0.27 ), Vector2( 0.27, 0.27 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.05, 1 ), Vector2( 1, 1.05 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -417,9 +401,9 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, -2, -2, 1, 1 ),
+"transitions": PoolRealArray( 1, 1, -2, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.27, 0.27 ), Vector2( 0.3, 0.25 ), Vector2( 0.26, 0.3 ), Vector2( 0.29, 0.3 ), Vector2( 0.26, 0.3 ) ]
+"values": [ Vector2( 0.3, 0.27 ), Vector2( 0.27, 0.25 ), Vector2( 0.26, 0.3 ), Vector2( 0.29, 0.3 ), Vector2( 0.26, 0.3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/RightArmPivot:rotation_degrees")
@@ -477,9 +461,9 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( -2, -2 ),
+"transitions": PoolRealArray( 1, -2 ),
 "update": 0,
-"values": [ -20.0, 15.0 ]
+"values": [ -12.5743, 15.0 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Front/ButtPivot/Butt/BodyPivot/Body/LeftEarPivot:rotation_degrees")
@@ -666,41 +650,44 @@ tracks/12/keys = {
 "values": [ Vector2( -19.7287, 22.1194 ), Vector2( -7.5018, 39.3054 ) ]
 }
 
-[sub_resource type="AnimationNodeAdd2" id=6]
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "Default"
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "Fall"
+[sub_resource type="AnimationNodeAdd2" id=29]
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "Idle"
+animation = "Default"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "Jump"
+animation = "Fall"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.25
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 xfade_time = 0.3
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-xfade_time = 0.05
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-xfade_time = 0.05
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
@@ -718,34 +705,31 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/Fall/node = SubResource( 8 )
+[sub_resource type="AnimationNodeStateMachine" id=26]
+states/Fall/node = SubResource( 10 )
 states/Fall/position = Vector2( 657, 286 )
-states/Idle/node = SubResource( 9 )
+states/Idle/node = SubResource( 11 )
 states/Idle/position = Vector2( 657, -16 )
-states/Jump/node = SubResource( 10 )
+states/Jump/node = SubResource( 12 )
 states/Jump/position = Vector2( 745, 78 )
-states/Walk/node = SubResource( 11 )
+states/Walk/node = SubResource( 13 )
 states/Walk/position = Vector2( 551, 78 )
-transitions = [ "Idle", "Fall", SubResource( 12 ), "Jump", "Fall", SubResource( 13 ), "Walk", "Fall", SubResource( 14 ), "Walk", "Jump", SubResource( 15 ), "Idle", "Jump", SubResource( 16 ), "Idle", "Walk", SubResource( 17 ), "Walk", "Idle", SubResource( 21 ), "Jump", "Idle", SubResource( 22 ), "Jump", "Walk", SubResource( 23 ), "Fall", "Idle", SubResource( 24 ), "Fall", "Jump", SubResource( 25 ), "Fall", "Walk", SubResource( 26 ) ]
+transitions = [ "Idle", "Fall", SubResource( 14 ), "Jump", "Fall", SubResource( 15 ), "Walk", "Fall", SubResource( 16 ), "Walk", "Jump", SubResource( 17 ), "Idle", "Jump", SubResource( 18 ), "Idle", "Walk", SubResource( 19 ), "Walk", "Idle", SubResource( 20 ), "Jump", "Idle", SubResource( 21 ), "Jump", "Walk", SubResource( 22 ), "Fall", "Idle", SubResource( 23 ), "Fall", "Jump", SubResource( 24 ), "Fall", "Walk", SubResource( 25 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 127, -93 )
 
-[sub_resource type="AnimationNodeBlendTree" id=19]
-graph_offset = Vector2( -564.2, 16.45 )
-nodes/Add2/node = SubResource( 6 )
-nodes/Add2/position = Vector2( 40, 160 )
-nodes/RestPose/node = SubResource( 7 )
-nodes/RestPose/position = Vector2( -160, 80 )
-nodes/StateMachine/node = SubResource( 18 )
-nodes/StateMachine/position = Vector2( -220, 200 )
-nodes/output/position = Vector2( 300, 160 )
+[sub_resource type="AnimationNodeBlendTree" id=27]
+graph_offset = Vector2( -323, -17.5 )
+nodes/Add2/node = SubResource( 29 )
+nodes/Add2/position = Vector2( 80, 60 )
+nodes/RestPose/node = SubResource( 9 )
+nodes/RestPose/position = Vector2( -160, 40 )
+nodes/StateMachine/node = SubResource( 26 )
+nodes/StateMachine/position = Vector2( -160, 200 )
+nodes/output/position = Vector2( 380, 80 )
 node_connections = [ "output", 0, "Add2", "Add2", 0, "RestPose", "Add2", 1, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 
 [node name="Skeleton" type="Node2D"]
 script = ExtResource( 1 )
@@ -761,7 +745,7 @@ position = Vector2( -0.694, 67.931 )
 position = Vector2( 0, 4.33256 )
 
 [node name="Body" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot"]
-position = Vector2( 0.0965538, -77.2142 )
+position = Vector2( 0.097, -76.7985 )
 
 [node name="FacePivot" type="Position2D" parent="Front/ButtPivot/Butt/BodyPivot/Body"]
 position = Vector2( -15.7914, -34.548 )
@@ -863,7 +847,7 @@ texture = ExtResource( 6 )
 
 [node name="ButtSprite" type="Sprite" parent="Front/ButtPivot/Butt"]
 position = Vector2( 0.67, 0 )
-scale = Vector2( 0.272868, 0.27 )
+scale = Vector2( 0.273723, 0.27 )
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
@@ -873,7 +857,7 @@ __meta__ = {
 
 [node name="RightEar" type="Node2D" parent="Front/RemoteSprites"]
 editor/display_folded = true
-position = Vector2( -46.3042, -114.416 )
+position = Vector2( -46.3038, -114 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -885,7 +869,7 @@ texture = ExtResource( 8 )
 
 [node name="RightArm" type="Node2D" parent="Front/RemoteSprites"]
 editor/display_folded = true
-position = Vector2( -80.2191, -4.57322 )
+position = Vector2( -80.2187, -4.15753 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -896,7 +880,7 @@ scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 9 )
 
 [node name="Face" type="Node2D" parent="Front/RemoteSprites"]
-position = Vector2( -9.78907, -65.9588 )
+position = Vector2( -9.78862, -65.5431 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -1022,8 +1006,8 @@ anims/Jump = SubResource( 4 )
 anims/Walk = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 27 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Add2/add_amount = 1.0
-parameters/StateMachine/playback = SubResource( 20 )
+parameters/StateMachine/playback = SubResource( 28 )
