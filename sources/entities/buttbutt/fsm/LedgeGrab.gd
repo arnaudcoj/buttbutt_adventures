@@ -1,7 +1,9 @@
 extends FSMState
 
 var tween_completed := false
-export var anim_pixels_by_seconds : float = 500
+export var anim_pixels_by_seconds : float = 300
+export var min_tween_time : float = 0.02
+export var min_anim_time : float = 0.07
 
 onready var tween = $Tween
 
@@ -24,11 +26,26 @@ func enter_state():
 	var destination := get_destination_position()
 	var travel := destination - origin
 	var time := get_anim_length(travel.length())
-	tween.interpolate_property(body, "position", origin, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
 	
-	body.skeleton.play("LedgeGrab")
+	print(time)
+	if time > min_tween_time:
+			print("tween")
+			tween.interpolate_property(body, "position", origin, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			tween.start()
+			if time > min_anim_time:
+				print("anim")
+				body.skeleton.play("LedgeGrab")
+	else:
+		print("no anim")
+		body.position = destination
+		on_tween_completed()
+	
 	body.can_jump = false
+	
+	if Input.is_action_pressed("walk_right"):
+		body.skeleton.flip(ButtButtSkeleton.ORIENTATION_RIGHT)
+	elif Input.is_action_pressed("walk_left"):
+		body.skeleton.flip(ButtButtSkeleton.ORIENTATION_LEFT)
 	
 func leave_state():
 	.leave_state()
