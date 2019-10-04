@@ -1,4 +1,4 @@
-extends "res://entities/buttbutt/fsm/fsm_state.gd"
+extends FSMState
 
 func get_next_state():
 	if Input.is_action_just_pressed("jump"):
@@ -7,3 +7,8 @@ func get_next_state():
 		return $"../Walk"
 	if not body.is_on_floor():
 		return $"../Fall"
+		
+func enter_state():
+	.enter_state()
+	body.can_jump = true
+	body.skeleton.play("Idle")

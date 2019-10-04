@@ -1,38 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://levels/ControlsChanger.gd" type="Script" id=1]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight22.png" type="Texture" id=2]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight23.png" type="Texture" id=3]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight43_jump.png" type="Texture" id=4]
-[ext_resource path="res://levels/debug/hud_gem_blue.png" type="Texture" id=5]
+[ext_resource path="res://GUI/sprites/TransparentLightTheme.tres" type="Theme" id=2]
+[ext_resource path="res://levels/debug/hud_gem_blue.png" type="Texture" id=3]
+[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight26.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
 radius = 66.764
 
 [node name="ControlsChanger" type="Area2D" groups=[
 "controls",
 ]]
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
 script = ExtResource( 1 )
-left_action = "walk_left"
-right_action = "walk_right"
-sprites = {
-"jump": ExtResource( 4 ),
-"walk_left": ExtResource( 2 ),
-"walk_right": ExtResource( 3 )
-}
+controls_theme = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 5, 5 )
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -42,12 +26,11 @@ position = Vector2( -80, 0 )
 scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="LeftActionIndicator"]
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="RightActionIndicator" type="Node2D" parent="."]
 position = Vector2( 80, 0 )
 scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="RightActionIndicator"]
-texture = ExtResource( 2 )
-
+texture = ExtResource( 4 )

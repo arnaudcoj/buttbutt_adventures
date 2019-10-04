@@ -1,27 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GUI/ControlCanvas/ControlButton.gd" type="Script" id=1]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight22.png" type="Texture" id=2]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight23.png" type="Texture" id=3]
-[ext_resource path="res://GUI/sprites/debug/transparentLight/transparentLight43_jump.png" type="Texture" id=4]
+[ext_resource path="res://GUI/sprites/TransparentLightTheme.tres" type="Theme" id=2]
 
 [node name="ControlButton" type="Control"]
 self_modulate = Color( 1, 1, 1, 0.0588235 )
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
-action = "ui_select"
-sprites = {
-"jump": ExtResource( 4 ),
-"walk_left": ExtResource( 2 ),
-"walk_right": ExtResource( 3 )
-}
-
+controls_theme = ExtResource( 2 )

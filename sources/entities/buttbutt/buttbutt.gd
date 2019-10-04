@@ -6,27 +6,46 @@ signal controls
 
 var velocity := Vector2()
 
-func get_left_ground_normal() :
-	if $LeftGroundRaycast.get_collider() != null:
-		return $LeftGroundRaycast.get_collision_normal()
-	return null
+export (NodePath) var controler_path
+onready var controler = get_node(controler_path)
 
-func get_right_ground_normal() :
-	if $RightGroundRaycast.get_collider() != null:
-		return $RightGroundRaycast.get_collision_normal()
-	return null
-	
+onready var skeleton = $Skeleton
+onready var ground_raycasters = $GroundRaycasters
+onready var ledge_detectors = $LedgeDetectors
+
+var can_jump = false
+
+func _ready():
+	print(skeleton)
+	connect("controls", controler, "update_controls")
+
 func _on_area_entered(area : Area2D):
 	if area.is_in_group("death"):
 		print("dead")
 		emit_signal("dead")
-		#DEBUG
-		get_tree().reload_current_scene()
 	elif area.is_in_group("goal"):
 		print("goal")
 		emit_signal("goal")
-		#DEBUG
-		get_tree().reload_current_scene()
 	elif area.is_in_group("controls"):
 		print("controls changed : ", area.left_action, area.right_action)
 		emit_signal("controls", area.left_action, area.right_action)
+
+func can_grab_left_ledge():
+	if is_on_wall():
+		var ledge_position = null
+		if velocity.x < 0:
+			return ledge_detectors.left_ledge_detector.can_grab_ledge()
+	return false
+
+func can_grab_right_ledge():
+	if is_on_wall():
+		var ledge_position = null
+		if velocity.x > 0:
+			return ledge_detectors.right_ledge_detector.can_grab_ledge()
+	return false
+
+func on_pause():
+	controler.reset()
+	
+func _enter_tree():
+	skeleton = $Skeleton

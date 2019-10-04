@@ -1,15 +1,13 @@
 extends Node
+class_name FSM
 
 onready var current_state = self.get_child(0)
 
 func _ready():
 	current_state.enter_state()
 
-func _physics_process(delta):
-	decide_next_state()
-	current_state.update_physics(delta)
-	
 func _process(delta):
+	decide_next_state()
 	current_state.update(delta)
 
 func decide_next_state():
