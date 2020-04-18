@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://entities/buttbutt/buttbutt.gd" type="Script" id=1]
 [ext_resource path="res://entities/buttbutt/Skeleton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/buttbutt/scripts/ground_raycasters.gd" type="Script" id=3]
 [ext_resource path="res://entities/buttbutt/scripts/ledge_detectors.gd" type="Script" id=4]
 [ext_resource path="res://entities/buttbutt/physics/LedgeDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/controlers/HumanControler.tscn" type="PackedScene" id=6]
@@ -35,19 +34,6 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -99.9696 )
 current = true
-
-[node name="GroundRaycasters" type="Node2D" parent="."]
-script = ExtResource( 3 )
-
-[node name="LeftGroundRaycaster" type="RayCast2D" parent="GroundRaycasters"]
-position = Vector2( -50, -4.96962 )
-enabled = true
-cast_to = Vector2( 0, 10 )
-
-[node name="RightGroundRaycaster" type="RayCast2D" parent="GroundRaycasters"]
-position = Vector2( 50, -4.96962 )
-enabled = true
-cast_to = Vector2( 0, 10 )
 
 [node name="LedgeDetectors" type="Node2D" parent="."]
 script = ExtResource( 4 )

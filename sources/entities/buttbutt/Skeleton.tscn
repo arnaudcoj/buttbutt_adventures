@@ -909,9 +909,9 @@ transitions = [ "Idle", "Fall", SubResource( 14 ), "Jump", "Fall", SubResource( 
 start_node = "Idle"
 graph_offset = Vector2( 132, -146.113 )
 
-[sub_resource type="AnimationNodeTimeScale" id=37]
+[sub_resource type="AnimationNodeTimeScale" id=35]
 
-[sub_resource type="AnimationNodeBlendTree" id=35]
+[sub_resource type="AnimationNodeBlendTree" id=36]
 graph_offset = Vector2( -391, -23.5 )
 nodes/Add2/node = SubResource( 7 )
 nodes/Add2/position = Vector2( 80, 60 )
@@ -919,12 +919,12 @@ nodes/RestPose/node = SubResource( 8 )
 nodes/RestPose/position = Vector2( -160, 40 )
 nodes/StateMachine/node = SubResource( 34 )
 nodes/StateMachine/position = Vector2( -160, 200 )
-nodes/TimeScale/node = SubResource( 37 )
+nodes/TimeScale/node = SubResource( 35 )
 nodes/TimeScale/position = Vector2( 280, 60 )
 nodes/output/position = Vector2( 460, 60 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Add2", "Add2", 0, "RestPose", "Add2", 1, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
 [node name="Skeleton" type="Node2D"]
 script = ExtResource( 1 )
@@ -940,7 +940,7 @@ position = Vector2( -0.694, 67.931 )
 position = Vector2( 0, 4.33256 )
 
 [node name="Body" type="Node2D" parent="Front/ButtPivot/Butt/BodyPivot"]
-position = Vector2( 0.097, -78.0048 )
+position = Vector2( 0.097, -76.1564 )
 
 [node name="FacePivot" type="Position2D" parent="Front/ButtPivot/Butt/BodyPivot/Body"]
 position = Vector2( -15.7914, -34.548 )
@@ -1041,7 +1041,7 @@ texture = ExtResource( 6 )
 
 [node name="ButtSprite" type="Sprite" parent="Front/ButtPivot/Butt"]
 position = Vector2( 0.67, 0 )
-scale = Vector2( 0.272317, 0.27 )
+scale = Vector2( 0.272167, 0.27 )
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
@@ -1050,7 +1050,7 @@ __meta__ = {
 [node name="RemoteSprites" type="Node2D" parent="Front"]
 
 [node name="RightEar" type="Node2D" parent="Front/RemoteSprites"]
-position = Vector2( -46.3038, -115.207 )
+position = Vector2( -46.3038, -113.358 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -1061,7 +1061,7 @@ scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 8 )
 
 [node name="RightArm" type="Node2D" parent="Front/RemoteSprites"]
-position = Vector2( -80.2187, -5.36381 )
+position = Vector2( -80.2187, -3.51549 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -1072,7 +1072,7 @@ scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 9 )
 
 [node name="Face" type="Node2D" parent="Front/RemoteSprites"]
-position = Vector2( -9.82202, -66.7206 )
+position = Vector2( -9.82202, -64.8723 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -1197,9 +1197,9 @@ anims/LedgeGrab = SubResource( 5 )
 anims/Walk = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 35 )
+tree_root = SubResource( 36 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Add2/add_amount = 1.0
-parameters/StateMachine/playback = SubResource( 36 )
+parameters/StateMachine/playback = SubResource( 37 )
 parameters/TimeScale/scale = 1.0
