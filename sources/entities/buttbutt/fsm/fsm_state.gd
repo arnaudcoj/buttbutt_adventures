@@ -1,7 +1,7 @@
 extends Node
 class_name FSMState
 
-onready var body : KinematicBody2D = $"../.."
+onready var body : ButtButt = $"../.."
 
 func update(delta):
 	pass

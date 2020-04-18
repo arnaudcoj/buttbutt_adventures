@@ -14,3 +14,6 @@ func flip(orientation):
 	
 func play(state):
 	animation_state_machine.travel(state)
+
+func set_speed(speed):
+	animation_tree["parameters/TimeScale/scale"] = speed

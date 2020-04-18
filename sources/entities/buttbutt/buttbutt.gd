@@ -1,5 +1,22 @@
 extends KinematicBody2D
 
+class_name ButtButt
+
+export var horizontal_speed := 500
+export var horizontal_start_speed := 50
+export var horizontal_max_time := .2
+export var horizontal_stop_time := .3
+export var horizontal_stop_time_fall := .6
+export var jump_height := 300
+export var jump_apex_time := .5
+export var ghost_jump_time := .4
+export var can_grab_ledge := true
+
+onready var gravity = 2 * jump_height / pow(jump_apex_time, 2)
+onready var acceleration_factor = (horizontal_speed - horizontal_start_speed) / horizontal_max_time
+onready var deceleration_factor = horizontal_speed / horizontal_stop_time
+onready var deceleration_factor_fall = horizontal_speed / horizontal_stop_time_fall
+
 signal dead
 signal goal
 signal controls
@@ -12,8 +29,6 @@ onready var controler = get_node(controler_path)
 onready var skeleton = $Skeleton
 onready var ground_raycasters = $GroundRaycasters
 onready var ledge_detectors = $LedgeDetectors
-
-var can_jump = false
 
 func _ready():
 	print(skeleton)
@@ -32,16 +47,12 @@ func _on_area_entered(area : Area2D):
 
 func can_grab_left_ledge():
 	if is_on_wall():
-		var ledge_position = null
-		if velocity.x < 0:
-			return ledge_detectors.left_ledge_detector.can_grab_ledge()
+		return ledge_detectors.left_ledge_detector.can_grab_ledge()
 	return false
 
 func can_grab_right_ledge():
 	if is_on_wall():
-		var ledge_position = null
-		if velocity.x > 0:
-			return ledge_detectors.right_ledge_detector.can_grab_ledge()
+		return ledge_detectors.right_ledge_detector.can_grab_ledge()
 	return false
 
 func on_pause():

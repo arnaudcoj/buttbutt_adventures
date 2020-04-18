@@ -1,7 +1,7 @@
 extends FSMState
 
 var tween_completed := false
-export var anim_pixels_by_seconds : float = 300
+export var anim_pixels_by_seconds : float = 800
 export var min_tween_time : float = 0.02
 export var min_anim_time : float = 0.07
 
@@ -39,8 +39,6 @@ func enter_state():
 		print("no anim")
 		body.position = destination
 		on_tween_completed()
-	
-	body.can_jump = false
 	
 	if Input.is_action_pressed("walk_right"):
 		body.skeleton.flip(ButtButtSkeleton.ORIENTATION_RIGHT)

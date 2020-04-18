@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "ButtButt",
+"language": "GDScript",
+"path": "res://entities/buttbutt/buttbutt.gd"
+}, {
 "base": "Node2D",
 "class": "ButtButtSkeleton",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://utils/scripts/fsm/PhysicsFSM.gd"
 } ]
 _global_script_class_icons={
+"ButtButt": "",
 "ButtButtSkeleton": "",
 "FSM": "",
 "FSMState": "",

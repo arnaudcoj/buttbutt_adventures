@@ -1,11 +1,11 @@
 extends FSMState
 
-export var speed := Vector2(400, 800)
+var long_jump := true
 
 func get_next_state():
-	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
-		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
-		return $"../LedgeGrab"
+#	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
+#		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
+#		return $"../LedgeGrab"
 	if body.is_on_floor():
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			return $"../Walk"
@@ -16,29 +16,29 @@ func get_next_state():
 			return $"../Fall"
 
 func update_physics(delta):
-	body.velocity.x = 0
+	if Input.is_action_just_released("jump"):
+		long_jump = false
 	
-	if body.is_on_ceiling():
-		body.velocity.y = 0
+	if !long_jump && body.velocity.y < 0:
+		body.velocity.y *= .9
+			
+	if Input.is_action_pressed("walk_left") == Input.is_action_pressed("walk_right") or abs(body.velocity.x) > body.horizontal_speed:
+		body.velocity.x = sign(body.velocity.x) * max(abs(body.velocity.x) - body.deceleration_factor * delta, 0)
+	elif Input.is_action_pressed("walk_left"):
+		body.velocity.x = max(body.velocity.x - body.acceleration_factor * delta, -body.horizontal_speed)
+	elif Input.is_action_pressed("walk_right"):
+		body.velocity.x = min(body.velocity.x + body.acceleration_factor * delta, body.horizontal_speed)
 	
-	if Input.is_action_pressed("jump"):
-		body.velocity.y -= speed.y * delta
-		
-#	if Input.is_action_pressed("ui_left") and last_action != "ui_right":
-#		last_action = "ui_left"
-	if Input.is_action_pressed("walk_left"):
-		body.velocity.x -= speed.x
-#	if Input.is_action_pressed("ui_right") and last_action != "ui_left":
-#		last_action = "ui_right"
-	if Input.is_action_pressed("walk_right"):
-		body.velocity.x += speed.x
+	body.velocity.y += body.gravity * delta
 	
-	body.velocity.y += 2000 * delta
-	
-	body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
+	body.velocity = body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
+
+func get_initial_jump_velocity():
+	return body.gravity * body.jump_apex_time
 
 func enter_state():
 	print("enter ", name)
-	body.velocity.y = -speed.y
-	body.can_jump = false
+	long_jump = true
+	body.velocity.y = -get_initial_jump_velocity()
 	body.skeleton.play("Jump")
+	body.skeleton.set_speed(1)
