@@ -11,6 +11,7 @@ export var jump_height := 300
 export var jump_apex_time := .5
 export var ghost_jump_time := .4
 export var can_grab_ledge := true
+export var step_fix_height := 20
 
 onready var gravity = 2 * jump_height / pow(jump_apex_time, 2)
 onready var acceleration_factor = (horizontal_speed - horizontal_start_speed) / horizontal_max_time
@@ -55,6 +56,26 @@ func can_grab_right_ledge():
 		return ledge_detectors.right_ledge_detector.can_grab_ledge()
 	return false
 
+func fix_step_height():
+	var space_state := get_world_2d().direct_space_state
+	# use global coordinates, not local to node
+	var collision_shape := $FullCollision
+	var collision_shape_extents : Vector2 = $FullCollision.shape.extents
+	
+	var from = Vector2(collision_shape.global_position.x + sign(velocity.x) * (collision_shape_extents.x + 1 ), collision_shape.global_position.y - collision_shape_extents.y)
+	var to = Vector2(collision_shape.global_position.x + sign(velocity.x) * (collision_shape_extents.x + 1), collision_shape.global_position.y + collision_shape_extents.y)
+	
+	var inside_shape = space_state.intersect_point(from)
+	
+	if !inside_shape:
+		var result = space_state.intersect_ray(from, to, [self], collision_mask)
+		print(result)
+		if result and (to - result.position).y < step_fix_height:
+			position.y = result.position.y - 1
+			return true
+	
+	return false
+	
 func on_pause():
 	controler.reset()
 	

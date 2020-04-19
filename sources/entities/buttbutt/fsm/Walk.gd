@@ -39,8 +39,12 @@ func update_physics(delta):
 		body.velocity.x = clamp(body.velocity.x + body.acceleration_factor * delta, body.horizontal_start_speed, body.horizontal_speed)
 	
 	if body.velocity.x != 0:
-		var velocity = body.move_and_slide_with_snap(body.velocity, SNAP_VECTOR, Vector2.UP, true, 4, FLOOR_MAX_ANGLE)
-		body.velocity.y = velocity.y
+		var motion = body.move_and_slide_with_snap(body.velocity, SNAP_VECTOR, Vector2.UP, true, 4, FLOOR_MAX_ANGLE)
+		
+		if body.is_on_wall() and body.fix_step_height():
+			motion += body.move_and_slide_with_snap(body.velocity - motion, SNAP_VECTOR, Vector2.UP, true, 4 , FLOOR_MAX_ANGLE)
+		
+		body.velocity.y = motion.y
 
 		if body.velocity.x > 0:
 			body.skeleton.flip(ButtButtSkeleton.ORIENTATION_RIGHT)
