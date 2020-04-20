@@ -1,8 +1,5 @@
 extends FSMState
 
-const SNAP_VECTOR := Vector2(0, 32)
-const FLOOR_MAX_ANGLE := deg2rad(50)
-
 func get_next_state():
 	if Input.is_action_just_pressed("jump"):
 		return $"../Jump"
@@ -21,7 +18,12 @@ func update_physics(delta):
 	
 	if body.velocity != Vector2.ZERO:
 		#body.move_and_slide_with_snap(body.velocity, SNAP_LENGTH, Vector2.UP, true, 4, 0.85)
-		body.velocity.y = body.move_and_slide_with_snap(body.velocity, SNAP_VECTOR, Vector2.UP, true, 4, FLOOR_MAX_ANGLE).y
+		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, Vector2.UP, true, 4, body.floor_max_angle)
+		
+		if body.is_on_wall() and body.fix_step_height():
+			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, Vector2.UP, true, 4 , body.floor_max_angle)
+		
+		body.velocity.y = motion.y
 		
 		if body.velocity.x != 0:
 			if body.velocity.x > 0:

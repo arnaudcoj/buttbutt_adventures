@@ -1,9 +1,9 @@
 extends FSMState
 
 func get_next_state():
-	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
-		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
-		return $"../LedgeGrab"
+#	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
+#		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
+#		return $"../LedgeGrab"
 	if body.is_on_floor():
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			return $"../Walk"
@@ -24,9 +24,16 @@ func update_physics(delta):
 	
 	body.velocity.y += body.gravity * delta
 	
-	if body.is_on_wall():
-		body.velocity = body.move_and_slide(body.velocity, Vector2.UP, true, 4, 0.85)
-	else:
-		body.velocity.y = body.move_and_slide(body.velocity, Vector2.UP, true, 1).y
+#	if body.is_on_wall():
+#		body.velocity = body.move_and_slide(body.velocity, Vector2.UP, true, 4, 0.85)
+#	else:
+#		body.velocity.y = body.move_and_slide(body.velocity, Vector2.UP, true, 1).y
 	
+	var motion := body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
+	
+	if body.is_on_wall() and body.fix_step_height():
+		motion += body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
+	
+	body.velocity = motion
+		
 	body.skeleton.set_speed(abs(body.velocity.y) / body.gravity)

@@ -12,6 +12,8 @@ export var jump_apex_time := .5
 export var ghost_jump_time := .4
 export var can_grab_ledge := true
 export var step_fix_height := 20
+export var snap_vector := Vector2(0, 32)
+export var floor_max_angle := deg2rad(50)
 
 onready var gravity = 2 * jump_height / pow(jump_apex_time, 2)
 onready var acceleration_factor = (horizontal_speed - horizontal_start_speed) / horizontal_max_time

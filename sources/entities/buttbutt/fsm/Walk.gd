@@ -1,8 +1,5 @@
 extends FSMState
 
-const SNAP_VECTOR := Vector2(0, 32)
-const FLOOR_MAX_ANGLE := deg2rad(50)
-
 var ghost_jump_started := false
 var ghost_jump_timer := .0
 
@@ -39,10 +36,10 @@ func update_physics(delta):
 		body.velocity.x = clamp(body.velocity.x + body.acceleration_factor * delta, body.horizontal_start_speed, body.horizontal_speed)
 	
 	if body.velocity.x != 0:
-		var motion = body.move_and_slide_with_snap(body.velocity, SNAP_VECTOR, Vector2.UP, true, 4, FLOOR_MAX_ANGLE)
+		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, Vector2.UP, true, 4, body.floor_max_angle)
 		
 		if body.is_on_wall() and body.fix_step_height():
-			motion += body.move_and_slide_with_snap(body.velocity - motion, SNAP_VECTOR, Vector2.UP, true, 4 , FLOOR_MAX_ANGLE)
+			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, Vector2.UP, true, 4 , body.floor_max_angle)
 		
 		body.velocity.y = motion.y
 
