@@ -32,9 +32,7 @@ func update_physics(delta):
 	body.velocity.y += body.gravity * delta
 	
 	var motion = body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
-	if body.is_on_wall() and body.fix_step_height():
-		motion += body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
-		
+
 	body.velocity = motion
 
 func get_initial_jump_velocity():

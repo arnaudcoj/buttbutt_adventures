@@ -6,10 +6,11 @@ var ghost_jump_timer := .0
 func get_next_state():
 	if Input.is_action_just_pressed("jump"):
 		return $"../Jump"
-	if not Input.is_action_pressed("walk_left") and not Input.is_action_pressed("walk_right"):
-		return $"../Idle"
-	if Input.is_action_pressed("walk_left") and Input.is_action_pressed("walk_right"):
-		return $"../Idle"
+	if Input.is_action_pressed("walk_left") == Input.is_action_pressed("walk_right"):
+		if ghost_jump_started:
+			return $"../Fall"
+		else:
+			return $"../Idle"
 	if not body.is_on_floor():
 		if body.ghost_jump_time <= 0 || ghost_jump_timer > body.ghost_jump_time:
 			return $"../Fall"
@@ -19,13 +20,11 @@ func get_next_state():
 func enter_state():
 	.enter_state()
 	body.skeleton.play("Walk")
-	body.velocity.y = 0
 	ghost_jump_started = false
 	ghost_jump_timer = .0
 	
 func leave_state():
 	.leave_state()
-	body.velocity.y = 0
 
 func update_physics(delta):
 	body.velocity.y += body.gravity * delta

@@ -73,10 +73,18 @@ func fix_step_height():
 		var result = space_state.intersect_ray(from, to, [self], collision_mask)
 		print(result)
 		if result and (to - result.position).y < step_fix_height:
-			position.y = result.position.y - 1
+			position.y = result.position.y - 2
 			return true
 	
 	return false
+	
+func is_normal_wall(normal, ground_normal = Vector2.UP):
+	print(abs(ground_normal.angle_to(normal)), " > ", floor_max_angle)
+	return abs(ground_normal.angle_to(normal)) > floor_max_angle
+
+func is_normal_floor(normal, ground_normal = Vector2.UP):
+	print(abs(ground_normal.angle_to(normal)), " < ", floor_max_angle)
+	return abs(ground_normal.angle_to(normal)) < floor_max_angle
 	
 func on_pause():
 	controler.reset()

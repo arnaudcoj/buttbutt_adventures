@@ -10,13 +10,14 @@ func get_next_state():
 
 func enter_state():
 	.enter_state()
+	body.velocity.y = 0
 	body.skeleton.play("Idle")
 
 func update_physics(delta):
 	if body.velocity.x != 0:
 		body.velocity.x = sign(body.velocity.x) * max(abs(body.velocity.x) - body.deceleration_factor * delta, 0)
 	
-	if body.velocity != Vector2.ZERO:
+	if body.velocity.x != 0:
 		#body.move_and_slide_with_snap(body.velocity, SNAP_LENGTH, Vector2.UP, true, 4, 0.85)
 		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, Vector2.UP, true, 4, body.floor_max_angle)
 		
