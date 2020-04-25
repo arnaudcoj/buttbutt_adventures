@@ -31,7 +31,7 @@ func update_physics(delta):
 	
 	body.velocity.y += body.gravity * delta
 	
-	var motion = body.move_and_slide(body.velocity, Vector2(0, -1), true, 4, 0.85)
+	var motion = body.move_and_slide(body.velocity, body.up_vector, true, 4 , body.floor_max_angle)
 
 	body.velocity = motion
 

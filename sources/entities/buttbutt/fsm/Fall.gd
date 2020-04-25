@@ -27,10 +27,10 @@ func update_physics(delta):
 	var new_velocity := body.move_and_slide(body.velocity, body.up_vector, true, 1, body.floor_max_angle)
 
 	if body.is_on_floor() or body.fix_step_height():
-		body.move_and_slide_with_snap(Vector2(body.get_slide_collision(0).remainder.x / delta, 0), body.snap_vector, Vector2.UP, true, 2, body.floor_max_angle)
+		body.move_and_slide_with_snap(Vector2(body.get_slide_collision(0).remainder.x / delta, 0), body.snap_vector, body.up_vector, true, 2, body.floor_max_angle)
 		new_velocity = Vector2(body.velocity.x, 0)
 	elif body.is_on_wall():
-		body.move_and_slide(Vector2(0, body.get_slide_collision(0).remainder.y / delta), Vector2.UP, true, 4 , body.floor_max_angle)
+		body.move_and_slide(Vector2(0, body.get_slide_collision(0).remainder.y / delta), body.up_vector, true, 4 , body.floor_max_angle)
 		new_velocity = Vector2(0, body.velocity.y)
 	
 	body.velocity = new_velocity

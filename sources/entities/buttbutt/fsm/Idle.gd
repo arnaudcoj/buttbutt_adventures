@@ -18,11 +18,11 @@ func update_physics(delta):
 		body.velocity.x = sign(body.velocity.x) * max(abs(body.velocity.x) - body.deceleration_factor * delta, 0)
 	
 	if body.velocity.x != 0:
-		#body.move_and_slide_with_snap(body.velocity, SNAP_LENGTH, Vector2.UP, true, 4, 0.85)
-		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, Vector2.UP, true, 4, body.floor_max_angle)
+		#body.move_and_slide_with_snap(body.velocity, SNAP_LENGTH, body.up_vector, true, 4, 0.85)
+		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, body.up_vector, true, 4, body.floor_max_angle)
 		
 		if body.is_on_wall() and body.fix_step_height():
-			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, Vector2.UP, true, 4 , body.floor_max_angle)
+			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, body.up_vector, true, 4 , body.floor_max_angle)
 		
 		body.velocity.y = motion.y
 		
