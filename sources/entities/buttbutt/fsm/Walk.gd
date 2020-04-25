@@ -12,8 +12,11 @@ func get_next_state():
 		else:
 			return $"../Idle"
 	if not body.is_on_floor():
-		if body.ghost_jump_time <= 0 || ghost_jump_timer > body.ghost_jump_time:
-			return $"../Fall"
+		if ghost_jump_started :
+			if body.ghost_jump_time <= 0 || ghost_jump_timer > body.ghost_jump_time \
+			 || (Input.is_action_pressed("walk_left") && body.velocity.x > 0) \
+			 || (Input.is_action_pressed("walk_right") && body.velocity.x < 0):
+				return $"../Fall"
 		elif !ghost_jump_started:
 			ghost_jump_started = true
 
@@ -35,10 +38,10 @@ func update_physics(delta):
 		body.velocity.x = clamp(body.velocity.x + body.acceleration_factor * delta, body.horizontal_start_speed, body.horizontal_speed)
 	
 	if body.velocity.x != 0:
-		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, Vector2.UP, true, 4, body.floor_max_angle)
+		var motion = body.move_and_slide_with_snap(body.velocity, body.snap_vector, body.up_vector, true, 4, body.floor_max_angle)
 		
 		if body.is_on_wall() and body.fix_step_height():
-			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, Vector2.UP, true, 4 , body.floor_max_angle)
+			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, body.up_vector, true, 4 , body.floor_max_angle)
 		
 		body.velocity.y = motion.y
 
