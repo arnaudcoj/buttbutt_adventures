@@ -40,7 +40,7 @@ func get_initial_jump_velocity():
 
 func enter_state():
 	print("enter ", name)
-	long_jump = true
+	long_jump = Input.is_action_pressed("jump")
 	body.velocity.y = -get_initial_jump_velocity()
 	body.skeleton.play("Jump")
 	body.skeleton.set_speed(1)

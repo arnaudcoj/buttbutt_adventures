@@ -1,11 +1,16 @@
 extends FSMState
 
+var jump_pressed := false
+var jump_timer := .0
+
 func get_next_state():
 #	if Input.is_action_pressed("walk_left") and body.can_grab_left_ledge() \
 #		or Input.is_action_pressed("walk_right") and body.can_grab_right_ledge():
 #		return $"../LedgeGrab"
 	if body.is_on_floor():
-		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
+		if jump_pressed or Input.is_action_just_pressed("jump"):
+			return $"../Jump"
+		elif Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			return $"../Walk"
 		else:
 			return $"../Idle"
@@ -13,6 +18,8 @@ func get_next_state():
 func enter_state():
 	.enter_state()
 	body.skeleton.play("Fall")
+	jump_pressed = false
+	jump_timer = 0
 
 func update_physics(delta):
 	if Input.is_action_pressed("walk_left") == Input.is_action_pressed("walk_right") or abs(body.velocity.x) > body.horizontal_speed + 10:
@@ -21,7 +28,7 @@ func update_physics(delta):
 		body.velocity.x = max(body.velocity.x - body.acceleration_factor * delta, -body.horizontal_speed)
 	elif Input.is_action_pressed("walk_right"):
 		body.velocity.x = min(body.velocity.x + body.acceleration_factor * delta, body.horizontal_speed)
-	
+		
 	body.velocity.y += body.gravity * delta
 	
 	var new_velocity := body.move_and_slide(body.velocity, body.up_vector, true, 1, body.floor_max_angle)
@@ -36,3 +43,14 @@ func update_physics(delta):
 	body.velocity = new_velocity
 	
 	body.skeleton.set_speed(abs(body.velocity.y) / body.gravity)
+
+	if jump_pressed:
+#		if jump_timer > body.jump_input_time or Input.is_action_just_released("jump"):
+		if jump_timer > body.jump_input_time:
+			jump_pressed = false
+			jump_timer = .0
+		else:
+			jump_timer += delta
+	elif Input.is_action_just_pressed("jump"):
+		jump_pressed = true
+		jump_timer = delta

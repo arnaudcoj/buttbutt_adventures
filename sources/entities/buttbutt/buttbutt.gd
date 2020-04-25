@@ -10,6 +10,7 @@ export var horizontal_stop_time_fall := .6
 export var jump_height := 300
 export var jump_apex_time := .5
 export var ghost_jump_time := .4
+export var jump_input_time := .15
 export var can_grab_ledge := true
 export var step_fix_height := 30
 export var snap_vector := Vector2(0, 32)
