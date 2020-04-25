@@ -24,24 +24,15 @@ func update_physics(delta):
 	
 	body.velocity.y += body.gravity * delta
 	
-	var move_and_collide_result := body.move_and_collide(body.velocity * delta)
+	var new_velocity := body.move_and_slide(body.velocity, body.up_vector, true, 1, body.floor_max_angle)
+
+	if body.is_on_floor() or body.fix_step_height():
+		body.move_and_slide_with_snap(Vector2(body.get_slide_collision(0).remainder.x / delta, 0), body.snap_vector, Vector2.UP, true, 2, body.floor_max_angle)
+		new_velocity = Vector2(body.velocity.x, 0)
+	elif body.is_on_wall():
+		body.move_and_slide(Vector2(0, body.get_slide_collision(0).remainder.y / delta), Vector2.UP, true, 4 , body.floor_max_angle)
+		new_velocity = Vector2(0, body.velocity.y)
 	
-	var motion := body.velocity
-	if move_and_collide_result:
-		motion = move_and_collide_result.travel
-		if body.is_normal_floor(move_and_collide_result.normal) or body.fix_step_height():
-			body.velocity.y = body.gravity * delta
-			motion.y = 0
-			motion += body.move_and_slide_with_snap(body.velocity - motion, body.snap_vector, Vector2.UP, true, 1 , body.floor_max_angle)
-		else:
-			motion += body.move_and_slide(body.velocity - motion, Vector2.UP, true, 4 , body.floor_max_angle)
-			
-
-	if body.is_on_wall():
-		body.velocity = motion
-	elif body.is_on_floor():
-		body.velocity.y = 0
-	else:
-		body.velocity.y = motion.y
-
+	body.velocity = new_velocity
+	
 	body.skeleton.set_speed(abs(body.velocity.y) / body.gravity)

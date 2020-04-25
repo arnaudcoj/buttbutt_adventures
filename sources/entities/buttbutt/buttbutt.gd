@@ -11,9 +11,11 @@ export var jump_height := 300
 export var jump_apex_time := .5
 export var ghost_jump_time := .4
 export var can_grab_ledge := true
-export var step_fix_height := 20
+export var step_fix_height := 30
 export var snap_vector := Vector2(0, 32)
 export var floor_max_angle := deg2rad(50)
+
+const up_vector = Vector2.UP
 
 onready var gravity = 2 * jump_height / pow(jump_apex_time, 2)
 onready var acceleration_factor = (horizontal_speed - horizontal_start_speed) / horizontal_max_time
@@ -59,6 +61,9 @@ func can_grab_right_ledge():
 	return false
 
 func fix_step_height():
+	if !is_on_wall():
+		return false
+		
 	var space_state := get_world_2d().direct_space_state
 	# use global coordinates, not local to node
 	var collision_shape := $FullCollision
@@ -79,11 +84,11 @@ func fix_step_height():
 	return false
 	
 func is_normal_wall(normal, ground_normal = Vector2.UP):
-	print(abs(ground_normal.angle_to(normal)), " > ", floor_max_angle)
+#	print(abs(ground_normal.angle_to(normal)), " > ", floor_max_angle)
 	return abs(ground_normal.angle_to(normal)) > floor_max_angle
 
 func is_normal_floor(normal, ground_normal = Vector2.UP):
-	print(abs(ground_normal.angle_to(normal)), " < ", floor_max_angle)
+#	print(abs(ground_normal.angle_to(normal)), " < ", floor_max_angle)
 	return abs(ground_normal.angle_to(normal)) < floor_max_angle
 	
 func on_pause():
